@@ -2,7 +2,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">Import customer</h4>
+            <h4 class="card-title text-primary">Import customer</h4>
             <form action="/api/importCustomer" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- <input type="file" name="mycsv" id="mycsv" class="form-control"/>
