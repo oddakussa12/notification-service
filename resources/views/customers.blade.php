@@ -25,11 +25,39 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
+              <tr>
                 <td>0900048949</td>
                 <td>Student</td>
                 <td><span class="badge badge-success">Active</span></td>
-                <td>Sep 22</td>
+                <td>Sep 12</td>
+                <td>Dec 13</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td>0912675245</td>
+                <td>Student</td>
+                <td><span class="badge badge-danger">Disabled</span></td>
+                <td>Mar 16</td>
+                <td>Feb 26</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td>0929173195</td>
+                <td>Teacher</td>
+                <td><span class="badge badge-danger">Disabled</span></td>
+                <td>Sep 20</td>
                 <td>July 23</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -39,7 +67,34 @@
                     </div>  
                 </td>
               </tr>
-           
+              <tr>
+                <td>0976536253</td>
+                <td>Merchants</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>Sep 29</td>
+                <td>July 23</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td>0933776533</td>
+                <td>Employees</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>Sep 22</td>
+                <td>Jun 2</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

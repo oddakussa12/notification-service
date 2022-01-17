@@ -41,6 +41,75 @@
                         <button type="button" class="btn btn-outline-secondary">SMS</button>
                     </div>  
                 </td>
+              </tr>
+              <tr>
+                <td class="py-1">
+                  <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
+                </td>
+                <td> Teachers </td>
+                <td>250000 </td>
+                <td> Junly, 13, [02:33] </td>
+                <td> Junly, 13, [02:56] </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">
+                  <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
+                </td>
+                <td> Employees </td>
+                <td>230300 </td>
+                <td> Junly, 13, [02:33] </td>
+                <td> Junly, 13, [02:56] </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">
+                  <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
+                </td>
+                <td> Merchants </td>
+                <td>120300 </td>
+                <td> Junly, 13, [02:33] </td>
+                <td> Junly, 13, [02:56] </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">
+                  <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
+                </td>
+                <td> Drivers </td>
+                <td>10300 </td>
+                <td> Junly, 13, [02:33] </td>
+                <td> Junly, 13, [02:56] </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                    </div>  
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

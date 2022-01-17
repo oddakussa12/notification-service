@@ -26,7 +26,7 @@
                   <td>
                       <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
-                  <td>Photoshop</td>
+                  <td>Employees</td>
                   <td>23000</td>
                 </tr>
                 <tr>
@@ -34,34 +34,34 @@
                     <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
                   <td>Flash</td>
-                  <td>65000</td>
+                  <td>Airlines</td>
                 </tr>
                 <tr>
                   <td>
                       <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
-                  <td>Photoshop</td>
+                  <td>Students</td>
                   <td>32000</td>
                 </tr>
                 <tr>
                   <td>
                     <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
-                  <td>Flash</td>
+                  <td>Teachers</td>
                   <td>97000</td>
                 </tr>
                 <tr>
                   <td>
                       <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
-                  <td>Photoshop</td>
+                  <td>Drivers</td>
                   <td>32000</td>
                 </tr>
                 <tr>
                   <td>
                     <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
                   </td>
-                  <td>Flash</td>
+                  <td>Merchants</td>
                   <td>97000</td>
                 </tr>
                 </tbody>

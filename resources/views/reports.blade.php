@@ -44,8 +44,8 @@
               <td>
                   <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
               </td>
-                <td> SMS sent to students</td>
-                <td>250000 </td>
+                <td> SMS sent to Merchants</td>
+                <td>120700 </td>
                 <td> 0 </td>
                 <td> Junly, 13, [02:33] </td>
                 <td> Junly, 13, [02:56] </td>
@@ -58,12 +58,29 @@
                  </td>
               </tr>
               <tr>
-              <td>
-                  <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
-              </td>
-                <td> SMS sent to students</td>
-                <td>250000 </td>
+                <td>
+                    <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
+                </td>
+                <td> SMS sent to Teachers</td>
+                <td>20000 </td>
                 <td> 0 </td>
+                <td> Junly, 13, [02:33] </td>
+                <td> Junly, 13, [02:56] </td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-outline-secondary">Content</button>
+                      <button disabled type="button" class="btn btn-outline-secondary">Resend</button>
+                      <button type="button" class="btn btn-outline-secondary">Delete</button>
+                  </div>  
+                 </td>
+              </tr>
+              <tr>
+                <td>
+                    <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
+                </td>
+                <td> SMS sent to Employees</td>
+                <td>335000 </td>
+                <td> 12 </td>
                 <td> Junly, 13, [02:33] </td>
                 <td> Junly, 13, [02:56] </td>
                 <td>
