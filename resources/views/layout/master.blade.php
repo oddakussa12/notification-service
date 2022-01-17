@@ -87,6 +87,8 @@
             </div>
         </div>
         @include('/modals/createRecord')
+        @include('/modals/sendSingleSMS')
+        @include('/modals/createGroupModal')
         <div class="content-wrapper" id="odda">
           @yield('content')
         </div>

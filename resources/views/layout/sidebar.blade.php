@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <button id="sendSMS" class="btn btn-primary btn-block">Send Bulk SMS <i class="mdi mdi-plus"></i>
+        <button id="sendSMS" class="btn btn-primary btn-block">Send Bulk SMS <i class="mdi mdi-bullhorn"></i>
         </button>
       </div>
     </li>
@@ -55,7 +55,7 @@
     </li>
     <li id="targets" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-application"></i>
+        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
         <span class="menu-title">Customers group</span>
       </a>
     </li>
@@ -73,13 +73,19 @@
     </li>
     <li id="incomming" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
+        <i class="menu-icon mdi mdi-comment-multiple-outline"></i>
         <span class="menu-title">Incomming SMS</span>
+      </a>
+    </li>
+    <li id="schedule" class="nav-item {{ active_class(['charts/chartjs']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-calendar"></i>
+        <span class="menu-title">SMS Schedule</span>
       </a>
     </li>
     <li id="auto_reply" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
+        <i class="menu-icon mdi mdi-alarm-plus"></i>
         <span class="menu-title">Auto reply SMS</span>
       </a>
     </li>
@@ -152,8 +158,34 @@
   </ul>
 </nav>
 
-<!-- script to load send sms page -->
+
 @section('js')
+<!-- script to load send sms page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displaySMSschedule(){
+            $.ajax({
+              url:'{{route('smsSchedule')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#schedule').on('click',function(){
+            displaySMSschedule();
+        });
+    });
+</script>
   <!-- script to load sms report page -->
   <script>
     $(document).ready(function(){
@@ -179,8 +211,8 @@
             displaySMSReport();
         });
     });
-</script>
-
+  </script>
+<!-- script to load send SMS -->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();
@@ -261,6 +293,32 @@
         });
     });
 </script>
+<!-- script to display incomming SMS table -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displayIncommingSMS(){
+            $.ajax({
+              url:'{{route('incommingSMS')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#incomming').on('click',function(){
+            displayIncommingSMS();
+        });
+    });
+</script>
 
 <!-- script to display all targets table -->
 <script>
@@ -285,6 +343,59 @@
 
         $('#targets').on('click',function(){
             displayTargetsTable();
+        });
+    });
+</script>
+<!-- script to display auto reply sms table -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displayAutoReplyTable(){
+            $.ajax({
+              url:'{{route('autoReplayTable')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#auto_reply').on('click',function(){
+            displayAutoReplyTable();
+        });
+    });
+</script>
+
+<!-- script to running sms dashboard -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displyRunningSMS(){
+            $.ajax({
+              url:'{{route('runningTask')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#running').on('click',function(){
+            displyRunningSMS();
         });
     });
 </script>
@@ -338,5 +449,108 @@
       });
     });
 </script>
+
+<!-- script to send single sms -->
+<script>
+    $(document).ready(function(){
+       // show create contact modal
+       $('#singleSMS').click(function(){
+          $('#sendSingleSMS').modal('show');
+      });
+       // implementation when send button is clicked from send single sms modal
+      // $('#createRecordForm').on('submit', function(event){
+      //     event.preventDefault();
+      //     if($('#createContactBtn').val() == 'Create'){
+      //         $.ajax({
+      //             url:"{{ route('api.createCustomer') }}",
+      //             method:"POST",
+      //             data: new FormData(this),
+      //             contentType:false,
+      //             cache:false,
+      //             processData:false,
+      //             dataType:'json',
+      //             beforeSend: function()
+      //             {
+      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+      //             },
+      //             success:function(data){
+      //                 var html = '';
+      //                 if(data.errors){
+      //                     html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
+      //                     for(var count = 0; count<data.errors.length; count++){
+      //                         html += '<p>' + data.errors[count] + '</p>';
+      //                     }
+      //                     html += '</div>';
+      //                     $('#createContactBtn').html('Create'); 
+      //                 }
+      //                 if(data.success){
+      //                     html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
+      //                     + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
+      //                     // empty form field values  
+      //                     $('#createRecordForm')[0].reset();
+      //                     $('#createContactBtn').html('Create');
+
+      //                 }
+      //                 // render error or success message in html variable to span element with id value form_result
+      //                 $('#form_result').html(html);
+      //             }
+      //         })
+      //     }
+      // });
+    });
+</script>
+
+
+<!-- script to create group -->
+<script>
+    $(document).ready(function(){
+       // show create contact modal
+       $('.createGroup').click(function(){
+          $('#createGroupModal').modal('show');
+      });
+       // implementation when send button is clicked from send single sms modal
+      // $('#createRecordForm').on('submit', function(event){
+      //     event.preventDefault();
+      //     if($('#createContactBtn').val() == 'Create'){
+      //         $.ajax({
+      //             url:"{{ route('api.createCustomer') }}",
+      //             method:"POST",
+      //             data: new FormData(this),
+      //             contentType:false,
+      //             cache:false,
+      //             processData:false,
+      //             dataType:'json',
+      //             beforeSend: function()
+      //             {
+      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+      //             },
+      //             success:function(data){
+      //                 var html = '';
+      //                 if(data.errors){
+      //                     html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
+      //                     for(var count = 0; count<data.errors.length; count++){
+      //                         html += '<p>' + data.errors[count] + '</p>';
+      //                     }
+      //                     html += '</div>';
+      //                     $('#createContactBtn').html('Create'); 
+      //                 }
+      //                 if(data.success){
+      //                     html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
+      //                     + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
+      //                     // empty form field values  
+      //                     $('#createRecordForm')[0].reset();
+      //                     $('#createContactBtn').html('Create');
+
+      //                 }
+      //                 // render error or success message in html variable to span element with id value form_result
+      //                 $('#form_result').html(html);
+      //             }
+      //         })
+      //     }
+      // });
+    });
+</script>
+
+
 @endsection
 

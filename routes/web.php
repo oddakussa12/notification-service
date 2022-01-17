@@ -22,7 +22,10 @@ Route::get('/SMSReport', 'SidemenuController@smsReportView')->name('SMSReport');
 Route::get('/importCustomer', 'SidemenuController@importCustomerView')->name('importCustomer');
 Route::get('/customers', 'SidemenuController@customers')->name('customers');
 Route::get('/targets', 'SidemenuController@targets')->name('targets');
-
+Route::get('/incommingSMS', 'SidemenuController@incommingSMS')->name('incommingSMS');
+Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoReplayTable');
+Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
+Route::get('/runningTask', 'SidemenuController@runningTask')->name('runningTask');
 
 
 

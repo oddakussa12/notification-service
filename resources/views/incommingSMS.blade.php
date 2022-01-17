@@ -1,46 +1,61 @@
+@include('/modals/replySingleSMS')
 <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
+<div class="card">
       <div class="card-body">
-      <div class="row" style="padding-bottom:10px;">
-              <div class="col-sm-4">
-              <h4 class="card-title text-primary">Customers group</h4>
+        <div class="row" style="padding-bottom:15px;">
+              <div class="col-sm-3">
+              <h4 class="card-title text-primary text-primary">Incomming SMS</h4>
               </div>
-              <div class="col-sm-4">
-                <input type="text" placeholder="Search group" class="form-control form-control-sm" style="border-radius:5px;"/>
+              <div class="col-sm-5">
+                <input type="number" placeholder="Search contact" class="form-control form-control-sm" style="border-radius:5px;"/>
               </div>
               <div class="col-sm-4" style="text-align:right;">
-              <button type="button" class="btn btn-inverse-primary btn-fw createGroup">New group</button>
+              <button type="button" class="btn btn-inverse-danger btn-fw">Delete selected</button>
+              <button type="button" class="btn btn-inverse-secondary btn-fw">Export data</button>
               </div>
         </div>
-        <div class="table-responsive table-condensed">
-          <table class="table table-striped">
+        <div class="table-responsive">
+          <table class="table table-hover">
             <thead>
               <tr>
-                <th> Avatar </th>
-                <th> Group name </th>
-                <th> Total Customers</th>
-                <th> Created at</th>
-                <th> Updated at</th>
-                <th> Actions</th>
+                <th>Select</th>
+                <th>Contact</th>
+                <th>Message</th>
+                <th>Recieved at</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="py-1">
-                  <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
-                </td>
-                <td> Students </td>
-                <td>250000 </td>
-                <td> Junly, 13, [02:33] </td>
-                <td> Junly, 13, [02:56] </td>
-                <td>
+                  <td>
+                    <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
+                  </td>
+                  <td>0900048949</td>
+                  <td>Where are you at?</td>
+                  <td>Sep 22</td>
+                  <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">Export</button>
-                        <button type="button" class="btn btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-outline-secondary">View</button>
                         <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
+                        <button type="button" class="btn btn-outline-secondary replysingleSMS">Reply</button>
                     </div>  
-                </td>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                    <input type="checkbox" style="padding:0px;margin-left:10px;margin-top:-6px;" class="form-check-input" id="exampleCheck1">
+                  </td>
+                  <td>0900048949</td>
+                  <td>I really like your messages</td>
+                  <td>Sep 22</td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-outline-secondary">Delete</button>
+                        <button type="button" class="btn btn-outline-secondary replysingleSMS">Reply</button>
+                    </div>  
+                  </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -48,12 +63,12 @@
     </div>
   </div>
 
-  <!-- script to create group -->
+  <!-- script to send single sms -->
 <script>
     $(document).ready(function(){
        // show create contact modal
-       $('.createGroup').click(function(){
-          $('#createGroupModal').modal('show');
+       $('.replysingleSMS').click(function(){
+          $('#replySingleSMS').modal('show');
       });
        // implementation when send button is clicked from send single sms modal
       // $('#createRecordForm').on('submit', function(event){

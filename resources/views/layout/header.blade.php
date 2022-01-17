@@ -14,11 +14,14 @@
       <li class="nav-item d-none d-xl-flex" id="createRecord">
         <a href="#" class="nav-link">Add contact</a>
       </li>
-      <li class="nav-item d-none d-xl-flex">
+      <li class="nav-item d-none d-xl-flex createGroup">
         <a href="#" class="nav-link">Create group</a>
       </li>
-      <li class="nav-item d-none d-xl-flex">
+      <li class="nav-item d-none d-xl-flex" id="singleSMS">
         <a href="#" class="nav-link">Send Single SMS</a>
+      </li>
+      <li class="nav-item d-none d-xl-flex" id="running">
+        <a href="#" class="nav-link">Running Task</a>
       </li>
       <!-- <li class="nav-item active d-none d-lg-flex">
         <a href="#" class="nav-link">

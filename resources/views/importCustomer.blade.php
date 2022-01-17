@@ -11,7 +11,7 @@
                 <div class="form-row">
                     <div class="col">
                     <select id="inputState" class="form-control" style="padding:0px;">
-                        <option selected>Choose...</option>
+                        <option selected>Choose customer group</option>
                         <option>...</option>
                     </select>
                     </div>

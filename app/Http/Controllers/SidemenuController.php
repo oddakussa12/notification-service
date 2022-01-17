@@ -22,4 +22,16 @@ class SidemenuController extends Controller
     public function targets(){
         return view('targets');
     }
+    public function incommingSMS(){
+        return view('incommingSMS');
+    }
+    public function autoReplyTable(){
+        return view('autoreply');
+    }
+    public function SMSschedule(){
+        return view('SMSschedule');
+    }
+    public function runningTask(){
+        return view('running');
+    }
 }

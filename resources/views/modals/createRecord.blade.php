@@ -12,6 +12,15 @@
         @csrf
         <div>
           <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Target group::</label>
+              <div class="col-sm-9">
+                <select id="inputState" class="form-control form-control-sm" style="padding:5px;border-radius:5px;margin-top:5px;">
+                    <option selected>Choose target group (Optional)</option>
+                    <option>...</option>
+                </select>
+              </div>
+          </div>
+          <div class="form-group row">
               <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Phone number:</label>
               <div class="col-sm-9">
                 <input type="number" style="margin-top:5px;" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Start with 09">
