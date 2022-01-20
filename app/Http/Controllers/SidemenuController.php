@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AutoReply;
+use App\Models\Group;
 
 class SidemenuController extends Controller
 {
@@ -20,13 +22,15 @@ class SidemenuController extends Controller
         return view('customers');
     }
     public function targets(){
-        return view('targets');
+        $groups = Group::withCount('customers')->latest()->get();
+        return view('targets',compact('groups'));
     }
     public function incommingSMS(){
         return view('incommingSMS');
     }
     public function autoReplyTable(){
-        return view('autoreply');
+        $rules = AutoReply::all();
+        return view('autoreply',compact('rules'));
     }
     public function SMSschedule(){
         return view('SMSschedule');

@@ -85,13 +85,15 @@
        // implementation when submit button is clicked from create contact modal
       $('#createScheduleForm').on('submit', function(event){
           event.preventDefault();
-          if($('#createContactBtn').val() == 'Schedule'){
+          if($('#createScheduleBtn').val() == 'Schedule'){
               $.ajax({
-                  url:"{{ route('api.createCustomer') }}",
+                  url:"{{ route('/storeSchedule') }}",
                   method:"POST",
                   data: new FormData(this),
                   contentType:false,
                   cache:false,
+                  timeout: 10000,
+                  async: false
                   processData:false,
                   dataType:'json',
                   beforeSend: function()

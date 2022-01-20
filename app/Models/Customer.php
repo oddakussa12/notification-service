@@ -11,5 +11,10 @@ class Customer extends Model
     protected $fillable = [
         'phone',
         'is_active',
+        'group_id'
     ];
+
+    public function group(){
+        return $this->belongsTo('App\Models\Customer');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAutoRepliesTable extends Migration
+class CreateGroupScheduleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAutoRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('auto_replies', function (Blueprint $table) {
+        Schema::create('group_schedule', function (Blueprint $table) {
             $table->id();
-            $table->text('trigger');
-            $table->text('response');
+            $table->integer('group_id');
+            $table->integer('schedule_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAutoRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auto_replies');
+        Schema::dropIfExists('group_schedule');
     }
 }

@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AutoReply extends Model
+class Group extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'trigger',
-        'response'
+        'name',
     ];
+
+    public function customers(){
+        return $this->hasMany('App\Models\Customer');
+    }
 }

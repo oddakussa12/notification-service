@@ -3,7 +3,7 @@
       <div class="card-body">
         <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
-              <h4 class="card-title text-primary text-primary">All customers</h4>
+              <h4 class="card-title text-primary text-primary">Active customers</h4>
               </div>
               <div class="col-sm-4">
                 <input type="number" placeholder="Search contact" class="form-control form-control-sm" style="border-radius:5px;"/>
@@ -42,7 +42,7 @@
               <tr>
                 <td>0912675245</td>
                 <td>Student</td>
-                <td><span class="badge badge-danger">Disabled</span></td>
+                <td><span class="badge badge-success">Active</span></td>
                 <td>Mar 16</td>
                 <td>Feb 26</td>
                 <td>
@@ -56,7 +56,7 @@
               <tr>
                 <td>0929173195</td>
                 <td>Teacher</td>
-                <td><span class="badge badge-danger">Disabled</span></td>
+                <td><span class="badge badge-success">Active</span></td>
                 <td>Sep 20</td>
                 <td>July 23</td>
                 <td>

@@ -27,6 +27,14 @@ Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoR
 Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
 Route::get('/runningTask', 'SidemenuController@runningTask')->name('runningTask');
 
+// autoreply CRUD routes
+Route::post('/storeautoreply', 'AutoReplyController@store')->name('storeautoreply');
+
+// target group CRUD routes
+Route::post('/storeGroup', 'GroupController@store')->name('storeGroup');
+
+// schedule CRUD Routes
+Route::post('/storeSchedule', 'ScheduleController@store')->name('storeSchedule');
 
 
 Route::group(['prefix' => 'basic-ui'], function(){

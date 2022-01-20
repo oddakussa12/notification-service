@@ -20,9 +20,11 @@
                 <div class="form-group row">
                     <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Target group:</label>
                     <div class="col-sm-8">
-                        <select id="inputState" class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;">
+                        <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;"
+                            name="group_ids">
                             <option selected>Choose target group</option>
-                            <option>...</option>
+                            <option value="1">Student</option>
+                            <option value="2">Teacher</option>
                         </select>
                     </div>
                 </div>
@@ -30,13 +32,13 @@
                     <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Schedule for:</label>
                     <div class="col-sm-8">
                         <input type="datetime-local" class="form-control" style="paddgin:5px;margin-top:5px;border-radius:5px;"
-                            id="birthdaytime" name="birthdaytime">
+                            name="schedule_time">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <div class="form-group shadow-textarea" style="margin-top:10px;">
-                            <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" style="padding:10px;font-size:14px;border-radius:4px;" rows="6" placeholder="Write your message ..."></textarea>
+                            <textarea class="form-control z-depth-1" name="schedule_message" style="padding:10px;font-size:14px;border-radius:4px;" rows="6" placeholder="Write your message ..."></textarea>
                         </div>
                     </div>
                 </div>

@@ -47,11 +47,22 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li id="customers" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
+    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+      <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-account-multiple-plus"></i>
-        <span class="menu-title">All customers</span>
+        <span class="menu-title">Customers</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-ui">
+        <ul class="nav flex-column sub-menu">
+          <li id="customers"  class="nav-item {{ active_class(['basic-ui/buttons']) }}">
+            <a class="nav-link">Active customers</a>
+          </li>
+          <li class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link" href="{{ url('/basic-ui/dropdowns') }}">Unsubcribers</a>
+          </li>
+        </ul>
+      </div>
     </li>
     <li id="targets" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
