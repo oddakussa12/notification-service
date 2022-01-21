@@ -31,12 +31,23 @@ class ScheduleController extends Controller
         if($error->fails()){
             return response()->json(['errors' => $error->errors()->all()]);
         }
-        $form_data = array(
+
+        // $form_data = array(
+        //     'name' => $request->schedule_name,
+        //     'message' => $request->schedule_message,
+        //     'date_time' => $request->schedule_time,
+        // ); 
+        // Schedule::create($form_data);
+
+        $schedule = Schedule::create([
             'name' => $request->schedule_name,
             'message' => $request->schedule_message,
             'date_time' => $request->schedule_time,
-        ); 
-        Schedule::create($form_data);
+        ]);
+
+        $groups = $request->group_ids;
+        $schedule->groups()->attach($groups);
+
         return response()->json(['success'=> 'New schedule created successfully.']); 
     }
 

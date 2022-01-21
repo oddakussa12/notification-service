@@ -16,6 +16,6 @@ class Schedule extends Model
     ];
 
     public function groups(){
-        return $this->hasMany('App\Models\Group');
+        return $this->belongsToMany('App\Models\Group');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AutoReply;
 use App\Models\Group;
+use App\Models\Schedule;
 
 class SidemenuController extends Controller
 {
@@ -33,7 +34,8 @@ class SidemenuController extends Controller
         return view('autoreply',compact('rules'));
     }
     public function SMSschedule(){
-        return view('SMSschedule');
+        $schedules = Schedule::latest()->get();
+        return view('SMSschedule',compact('schedules'));
     }
     public function runningTask(){
         return view('running');

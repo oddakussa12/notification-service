@@ -16,4 +16,8 @@ class Group extends Model
     public function customers(){
         return $this->hasMany('App\Models\Customer');
     }
+
+    public function schedules(){ 
+        return $this->belongsToMany('App\Models\Schedule');
+    }
 }
