@@ -38,14 +38,15 @@
         }, 1000);
         function fetchBatchStatus(batchId){
             $.ajax({
-                url:'http://localhost:8000/api/batch/'+batchId,
+                url:'http://172.17.104.10:8181/api/batch/'+batchId,
                 cache:false,
                 method:'GET',
-                // beforeSend: function()
-                // {  
-                //     console.log("sending");
-                // },
+                beforeSend: function()
+                {  
+                    console.log("sending");
+                },
                 success:function(data){
+                    console.log(data);
                     $("#proccessed").text(data.processedJobs);
                     $("#total").text(data.totalJobs);
                     $('#progressdiv').attr('aria-valuenow', data.progress).text(data.progress + '%').css('width', data.progress+'%');

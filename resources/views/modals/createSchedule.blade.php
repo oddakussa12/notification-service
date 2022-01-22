@@ -1,4 +1,4 @@
-<div  class="modal fade" id="createScheduleModal"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div  class="modal fade" id="createScheduleModal"   tabindex="-1" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#006699;">
@@ -22,9 +22,14 @@
                     <div class="col-sm-8">
                         <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;"
                             name="group_ids">
-                            <option selected>Choose target group</option>
-                            <option value="1">Student</option>
-                            <option value="2">Teacher</option>
+                            <option selected disabled>Choose target group</option>
+                            @if(!$groups->isEmpty())
+                            @foreach($groups as $group)
+                                <option value={{$group->id}}>{{$group->name}}</option>
+                            @endforeach
+                            @else
+                                <option disabled>No group found, Please create one first.</option>
+                            @endif
                         </select>
                     </div>
                 </div>

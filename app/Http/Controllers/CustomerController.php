@@ -10,6 +10,7 @@ use Validator;
 use DB;
 use Redirect;
 use App\Jobs\ImportExcel;
+use Illuminate\Support\Facades\Http;
 
 class CustomerController extends Controller
 {

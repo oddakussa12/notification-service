@@ -10,9 +10,15 @@
                
                 <div class="form-row">
                     <div class="col">
-                    <select id="inputState" class="form-control" style="padding:0px;">
-                        <option selected>Choose customer group</option>
-                        <option>...</option>
+                    <select name = "group_id"class="form-control" style="padding:0px;">
+                        <option selected disabled>Choose customer group</option>
+                        @if(!$groups->isEmpty())
+                            @foreach($groups as $group)
+                                <option value={{$group->id}}>{{$group->name}}</option>
+                            @endforeach
+                        @else
+                            <option>No group found, Please create one first.</option>
+                        @endif
                     </select>
                     </div>
                     <div class="col" style="height:10px;">

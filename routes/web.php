@@ -27,6 +27,12 @@ Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoR
 Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
 Route::get('/runningTask', 'SidemenuController@runningTask')->name('runningTask');
 
+
+// incomming message
+Route::get('/getMessage', 'IncommingMessageController@store');
+
+
+
 // autoreply CRUD routes
 Route::post('/storeautoreply', 'AutoReplyController@store')->name('storeautoreply');
 

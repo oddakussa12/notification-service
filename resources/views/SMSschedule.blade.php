@@ -37,11 +37,9 @@
                                         @if(!$schedule->groups->isEmpty())
                                             @foreach($schedule->groups as $group)
                                                 <span class="badge badge-pill badge-info">{{$group->name}}</span>
-                                                <span class="badge badge-pill badge-info">{{$group->name}}</span>
+    
                                             @endforeach
                                         @endif
-                                        <!-- <span class="badge badge-pill badge-info">Feres Drivers</span>
-                                        <span class="badge badge-pill badge-info">Ride Drivers</span> -->
                                     </td>
                                     <td class="text-primary">{{$schedule->date_time}}</td>
                                     <td>
@@ -79,40 +77,49 @@
           event.preventDefault();
           if($('#createScheduleBtn').val() == 'Schedule'){
               $.ajax({
-                  url:"{{ route('storeSchedule') }}",
-                  method:"POST",
-                  data: new FormData(this),
-                  contentType:false,
-                  cache:false,
-                  timeout: 10000,
-                  async: false,
-                  processData:false,
-                  dataType:'json',
-                  beforeSend: function()
-                  {
-                      $('#createScheduleBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
-                  },
-                  success:function(data){
-                      var html = '';
-                      if(data.errors){
-                          html = '<div class="alert alert-danger alert-block" style="padding:2px;">';
-                          for(var count = 0; count<data.errors.length; count++){
-                              html += '<p>' + data.errors[count] + '</p>';
-                          }
-                          html += '</div>';
-                          $('#createScheduleBtn').html('Schedule'); 
-                      }
-                      if(data.success){
-                          html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-                          + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-                          // empty form field values  
-                          $('#createScheduleForm')[0].reset();
-                          $('#createScheduleBtn').html('Schedule');
-
-                      }
-                      // render error or success message in html variable to span element with id value form_result
-                      $('#create_schedule_form_result').html(html);
-                    },
+                url:"{{ route('storeSchedule') }}",
+                method:"POST",
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData:false,
+                dataType:'json',
+                beforeSend: function()
+                {
+                    $('#createScheduleBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                },
+                success:function(data){
+                    var html = '';
+                    if(data.errors){
+                        html = '<div class="alert alert-danger alert-block" style="padding:2px;">';
+                        for(var count = 0; count<data.errors.length; count++){
+                            html += '<p>' + data.errors[count] + '</p>';
+                        }
+                        html += '</div>';
+                        $('#createScheduleBtn').html('Schedule'); 
+                        // render error or success message in html variable to span element with id value form_result
+                        $('#create_schedule_form_result').html(html);
+                    }
+                    if(data.success){
+                        $('#createScheduleModal').modal('hide');
+                        setTimeout(function() { odda(); }, 500);
+                        function odda(){
+                            $.ajax({
+                                url:'{{route('smsSchedule')}}',
+                                cache: false,
+                                type:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $("#odda").html(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                        }
+                    }
+                },
               })
             }
         });

@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <button id="sendSMS" class="btn btn-primary btn-block">Send Bulk SMS <i class="mdi mdi-bullhorn"></i>
+        <button id="sendSMS" class="btn btn-primary btn-block">Send SMS <i class="mdi mdi-bullhorn"></i>
         </button>
       </div>
     </li>
@@ -171,7 +171,7 @@
 
 
 @section('js')
-<!-- script to load send sms page -->
+<!-- script to disply sms schedule page-->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();

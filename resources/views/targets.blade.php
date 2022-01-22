@@ -35,8 +35,8 @@
                 </td>
                 <td> {{$group->name}} </td>
                 <td>{{$group->customers_count}}</td>
-                <td> {{$group->created_at}}</td>
-                <td> {{$group->updated_at}}</td>
+                <td>{{ Carbon\Carbon::parse($group->created_at)->format('D, M d, Y h:i A') }}</td>
+                <td>{{ Carbon\Carbon::parse($group->updated_at)->format('D, M d, Y h:i A') }}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-outline-secondary">Export</button>
