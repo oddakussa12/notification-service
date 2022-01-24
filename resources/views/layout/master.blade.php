@@ -89,7 +89,7 @@
         </div>
         @include('/modals/createRecord')
         @include('/modals/sendSingleSMS')
-        @include('/modals/createGroupModal')
+        @include('/modals/createGroupHeaderModal')
         <div class="content-wrapper" id="odda">
           @yield('content')
         </div>

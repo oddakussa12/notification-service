@@ -14,7 +14,7 @@
       <li class="nav-item d-none d-xl-flex" id="createRecord">
         <a href="#" class="nav-link">Add contact</a>
       </li>
-      <li class="nav-item d-none d-xl-flex createGroup">
+      <li class="nav-item d-none d-xl-flex" id="createGroupHeader">
         <a href="#" class="nav-link">Create group</a>
       </li>
       <li class="nav-item d-none d-xl-flex" id="singleSMS">

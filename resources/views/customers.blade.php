@@ -25,79 +25,32 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>0900048949</td>
-                <td>Student</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>Sep 12</td>
-                <td>Dec 13</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
-                    </div>  
-                </td>
-              </tr>
-              <tr>
-                <td>0912675245</td>
-                <td>Student</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>Mar 16</td>
-                <td>Feb 26</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
-                    </div>  
-                </td>
-              </tr>
-              <tr>
-                <td>0929173195</td>
-                <td>Teacher</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>Sep 20</td>
-                <td>July 23</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
-                    </div>  
-                </td>
-              </tr>
-              <tr>
-                <td>0976536253</td>
-                <td>Merchants</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>Sep 29</td>
-                <td>July 23</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
-                    </div>  
-                </td>
-              </tr>
-              <tr>
-                <td>0933776533</td>
-                <td>Employees</td>
-                <td><span class="badge badge-success">Active</span></td>
-                <td>Sep 22</td>
-                <td>Jun 2</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
-                    </div>  
-                </td>
-              </tr>
+              @foreach($customers as $customer)
+                <tr>
+                  <td>{{$customer->phone}}</td>
+                  @if($customer->group != null)
+                  <td>{{$customer->group->name}}</td>
+                  @else
+                  <td><span class="badge badge-danger">Not grouped</span></td>
+                  @endif
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td>{{$customer->created_at}}</td>
+                  <td>{{$customer->updated_at}}</td>
+                  <td>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-outline-secondary">View</button>
+                          <button type="button" class="btn btn-outline-secondary">Delete</button>
+                          <button type="button" class="btn btn-outline-secondary">SMS</button>
+                      </div>  
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
+        <div style="margin-top:20px;">
+            {!! $customers->links() !!}
+            </div>
       </div>
     </div>
   </div>

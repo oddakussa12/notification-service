@@ -81,17 +81,30 @@
                           }
                           html += '</div>';
                           $('#createAutoreplytBtn').html('Create'); 
+                          // render error or success message in html variable to span element with id value form_result
+                          $('#create_autoreply_form_result').html(html);
                       }
                       if(data.success){
-                          html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-                          + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-                          // empty form field values  
-                          $('#createAutoReplyForm')[0].reset();
-                          $('#createAutoreplytBtn').html('Create');
-
+                          $('#createAutoReplyModal').modal('hide');
+                          setTimeout(function() { odda(); }, 500);
+                          function odda(){
+                            $.ajax({
+                              url:'{{route('autoReplayTable')}}',
+                                cache:false,
+                                method:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $('#odda').empty();
+                                    $('#odda').append(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                          }
                       }
-                      // render error or success message in html variable to span element with id value form_result
-                      $('#create_autoreply_form_result').html(html);
+                      
                   }
               })
           }

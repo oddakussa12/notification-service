@@ -1,3 +1,4 @@
+@include('/modals/createGroupModal')
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -91,17 +92,32 @@
                           }
                           html += '</div>';
                           $('#createGroupBtn').html('Create'); 
+                          // render error or success message in html variable to span element with id value form_result
+                          $('#create_group_form_result').html(html);
                       }
                       if(data.success){
-                          html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-                          + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-                          // empty form field values  
+                          $('#create_group_form_result').html('');
                           $('#createGroupForm')[0].reset();
-                          $('#createGroupBtn').html('Create');
-
+                          $('#createGroupBtn').html('Create'); 
+                          $('#createGroupModal').modal('hide');
+                          setTimeout(function() { odda(); }, 500);
+                          function odda(){
+                            $.ajax({
+                              url:'{{route('targets')}}',
+                                cache:false,
+                                method:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $('#odda').empty();
+                                    $('#odda').append(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                          }
                       }
-                      // render error or success message in html variable to span element with id value form_result
-                      $('#create_group_form_result').html(html);
                   }
               })
           }

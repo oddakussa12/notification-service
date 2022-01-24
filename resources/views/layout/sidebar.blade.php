@@ -516,49 +516,64 @@
 <script>
     $(document).ready(function(){
        // show create contact modal
-       $('.createGroup').click(function(){
-          $('#createGroupModal').modal('show');
+       $('#createGroupHeader').click(function(){
+          $('#createGroupHeaderModal').modal('show');
       });
-       // implementation when send button is clicked from send single sms modal
-      // $('#createRecordForm').on('submit', function(event){
-      //     event.preventDefault();
-      //     if($('#createContactBtn').val() == 'Create'){
-      //         $.ajax({
-      //             url:"{{ route('api.createCustomer') }}",
-      //             method:"POST",
-      //             data: new FormData(this),
-      //             contentType:false,
-      //             cache:false,
-      //             processData:false,
-      //             dataType:'json',
-      //             beforeSend: function()
-      //             {
-      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
-      //             },
-      //             success:function(data){
-      //                 var html = '';
-      //                 if(data.errors){
-      //                     html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
-      //                     for(var count = 0; count<data.errors.length; count++){
-      //                         html += '<p>' + data.errors[count] + '</p>';
-      //                     }
-      //                     html += '</div>';
-      //                     $('#createContactBtn').html('Create'); 
-      //                 }
-      //                 if(data.success){
-      //                     html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-      //                     + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-      //                     // empty form field values  
-      //                     $('#createRecordForm')[0].reset();
-      //                     $('#createContactBtn').html('Create');
-
-      //                 }
-      //                 // render error or success message in html variable to span element with id value form_result
-      //                 $('#form_result').html(html);
-      //             }
-      //         })
-      //     }
-      // });
+      //  implementation when send button is clicked from send single sms modal
+      $('#createGroupHeaderForm').on('submit', function(event){
+          event.preventDefault();
+          if($('#createHeaderGroupBtn').val() == 'Create'){
+              $.ajax({
+                  url:"{{ route('storeGroup') }}",
+                  method:"POST",
+                  data: new FormData(this),
+                  contentType:false,
+                  cache:false,
+                  processData:false,
+                  dataType:'json',
+                  beforeSend: function()
+                  {
+                      $('#createHeaderGroupBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                  },
+                  success:function(data){
+                      var html = '';
+                      if(data.errors){
+                          html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
+                          for(var count = 0; count<data.errors.length; count++){
+                              html += '<p>' + data.errors[count] + '</p>';
+                          }
+                          html += '</div>';
+                          $('#createHeaderGroupBtn').html('Create'); 
+                          // render error or success message in html variable to span element with id value form_result
+                          $('#create_group_header_form_result').html(html);
+                      }
+                      if(data.success){
+                        $('#create_group_header_form_result').html('');
+                        $('#createGroupHeaderForm')[0].reset();
+                        $('#createHeaderGroupBtn').html('Create'); 
+                        $('#createGroupHeaderModal').modal('hide');
+                          setTimeout(function() { odda(); }, 500);
+                          function odda(){
+                            $.ajax({
+                              url:'{{route('targets')}}',
+                                cache:false,
+                                method:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $('#odda').empty();
+                                    $('#odda').append(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                          }
+                      }
+                  }
+              })
+          }
+      });
     });
 </script>
 

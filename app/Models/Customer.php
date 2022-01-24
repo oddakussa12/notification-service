@@ -15,6 +15,6 @@ class Customer extends Model
     ];
 
     public function group(){
-        return $this->belongsTo('App\Models\Customer');
+        return $this->belongsTo('App\Models\Group');
     }
 }

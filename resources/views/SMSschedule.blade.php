@@ -37,8 +37,9 @@
                                         @if(!$schedule->groups->isEmpty())
                                             @foreach($schedule->groups as $group)
                                                 <span class="badge badge-pill badge-info">{{$group->name}}</span>
-    
                                             @endforeach
+                                            @else
+                                            <span class="badge badge-pill badge-danger">Not grouped</span>
                                         @endif
                                     </td>
                                     <td class="text-primary">{{$schedule->date_time}}</td>

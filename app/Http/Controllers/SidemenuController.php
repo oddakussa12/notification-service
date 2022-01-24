@@ -7,6 +7,7 @@ use App\Models\AutoReply;
 use App\Models\Group;
 use App\Models\Schedule;
 use App\Models\IncommingMessage;
+use App\Models\Customer;
 use DB;
 
 class SidemenuController extends Controller
@@ -24,7 +25,8 @@ class SidemenuController extends Controller
         return view('importCustomer',compact('groups'));
     }
     public function customers(){
-        return view('customers');
+        $customers = Customer::where('is_active',1)->paginate(5);
+        return view('customers',compact('customers'));
     }
     public function targets(){
         $groups = Group::withCount('customers')->latest()->get();
@@ -35,7 +37,7 @@ class SidemenuController extends Controller
         return view('incommingSMS',compact('messages'));
     }
     public function autoReplyTable(){
-        $rules = AutoReply::all();
+        $rules = AutoReply::latest()->get();
         return view('autoreply',compact('rules'));
     }
     public function SMSschedule(){
