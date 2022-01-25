@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Bus;
 use Validator;
 use DB;
 use Redirect;
+use Carbon\Carbon;
 use App\Jobs\ImportExcel;
 use Illuminate\Support\Facades\Http;
 
@@ -52,7 +53,15 @@ class CustomerController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
     
-        $customer = Customer::create($request->all());
+        // $customer = Customer::create($request->all());
+        $customer = new Customer();
+        $customer->phone = $request->phone;
+        if($request->group_id){
+            $customer->group_id = $request->group_id;
+        }
+        $today = Carbon::now();
+        $customer->payingDate = $today->addDays(3);
+        $customer->save();
         if ($customer->exists) {
             return response()->json(['success' => 'Contact created'], 200);
          } else {

@@ -11,7 +11,8 @@ class Customer extends Model
     protected $fillable = [
         'phone',
         'is_active',
-        'group_id'
+        'group_id',
+        'payingDate'
     ];
 
     public function group(){

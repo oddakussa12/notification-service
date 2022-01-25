@@ -58,8 +58,8 @@
           <li id="customers"  class="nav-item {{ active_class(['basic-ui/buttons']) }}">
             <a class="nav-link">Active customers</a>
           </li>
-          <li class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link" href="{{ url('/basic-ui/dropdowns') }}">Unsubcribers</a>
+          <li id="disabledCustomers" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link">Disabled customers</a>
           </li>
         </ul>
       </div>
@@ -274,6 +274,33 @@
 
         $('#importCustomer').on('click',function(){
             displayImportCustomer();
+        });
+    });
+</script>
+
+<!-- script to load disabled customers page page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displayDisabledCustomers(){
+            $.ajax({
+              url:'{{route('disabledCustomers')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#disabledCustomers').on('click',function(){
+            displayDisabledCustomers();
         });
     });
 </script>

@@ -25,9 +25,17 @@ class SidemenuController extends Controller
         return view('importCustomer',compact('groups'));
     }
     public function customers(){
+        $acCount = Customer::where('is_active',1)->count();
         $customers = Customer::where('is_active',1)->paginate(5);
-        return view('customers',compact('customers'));
+        return view('customers',compact('customers','acCount'));
     }
+    public function disabledCustomers(){
+        $dcCount = Customer::where('is_active',0)->count();
+        $disabledCustomers = Customer::where('is_active',0)->paginate(5);
+        return view('disabledcustomers',compact('disabledCustomers','dcCount'));
+    }
+    
+    
     public function targets(){
         $groups = Group::withCount('customers')->latest()->get();
         return view('targets',compact('groups'));

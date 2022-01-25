@@ -14,9 +14,9 @@
           <div class="form-group row">
               <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Target group::</label>
               <div class="col-sm-9">
-                <select id="inputState" class="form-control form-control-sm" style="padding:5px;border-radius:5px;margin-top:5px;">
-                    <option selected>Choose target group (Optional)</option>
-                    <option>...</option>
+                <select id="inputState" name="group_id" class="form-control form-control-sm" style="padding:5px;border-radius:5px;margin-top:5px;">
+                    <option selected disabled>Choose target group (Optional)</option>
+                    <option value="1">One</option>
                 </select>
               </div>
           </div>

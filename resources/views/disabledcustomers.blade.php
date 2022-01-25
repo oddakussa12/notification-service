@@ -3,9 +3,9 @@
       <div class="card-body">
         <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
-              <h4 class="card-title text-primary text-primary">Active customers ({{$acCount}})</h4>
+              <h4 class="card-title text-primary text-primary">Disabled customers ({{$dcCount}})</h4>
               </div>
-              @if(!$customers->isEmpty())
+              @if(!$disabledCustomers->isEmpty())
                 <div class="col-sm-4">
                   <input type="number" placeholder="Search contact" class="form-control form-control-sm" style="border-radius:5px;"/>
                 </div>
@@ -15,7 +15,7 @@
               @endif
               
         </div>
-        @if(!$customers->isEmpty())
+        @if(!$disabledCustomers->isEmpty())
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($customers as $customer)
+              @foreach($disabledCustomers as $customer)
                 <tr>
                   <td>{{$customer->phone}}</td>
                   @if($customer->group != null)
@@ -37,7 +37,7 @@
                   @else
                   <td><span class="badge badge-warning">Not grouped</span></td>
                   @endif
-                  <td><span class="badge badge-success">Active</span></td>
+                  <td><span class="badge badge-danger">Disabled</span></td>
                   <td>{{$customer->created_at}}</td>
                   <td>{{$customer->updated_at}}</td>
                   <td>
@@ -54,11 +54,11 @@
         </div>
         @else
         <div class="text-center" style="margin-top:30px;">
-          <h5 class="text-danger">There are no customers</ht>
+          <h5 class="text-danger">There are no disabled customers</ht>
         </div>
         @endif
         <div style="margin-top:20px;">
-            {!! $customers->links() !!}
+            {!! $disabledCustomers->links() !!}
             </div>
       </div>
     </div>

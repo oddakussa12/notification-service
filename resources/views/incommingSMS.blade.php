@@ -12,7 +12,7 @@
               </div>
                 <div class="col-sm-4" style="text-align:right;">
                   <button type="button" class="btn btn-inverse-danger btn-fw">Delete selected</button>
-                  <button type="button" class="btn btn-inverse-secondary btn-fw">Export data</button>
+                  <button type="button" class="btn btn-inverse-primary btn-fw">Export data</button>
                 </div>
               @endif
         </div>
