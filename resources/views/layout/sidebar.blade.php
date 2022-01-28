@@ -448,34 +448,8 @@
     });
 </script>
 
-<!-- script to running sms dashboard -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displyRunningSMS(){
-            $.ajax({
-              url:'{{route('runningTask')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
 
-        $('#running').on('click',function(){
-            displyRunningSMS();
-        });
-    });
-</script>
-
-<!-- script to show todays report dashboard -->
+<!-- script to show payements dashboard -->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();

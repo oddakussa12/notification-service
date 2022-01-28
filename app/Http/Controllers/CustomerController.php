@@ -73,6 +73,14 @@ class CustomerController extends Controller
 
     // import the customer excel file by first chunking to temp files and then to database
     public function importCustomer(Request $request){
+        $rules = array(
+            'mycsv' => 'required',
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
         // return $request->all();
         if($request->has('mycsv')){
             $data = file(request()->mycsv);
@@ -80,7 +88,7 @@ class CustomerController extends Controller
             $chunks = array_chunk($data,10);//create a chunk of the data
             $header=[];
 
-            $batch = Bus::batch([])->name('Import Excel file')->dispatch();
+            $batch = Bus::batch([])->name('Importing excel file')->dispatch();
             foreach($chunks as $key => $chunk){
                 $data = array_map('str_getcsv',$chunk);
                 if($key == 0){//only the first chunk file has header
@@ -90,8 +98,9 @@ class CustomerController extends Controller
                 // create a queue in jobs table
                 $batch->add(new ImportExcel($data,$header));   
             }
+            return response()->json(['success' => 'Task created to import customers file'], 200);
             // return $batch;
-            return view('progress',compact('batch'));
+            // return view('progress',compact('batch'));
             // return redirect()->action(
             //     [CustomerController::class, 'batchStatus'], ['id' => $batch->id]
             // );

@@ -27,7 +27,7 @@ Route::get('/newCustomers', 'SidemenuController@newCustomers')->name('newCustome
 Route::get('/incommingSMS', 'SidemenuController@incommingSMS')->name('incommingSMS');
 Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoReplayTable');
 Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
-Route::get('/runningTask', 'SidemenuController@runningTask')->name('runningTask');
+
 Route::get('/payment', 'SidemenuController@payment')->name('payment');//return payment dashboard
 Route::get('/dash', 'SidemenuController@dashboard')->name('dash');
 Route::get('/paymentProcessing', 'CustomerController@paymentProcessing')->name('paymentProcessing');//when pay button is clicked

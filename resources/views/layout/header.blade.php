@@ -20,9 +20,6 @@
       <li class="nav-item d-none d-xl-flex" id="singleSMS">
         <a href="#" class="nav-link">Send Single SMS</a>
       </li>
-      <li class="nav-item d-none d-xl-flex" id="running">
-        <a href="#" class="nav-link">Running Task</a>
-      </li>
       <!-- <li class="nav-item active d-none d-lg-flex">
         <a href="#" class="nav-link">
           <i class="mdi mdi-elevation-rise"></i>Reports</a>

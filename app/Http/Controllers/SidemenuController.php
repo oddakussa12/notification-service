@@ -21,10 +21,7 @@ class SidemenuController extends Controller
         $job_batches = DB::table('job_batches')->get();
         return view('reports',compact('job_batches'));
     }
-    public function importCustomerView(){
-        $groups = Group::select('id','name')->get();
-        return view('importCustomer',compact('groups'));
-    }
+
     public function customers(){
         $allCuscount = Customer::all()->count();
         $acCount = Customer::where('is_active',1)->count();
@@ -71,10 +68,12 @@ class SidemenuController extends Controller
         $groups = Group::select('id','name')->get();
         return view('SMSschedule',compact('schedules','groups'));
     }
-    public function runningTask(){
-        return view('running');
-    }
 
+    public function importCustomerView(){
+        $groups = Group::select('id','name')->get();
+        $batch = DB::table('job_batches')->where('name','=','Importing excel file')->latest()->first();
+        return view('importCustomer',compact('groups','batch'));
+    }
     public function payment(){
         $today = Carbon::now();
         // $batch = [];
