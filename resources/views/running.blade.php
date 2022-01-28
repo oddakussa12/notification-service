@@ -1,3 +1,4 @@
+
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -8,7 +9,7 @@
             <p>Started time: 7:22PM </p>
               <a id="proccessed" style="color:green;font-size:24px;">3234</a>
               <a style="color:green;font-size:24px;">/</a>
-              <a id="total" style="color:green;font-size:24px;">7654</a>
+              <a id="total" style="color:green;font-size:24px;">784783</a>
               <div class="progress" style="height:15px;margin-top:30px;">
                   <div id="progressdiv" class="progress-bar bg-primary" role="progressbar" style="width: 33%" 
                       aria-valuemin="0" aria-valuenow="33" aria-valuemax="100">33%

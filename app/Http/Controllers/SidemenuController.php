@@ -9,6 +9,7 @@ use App\Models\Schedule;
 use App\Models\IncommingMessage;
 use App\Models\Customer;
 use DB;
+use Carbon\Carbon;
 
 class SidemenuController extends Controller
 {
@@ -25,14 +26,31 @@ class SidemenuController extends Controller
         return view('importCustomer',compact('groups'));
     }
     public function customers(){
+        $allCuscount = Customer::all()->count();
         $acCount = Customer::where('is_active',1)->count();
+        $dcCount = Customer::where('is_active',0)->count();
+        $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
+
         $customers = Customer::where('is_active',1)->paginate(5);
-        return view('customers',compact('customers','acCount'));
+        return view('customers',compact('customers','acCount','dcCount','newCusCount','allCuscount'));
     }
     public function disabledCustomers(){
+        $allCuscount = Customer::all()->count();
+        $acCount = Customer::where('is_active',1)->count();
         $dcCount = Customer::where('is_active',0)->count();
+        $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
+
         $disabledCustomers = Customer::where('is_active',0)->paginate(5);
-        return view('disabledcustomers',compact('disabledCustomers','dcCount'));
+        return view('disabledcustomers',compact('disabledCustomers','dcCount','allCuscount','acCount','newCusCount'));
+    }
+    public function newCustomers(){
+        $allCuscount = Customer::all()->count();
+        $acCount = Customer::where('is_active',1)->count();
+        $dcCount = Customer::where('is_active',0)->count();
+        $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
+        
+        $newCustomers = Customer::whereDate('created_at',Carbon::today())->paginate(5);
+        return view('newCustomers',compact('newCustomers','dcCount','allCuscount','acCount','newCusCount'));
     }
     
     
@@ -55,5 +73,20 @@ class SidemenuController extends Controller
     }
     public function runningTask(){
         return view('running');
+    }
+
+    public function payment(){
+        $today = Carbon::now();
+        // $batch = [];
+        $batch = DB::table('job_batches')->where('name','=','Payement processing')->latest()->first();
+        // return $batch;
+        // $day = $today->toDateString();
+        $totalCustomer = Customer::all()->count();
+        $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->count();
+        return view('payment',compact('totalCustomer','totalPayingCustomer','batch'));
+    }
+
+    public function dashboard(){
+        return view('dash');
     }
 }

@@ -50,8 +50,8 @@
           </table>
         </div>
         @else
-          <div class="text-center" style="margin-top:30px;">
-              <h5 class="text-danger">No message received yet</ht>
+          <div class="text-center">
+              <h6 class="text-danger">No message received yet</h6>
           </div>
         @endif
       </div>

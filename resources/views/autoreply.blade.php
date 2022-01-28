@@ -2,7 +2,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <div class="row" style="padding-bottom:10px;">
+      <div class="row" style="padding-bottom:15px;">
             <div class="col-sm-6">
             <h4 class="card-title text-primary text-primary">Autoreply SMS Setting</h4>
             </div>
@@ -40,8 +40,8 @@
           </table>
         </div>
         @else
-        <div class="text-center" style="margin-top:30px;">
-          <h5 class="text-danger">No auto reply rule defined yet</h5>
+        <div class="text-center">
+          <h6 class="text-danger">No auto reply rule defined yet</h6>
         </div>
       @endif
      

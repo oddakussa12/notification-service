@@ -10,26 +10,34 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Customer;
+use Carbon\Carbon;
 
-class ImportExcel implements ShouldQueue
+class ProcessPayment implements ShouldQueue
 {
     use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $data;
-    public $header;
-
-    public function __construct($data,$header)
+    public $phone;
+    public function __construct($phone)
     {
-        $this->data = $data;
-        $this->header = $header;
+        $this->phone = $phone;
     }
 
+
     public function handle()
-    {   
-        foreach($this->data as $customer){
-            $customers = array_combine($this->header,$customer);
-            Customer::create($customers);
-        }
+    {
+        // send sop request with customers phone number
+        // if customer pays {
+
+        // }else{
+
+        // }
+        
+
+        // this is if customer pays
+        $customer = Customer::where('phone',$this->phone)->first();
+        $customer->payingDate = Carbon::tomorrow();  
+        $customer->save();
+
     }
 
     // invoked if a given job has failed

@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCustomersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    // public $payDate;
+    public function payingDate(){
+        $date = date('y-m-d h:i:s');
+        $payDate = date('Y-m-d h:i:s', strtotime($date. ' + 3 days'));
+        return $payDate;
+    }
+    
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
@@ -18,7 +20,7 @@ class CreateCustomersTable extends Migration
             $table->integer('group_id')->nullable();
             $table->string('phone');
             $table->boolean('is_active')->default(true);
-            $table->datetime('payingDate');
+            $table->datetime('payingDate')->default($this->payingDate());
             $table->timestamps();
         });
     }

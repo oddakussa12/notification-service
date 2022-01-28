@@ -1,5 +1,60 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;">
+    <div class="card">
+      <div class="card-body" style="padding-top:15px;height:100px;">
+        <h4 class="card-title">Total Customers</h4>
+        <div class="media">
+          <i class="mdi mdi-account-multiple icon-md text-info d-flex align-self-start mr-3"></i>
+          <div class="media-body">
+            <h2 class="card-text text-info" style="margin-top:3px;">{{$allCuscount}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;">
+    <div class="card">
+      <div class="card-body" style="padding-top:15px;height:100px;">
+        <h4 class="card-title">Active Customers</h4>
+        <div class="media">
+          <i class="mdi mdi-account-check icon-md text-success d-flex align-self-center mr-3"></i>
+          <div class="media-body">
+            <h2 class="card-text text-success" style="margin-top:3px;">{{$acCount}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;cursor:pointer" id="disabledCus">
+    <div class="card">
+      <div class="card-body" style="padding-top:15px;height:100px;">
+        <h4 class="card-title">Disabled Customers</h4>
+        <div class="media">
+          <i class="mdi mdi-account-remove icon-md text-danger d-flex align-self-end mr-3"></i>
+          <div class="media-body">
+            <h2 class="card-text text-danger" style="margin-top:3px;">{{$dcCount}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" id="newCus" style="height:100px;cursor:pointer;">
+    <div class="card">
+      <div class="card-body" style="padding-top:15px;height:100px;">
+        <h4 class="card-title">New Customers</h4>
+        <div class="media">
+          <i class="mdi mdi-account-star icon-md text-warning d-flex align-self-end mr-3"></i>
+          <div class="media-body">
+            <h2 class="card-text text-warning" style="margin-top:3px;">{{$newCusCount}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
 <div class="col-lg-12 grid-margin stretch-card">
-<div class="card">
+  <div class="card">
       <div class="card-body">
         <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
@@ -62,4 +117,59 @@
             </div>
       </div>
     </div>
-  </div>
+</div>
+</div>
+
+<!-- script to load disabled customers page page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function disabledCustomers(){
+            $.ajax({
+              url:'{{route('disabledCustomers')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#disabledCus').on('click',function(){
+            disabledCustomers();
+        });
+    });
+</script>
+
+<!-- script to new customers page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function newCustomers(){
+            $.ajax({
+              url:'{{route('newCustomers')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#newCus').on('click',function(){
+            newCustomers();
+        });
+    });
+</script>

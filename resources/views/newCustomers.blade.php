@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;cursor:pointer" id="activeCus">
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;" id="activeCus">
     <div class="card">
       <div class="card-body" style="padding-top:15px;height:100px;">
         <h4 class="card-title">Active Customers</h4>
@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;" >
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;cursor:pointer" id="disabledCus">
     <div class="card">
       <div class="card-body" style="padding-top:15px;height:100px;">
         <h4 class="card-title">Disabled Customers</h4>
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3 col-sm-6 grid-margin stretch-card" id="newCus" style="height:100px;cursor:pinter;">
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;">
     <div class="card">
       <div class="card-body" style="padding-top:15px;height:100px;">
         <h4 class="card-title">New Customers</h4>
@@ -58,9 +58,9 @@
       <div class="card-body">
         <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
-              <h4 class="card-title text-primary text-primary">Disabled customers ({{$dcCount}})</h4>
+              <h4 class="card-title text-primary text-primary">New customers ({{$newCusCount}})</h4>
               </div>
-              @if(!$disabledCustomers->isEmpty())
+              @if(!$newCustomers->isEmpty())
                 <div class="col-sm-4">
                   <input type="number" placeholder="Search contact" class="form-control form-control-sm" style="border-radius:5px;"/>
                 </div>
@@ -70,7 +70,7 @@
               @endif
               
         </div>
-        @if(!$disabledCustomers->isEmpty())
+        @if(!$newCustomers->isEmpty())
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
@@ -84,7 +84,7 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($disabledCustomers as $customer)
+              @foreach($newCustomers as $customer)
                 <tr>
                   <td>{{$customer->phone}}</td>
                   @if($customer->group != null)
@@ -92,7 +92,7 @@
                   @else
                   <td><span class="badge badge-warning">Not grouped</span></td>
                   @endif
-                  <td><span class="badge badge-danger">Disabled</span></td>
+                  <td><span class="badge badge-success">Active</span></td>
                   <td>{{$customer->created_at}}</td>
                   <td>{{$customer->updated_at}}</td>
                   <td>
@@ -109,15 +109,17 @@
         </div>
         @else
         <div class="text-center" style="margin-top:30px;">
-          <h5 class="text-danger">There are no disabled customers</ht>
+          <h5 class="text-danger">There are no new customers</ht>
         </div>
         @endif
         <div style="margin-top:20px;">
-            {!! $disabledCustomers->links() !!}
+            {!! $newCustomers->links() !!}
             </div>
       </div>
-  </div>
+    </div>
 </div>
+</div>
+
 
 <!-- script to display all active customers table -->
 <script>
@@ -145,14 +147,13 @@
         });
     });
 </script>
-
-<!-- script to new customers page -->
+<!-- script to load disabled customers page page -->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();
-        function newCustomers(){
+        function disabledCustomers(){
             $.ajax({
-              url:'{{route('newCustomers')}}',
+              url:'{{route('disabledCustomers')}}',
                 cache:false,
                 method:'GET',
                 beforeSend: function()
@@ -167,8 +168,8 @@
             });
         }
 
-        $('#newCus').on('click',function(){
-            newCustomers();
+        $('#disabledCus').on('click',function(){
+            disabledCustomers();
         });
     });
 </script>

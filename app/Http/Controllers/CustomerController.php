@@ -11,6 +11,7 @@ use DB;
 use Redirect;
 use Carbon\Carbon;
 use App\Jobs\ImportExcel;
+use App\Jobs\ProcessPayment;
 use Illuminate\Support\Facades\Http;
 
 class CustomerController extends Controller
@@ -46,7 +47,7 @@ class CustomerController extends Controller
     public function createCustomer(Request $request){
         // return Customer::create($request->all());
         $rules = array(
-            'phone' => 'required|min:10',
+            'phone' => 'required|min:10|unique:customers',
         );
         $error = Validator::make($request->all(),$rules);
         if($error->fails()){
@@ -102,9 +103,31 @@ class CustomerController extends Controller
     public function batchStatus($id){
         $batchId = request('id');
         return Bus::findBatch($batchId);
-
         // $batch = Bus::findBatch($id);
         // return view('progress',compact('batch'));
     }
+
+
+    public function paymentProcessing(){
+        $today = Carbon::now();
+        // $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->get();
+        $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->get();
+        // create a batch job
+        $batchh = Bus::batch([])->name('Payement processing')->dispatch();
+        foreach($totalPayingCustomer as $customer){
+            $batchh->add(new ProcessPayment($customer->phone));
+        }
+        $batch = DB::table('job_batches')->where('name','=','Payement processing')->latest()->first();
+        
+        // return to a view
+        $totalCustomer = Customer::all()->count();
+        $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->count();
+        return view('payment',compact('totalCustomer','batch','totalPayingCustomer'));
+    }
+
+    public function syncCustomer(){
+        include(app_path().'/sdp/sync.php');
+    }
+
 }
 

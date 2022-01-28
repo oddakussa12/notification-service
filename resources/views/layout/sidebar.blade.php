@@ -41,12 +41,22 @@
         </button>
       </div>
     </li>
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+    <li id="dash" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    <li id="payment" class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <span class="menu-title">Payment</span>
+      </a>
+    </li>
+
+
+
+    
     <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-account-multiple-plus"></i>
@@ -101,7 +111,7 @@
       </a>
     </li>
     
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+    <!-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
         <span class="menu-title">Basic UI Elements</span>
@@ -165,12 +175,39 @@
         <i class="menu-icon mdi mdi-file-outline"></i>
         <span class="menu-title">Documentation</span>
       </a>
-    </li>
+    </li> -->
   </ul>
 </nav>
 
 
 @section('js')
+
+<!-- script to load dashbaord page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displayDash(){
+            $.ajax({
+              url:'{{route('dash')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#dash').on('click',function(){
+            displayDash();
+        });
+    });
+</script>
 <!-- script to disply sms schedule page-->
 <script>
     $(document).ready(function(){
@@ -434,6 +471,33 @@
 
         $('#running').on('click',function(){
             displyRunningSMS();
+        });
+    });
+</script>
+
+<!-- script to show todays report dashboard -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displayPaymentDash(){
+            $.ajax({
+              url:'{{route('payment')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#payment').on('click',function(){
+            displayPaymentDash();
         });
     });
 </script>

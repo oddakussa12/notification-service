@@ -23,22 +23,25 @@ Route::get('/importCustomer', 'SidemenuController@importCustomerView')->name('im
 Route::get('/customers', 'SidemenuController@customers')->name('customers');
 Route::get('/disabledCustomers', 'SidemenuController@disabledCustomers')->name('disabledCustomers');
 Route::get('/targets', 'SidemenuController@targets')->name('targets');
+Route::get('/newCustomers', 'SidemenuController@newCustomers')->name('newCustomers');
 Route::get('/incommingSMS', 'SidemenuController@incommingSMS')->name('incommingSMS');
 Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoReplayTable');
 Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
 Route::get('/runningTask', 'SidemenuController@runningTask')->name('runningTask');
+Route::get('/payment', 'SidemenuController@payment')->name('payment');//return payment dashboard
+Route::get('/dash', 'SidemenuController@dashboard')->name('dash');
+Route::get('/paymentProcessing', 'CustomerController@paymentProcessing')->name('paymentProcessing');//when pay button is clicked
+
+Route::get('/sdp/sync.php', 'CustomerController@syncCustomer');
+
 
 // incomming message
 Route::get('/getMessage', 'IncommingMessageController@store');
 
-
-
 // autoreply CRUD routes
 Route::post('/storeautoreply', 'AutoReplyController@store')->name('storeautoreply');
-
 // target group CRUD routes
 Route::post('/storeGroup', 'GroupController@store')->name('storeGroup');
-
 // schedule CRUD Routes
 Route::post('/storeSchedule', 'ScheduleController@store')->name('storeSchedule');
 
