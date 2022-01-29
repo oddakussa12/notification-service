@@ -27,3 +27,7 @@ Route::post('/createCustomer','CustomerController@createCustomer')->name('api.cr
 Route::post('/importCustomer','CustomerController@importCustomer')->name('api.importCustomer');
 
 Route::get('batch/{id}','CustomerController@batchStatus');
+
+// route for the ajax pagination on all customers table
+Route::get('/api/customers','CustomerController@allCustomerApi')->name('api.customers');
+

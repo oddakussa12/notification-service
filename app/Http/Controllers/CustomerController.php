@@ -139,5 +139,17 @@ class CustomerController extends Controller
         include(app_path().'/sdp/sync.php');
     }
 
+    public function allCustomers(){
+        $allCuscount = Customer::all()->count();
+        $acCount = Customer::where('is_active',1)->count();
+        $dcCount = Customer::where('is_active',0)->count();
+        $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
+        return view('allCustomers',compact('allCuscount','acCount','dcCount','newCusCount'));
+    }
+    public function allCustomerApi(){
+        $query = Customer::select('phone','created_at','updated_at');
+        return datatables($query)->make(true);
+    }
+
 }
 

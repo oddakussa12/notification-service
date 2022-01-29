@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;">
+  <div class="col-md-3 col-sm-6 grid-margin stretch-card" id="allCustomers" style="height:100px;cursor:pointer;">
     <div class="card">
       <div class="card-body" style="padding-top:15px;height:100px;">
         <h4 class="card-title">Total Customers</h4>
@@ -169,6 +169,33 @@
 
         $('#newCus').on('click',function(){
             newCustomers();
+        });
+    });
+</script>
+
+<!-- script to all customers page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function allCustomers(){
+            $.ajax({
+              url:'{{route('allcustomers')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#allCustomers').on('click',function(){
+          allCustomers();
         });
     });
 </script>

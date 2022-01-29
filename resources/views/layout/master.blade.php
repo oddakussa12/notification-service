@@ -71,7 +71,9 @@
         }
     </style>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+    <!-- style for the datatable -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  </head>
 <body data-base-url="{{url('/')}}">
 
   <div class="container-scroller" id="app">
@@ -118,6 +120,9 @@
   @stack('custom-scripts')
   @yield('js')
 
+  <!-- scripts for the datatable -->
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 
 </body>

@@ -33,6 +33,9 @@ Route::get('/dash', 'SidemenuController@dashboard')->name('dash');
 Route::get('/paymentProcessing', 'CustomerController@paymentProcessing')->name('paymentProcessing');//when pay button is clicked
 
 Route::get('/sdp/sync.php', 'CustomerController@syncCustomer');
+// return all customer view page
+Route::get('/allcustomers', 'CustomerController@allCustomers')->name('allcustomers');
+
 
 
 // incomming message
