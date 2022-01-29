@@ -118,11 +118,12 @@ class CustomerController extends Controller
 
 
     public function paymentProcessing(){
-        $today = Carbon::now();
+        // $today = Carbon::now();
         // $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->get();
         $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->get();
         // create a batch job
         $batchh = Bus::batch([])->name('Payement processing')->dispatch();
+        // return $totalPayingCustomer;
         foreach($totalPayingCustomer as $customer){
             $batchh->add(new ProcessPayment($customer->phone));
         }

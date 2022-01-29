@@ -10,6 +10,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Log;
+
 
 class ImportExcel implements ShouldQueue
 {
@@ -27,8 +29,11 @@ class ImportExcel implements ShouldQueue
     public function handle()
     {   
         foreach($this->data as $customer){
-            $customers = array_combine($this->header,$customer);
-            Customer::create($customers);
+            $user = Customer::where('phone',$customer)->first();
+            if($user == null){
+                $customers = array_combine($this->header,$customer);
+                Customer::create($customers);
+            }
         }
     }
 

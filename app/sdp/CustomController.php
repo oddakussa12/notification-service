@@ -6,7 +6,7 @@ class CustomController {
     {
         
         // $phone = '09034489475';
-        // // check if customer exist Already
+        // // // check if customer exist Already
         // $customer = \App\Models\Customer::where('phone',$phone)->first();
         // if($customer != null){
         //     return "already registered customer";
@@ -18,11 +18,12 @@ class CustomController {
         //     $customer->payingDate = $payingDate;
         //     $customer->save();
         // }
-    
+        $verificationCode = mt_rand(100000,999999);
+        $phone = 5848244871;
         // remotly register the user
         $client = new \GuzzleHttp\Client();
         $response = $client->request('post', 'https://jakedu.yenesera.com/api/users', [
-            'body' => '{"phone":"0986070044"}',
+            'body' => '{"phone":'.$phone.',"verificationCode":'.$verificationCode.'}',
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json'
@@ -31,9 +32,7 @@ class CustomController {
         ]);
         $responseCode = (string) $response->getBody();
         if($responseCode == 1){
-            // return "Success";
-            $verificationCode = mt_rand(100000,999999);
-            echo $verificationCode;
+            return "Success";
             //send sms
             //$phone
             //$sms

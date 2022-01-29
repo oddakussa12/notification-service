@@ -13,13 +13,13 @@
     </div>
   </div>
   <div class="col-md-3 col-sm-6 grid-margin stretch-card" style="height:100px;">
-    <div class="card">
+    <div class="card" style="background-color:#66cc99;">
       <div class="card-body" style="padding-top:15px;height:100px;">
         <h4 class="card-title">Active Customers</h4>
         <div class="media">
-          <i class="mdi mdi-account-check icon-md text-success d-flex align-self-center mr-3"></i>
+          <i class="mdi mdi-account-check icon-md text-secondary d-flex align-self-center mr-3"></i>
           <div class="media-body">
-            <h2 class="card-text text-success" style="margin-top:3px;">{{$acCount}}</h2>
+            <h2 class="card-text text-secondary" style="margin-top:3px;">{{$acCount}}</h2>
           </div>
         </div>
       </div>

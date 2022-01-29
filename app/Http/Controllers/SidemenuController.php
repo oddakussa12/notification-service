@@ -28,7 +28,7 @@ class SidemenuController extends Controller
         $dcCount = Customer::where('is_active',0)->count();
         $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
 
-        $customers = Customer::where('is_active',1)->paginate(5);
+        $customers = Customer::where('is_active',1)->paginate(3);
         return view('customers',compact('customers','acCount','dcCount','newCusCount','allCuscount'));
     }
     public function disabledCustomers(){

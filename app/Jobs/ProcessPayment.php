@@ -32,11 +32,16 @@ class ProcessPayment implements ShouldQueue
 
         // }
         
-
+        $today = Carbon::now();
         // this is if customer pays
-        $customer = Customer::where('phone',$this->phone)->first();
-        $customer->payingDate = Carbon::tomorrow();  
-        $customer->save();
+        $customer = Customer::where('phone',$this->phone)->get();
+        if(!$customer->isEmpty()){
+            foreach($customer as $custom){
+                $custom->payingDate = $today->addDays(1);
+                $custom->save();
+            }
+        }
+        
 
     }
 
