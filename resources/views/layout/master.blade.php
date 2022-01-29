@@ -121,7 +121,6 @@
   @yield('js')
 
   <!-- scripts for the datatable -->
-  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 
