@@ -67,16 +67,18 @@
                 <button type="button" class="btn btn-inverse-primary btn-fw">Export data</button>
             </div>
         </div> -->
-        <div class="table-responsive">
+        <div>
           <table class="table table-hover" id="datatable">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th>Contact</th>
+                <th>Status</th>
                 <th>Created at</th>
                 <th>Updated at</th>
+                <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
               
             </tbody>
           </table>
@@ -97,12 +99,14 @@
             "ajax": "{{ route('api.customers') }}",
             "columns": [
                 { "data": "phone" },
+                {data: 'status', name: 'status', orderable: false, searchable: false},
                 { "data": "created_at" },
-                { "data": "updated_at" }
+                { "data": "updated_at" },
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                
             ]
         });
     });
-    
 </script>
 
 <!-- script to load disabled customers page page -->

@@ -81,7 +81,8 @@ class SidemenuController extends Controller
         // return $batch;
         // $day = $today->toDateString();
         $totalCustomer = Customer::all()->count();
-        $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->count();
+        $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->count();
+        // $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->count();
         return view('payment',compact('totalCustomer','totalPayingCustomer','batch'));
     }
 

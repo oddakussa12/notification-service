@@ -19,11 +19,32 @@ class CustomController {
         //     $customer->save();
         // }
         $verificationCode = mt_rand(100000,999999);
-        $phone = 5848244871;
-        // remotly register the user
+        $phone = 911216238;
+        // remotly register the user on jakedu
+        // $client = new \GuzzleHttp\Client();
+        // $response = $client->request('post', 'http://api.selfjourney-et.com/api/users', [
+        //     'body' => '{"phone":'.$phone.',"verificationCode":'.$verificationCode.'}',
+        //     'headers' => [
+        //         'Accept' => 'application/json',
+        //         'Content-Type' => 'application/json'
+        //         // 'Authorization' => 'Basic BgxsDwd00n.LNNn90QydrjgZ1K9dS13',
+        //     ],
+        // ]);
+        // $responseCode = (string) $response->getBody();
+        // if($responseCode == 1){
+        //     return "Success";
+        //     //send sms
+        //     //$phone
+        //     //$sms
+        //     //file_get_contents("http://localhost:13014/cgi-bin/sendsms?user=Alif@sms&password=Alif@123&encoding=2&charset=ASCII&to=".$phone."&from=7753&text=$sms");
+        // }else{
+        //     return "Failed";
+        // }
+
+        // remotly register the user on addislearning.com
+
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('post', 'https://jakedu.yenesera.com/api/users', [
-            'body' => '{"phone":'.$phone.',"verificationCode":'.$verificationCode.'}',
+        $response = $client->request('get', 'https://backend.addislearningcenter.com/api/users/251958668541/158695', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json'
@@ -40,10 +61,6 @@ class CustomController {
         }else{
             return "Failed";
         }
-       
-
-        
-
     }
 
     public function deleteCustomer(){
@@ -53,10 +70,10 @@ class CustomController {
         }
         // remotly delete the user
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('post', 'https://jakedu.yenesera.com/api/users/delete', [
+        $response = $client->request('post', 'https://backend.addislearningcenter.com/api/users/delete', [
             'body' => '{
                 "_method":"delete",
-                "phone":"0900048941"
+                "phone":"251900048941"
             }',
             'headers' => [
                 'Accept' => 'application/json',

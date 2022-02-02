@@ -12,7 +12,7 @@
         @csrf
         <div>
           <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Target group::</label>
+              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Target group:</label>
               <div class="col-sm-9">
                 <select id="inputState" name="group_id" class="form-control form-control-sm" style="padding:5px;border-radius:5px;margin-top:5px;">
                     <option selected disabled>Choose target group (Optional)</option>
@@ -20,10 +20,22 @@
                 </select>
               </div>
           </div>
+          <!-- <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Phone number:</label>
+              <div class="col-sm-9">
+                <input type="number" style="margin-top:5px;" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Start with 251 9">
+              </div>
+          </div> -->
+
           <div class="form-group row">
               <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Phone number:</label>
               <div class="col-sm-9">
-                <input type="number" style="margin-top:5px;" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Start with 09">
+                <div class="input-group input-group-sm mb-3" style="margin-top:5px;">
+                  <div class="input-group-prepend" style="height:28px;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">+251</span>
+                  </div>
+                  <input type="number" class="form-control"  name="phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Start with 9">
+                </div>
               </div>
           </div>
         </div>
@@ -32,7 +44,6 @@
             <button type="submit" id="createContactBtn" style="width:80px;" class="btn btn-primary btn-sm" value="Create">Create</button>
         </div>
         </form>
-        
       </div>
     </div>
   </div>

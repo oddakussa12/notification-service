@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Jobs\ImportExcel;
 use App\Jobs\ProcessPayment;
 use Illuminate\Support\Facades\Http;
+use Yajra\DataTables\DataTables;
 
 class CustomerController extends Controller
 {
@@ -45,9 +46,8 @@ class CustomerController extends Controller
         return redirect('/home');
     }
     public function createCustomer(Request $request){
-        // return Customer::create($request->all());
         $rules = array(
-            'phone' => 'required|min:10|unique:customers',
+            'phone' => 'required|min:9|max:9',
         );
         $error = Validator::make($request->all(),$rules);
         if($error->fails()){
@@ -55,20 +55,25 @@ class CustomerController extends Controller
         }
     
         // $customer = Customer::create($request->all());
-        $customer = new Customer();
-        $customer->phone = $request->phone;
-        if($request->group_id){
-            $customer->group_id = $request->group_id;
+        $checkCustomer = Customer::where('phone','251'.$request->phone)->first();
+        if($checkCustomer == null){
+            $customer = new Customer();
+            $customer->phone = '251'.$request->phone;
+            if($request->group_id){
+                $customer->group_id = $request->group_id;
+            }
+            $today = Carbon::now();
+            $customer->payingDate = $today->addDays(3);
+            $customer->save();
+            if ($customer->exists) {
+                return response()->json(['success' => 'Contact created'], 200);
+             } else {
+                return response()->json(['error' => 'Error'], 422);
+            }
+        }else{
+            $error->errors()->add('field', 'Contact is already registered');
+            return response()->json(['errors' => $error->errors()->all()]);
         }
-        $today = Carbon::now();
-        $customer->payingDate = $today->addDays(3);
-        $customer->save();
-        if ($customer->exists) {
-            return response()->json(['success' => 'Contact created'], 200);
-         } else {
-            return response()->json(['error' => 'Error'], 422);
-         }
-        // return redirect('/home');
     }
 
     // import the customer excel file by first chunking to temp files and then to database
@@ -80,8 +85,6 @@ class CustomerController extends Controller
         if($error->fails()){
             return response()->json(['errors' => $error->errors()->all()]);
         }
-
-        // return $request->all();
         if($request->has('mycsv')){
             $data = file(request()->mycsv);
 
@@ -147,8 +150,43 @@ class CustomerController extends Controller
         return view('allCustomers',compact('allCuscount','acCount','dcCount','newCusCount'));
     }
     public function allCustomerApi(){
-        $query = Customer::select('phone','created_at','updated_at');
-        return datatables($query)->make(true);
+        // $query = Customer::select('phone','created_at','updated_at');
+        // return datatables($query)->make(true);
+
+        $data = Customer::select('phone','created_at','updated_at');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('status', '<span class="badge badge-pill badge-success">Active</span>')
+                    ->addColumn('action', function($row){
+       
+                        //    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
+                        //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
+                        //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
+         
+                        //     return $btn;
+
+                            $btn = '              <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary">
+                              <i class="mdi mdi-send"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                              <i class="mdi mdi-lead-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                              <i class="mdi mdi-delete"></i>
+                            </button>
+                          </div>';
+
+                          return $btn;
+                    })
+                    ->editColumn('created_at', function ($request) {
+                        return $request->created_at->format('Y-m-d h:i:s'); // human readable format
+                    })
+                    ->editColumn('updated_at', function ($request) {
+                        return $request->updated_at->format('Y-m-d h:i:s'); // human readable format
+                    })
+                    ->rawColumns(['status','action'])
+                    ->make(true);
     }
 
 }
