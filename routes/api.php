@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/logout','App\Http\Controllers\AuthController@logout');
     // question routes
     Route::post('/question','App\Http\Controllers\QuestionController@store');
+    Route::post('/like_question','App\Http\Controllers\QuestionController@likeQuestion');
+    Route::post('/dislike_question','App\Http\Controllers\QuestionController@dislikeQuestion');
 
 });
 
@@ -32,4 +34,6 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // question routes
     Route::put('/question/{id}','App\Http\Controllers\QuestionController@update');
     Route::delete('/question/{id}','App\Http\Controllers\QuestionController@destroy');
+    Route::put('/approve_question','App\Http\Controllers\Admin\QuestionController@approveQuestion');
+    Route::put('/decline_question','App\Http\Controllers\Admin\QuestionController@declineQuestion');
 });

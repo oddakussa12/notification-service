@@ -16,5 +16,21 @@ class Question extends Model
         'dislike_count',
         'reply_count',
         'is_approved',
+        'is_rejected'
     ];
+    public function likes(){
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function isAuthUserLikedQuestion(){
+        return $this->likes()->where('user_id',  auth()->id())->exists();
+    }
+
+    public function dislikes(){
+        return $this->hasMany('App\Models\Dislike');
+    }
+
+    public function isAuthUserDislikedQuestion(){
+        return $this->dislikes()->where('user_id',  auth()->id())->exists();
+    }
 }

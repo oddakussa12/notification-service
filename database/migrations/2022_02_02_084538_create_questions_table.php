@@ -21,6 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('dislike_count')->nullable()->default(0);
             $table->integer('reply_count')->nullable()->default(0);
             $table->boolean('is_approved')->default(0);
+            $table->boolean('is_rejected')->default(0);
             $table->timestamps();
         });
     }
