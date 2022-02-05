@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AutoReply;
 use App\Models\Group;
+use App\Models\Site;
 use App\Models\Schedule;
 use App\Models\IncommingMessage;
 use App\Models\Customer;
@@ -14,7 +15,7 @@ use Carbon\Carbon;
 class SidemenuController extends Controller
 {
     public function sendSMSView(){
-        
+
         return view('sendSMS');
     }
     public function smsReportView(){
@@ -45,12 +46,12 @@ class SidemenuController extends Controller
         $acCount = Customer::where('is_active',1)->count();
         $dcCount = Customer::where('is_active',0)->count();
         $newCusCount = Customer::whereDate('created_at',Carbon::today())->count();
-        
+
         $newCustomers = Customer::whereDate('created_at',Carbon::today())->paginate(5);
         return view('newCustomers',compact('newCustomers','dcCount','allCuscount','acCount','newCusCount'));
     }
-    
-    
+
+
     public function targets(){
         $groups = Group::withCount('customers')->latest()->get();
         return view('targets',compact('groups'));
@@ -87,6 +88,9 @@ class SidemenuController extends Controller
     }
 
     public function dashboard(){
-        return view('dash');
+        // return view('dash');
+        $sites = Site::withCount('blocks')->paginate(5);
+        $siteCount = Site::all()->count();
+        return view('sites',compact('sites','siteCount'));
     }
 }

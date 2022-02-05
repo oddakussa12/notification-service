@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+// disply a page for blocks in a site
+Route::get('/siteblocks/{id}', 'BlockController@siteBlocks');
+// disply a page for floors in a block
+Route::get('/blockfloors/{id}', 'FloorController@blockFloors');
+
+// disply a page for units in a floor 
+Route::get('/floorunits/{id}', 'UnitController@floorUnits');
+
+
 // Route::get('/','DashboardController@index');
 
 Route::get('/sendSMS', 'SidemenuController@sendSMSView')->name('sendSMS');
