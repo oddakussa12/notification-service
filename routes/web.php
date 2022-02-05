@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    // return view('dashboard');
+    return view('dashboard');
 });
 
 // disply a page for blocks in a site
