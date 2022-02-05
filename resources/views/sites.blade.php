@@ -1,3 +1,4 @@
+@include('/modals/addsitemodal')
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -12,7 +13,7 @@
                     @endif
                 </div>
                 <div class="col-sm-4" style="text-align:right;">
-                    <button type="button" class="btn btn-inverse-primary btn-fw">Create site</button>
+                    <button type="button" class="btn btn-inverse-primary btn-fw" id="createSite">Create site</button>
                 </div>
             </div>
             @if(!$sites->isEmpty())
@@ -81,5 +82,64 @@
                 }
             });
         }
+    });
+</script>
+
+<!-- script to create new site -->
+<script>
+    $(document).ready(function(){
+        $('#createSite').click(function(){
+          $('#createSiteModal').modal('show');
+        });
+        $('#addSiteForm').on('submit', function(event){
+          event.preventDefault();
+          if($('#createSiteBtn').val() == 'Create'){
+              $.ajax({
+                url:"{{ route('storeSite') }}",
+                method:"POST",
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData:false,
+                dataType:'json',
+                beforeSend: function()
+                {
+                    $('#createScheduleBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                },
+                success:function(data){
+                    var html = '';
+                    if(data.errors){
+                        html = '<div class="alert alert-danger alert-block" style="padding:2px;">';
+                        for(var count = 0; count<data.errors.length; count++){
+                            html += '<p>' + data.errors[count] + '</p>';
+                        }
+                        html += '</div>';
+                        $('#createSiteBtn').html('Create'); 
+                        // render error or success message in html variable to span element with id value form_result
+                        $('#add_site_form_result').html(html);
+                    }
+                    if(data.success){
+                        $('#createSiteModal').modal('hide');
+                        setTimeout(function() { odda(); }, 500);
+                        function odda(){
+                            $.ajax({
+                                url:'{{route('dash')}}',
+                                cache: false,
+                                type:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $("#odda").html(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                        }
+                    }
+                },
+              })
+            }
+        });
     });
 </script>

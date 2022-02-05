@@ -19,9 +19,20 @@ Route::get('/', function () {
 Route::get('/siteblocks/{id}', 'BlockController@siteBlocks');
 // disply a page for floors in a block
 Route::get('/blockfloors/{id}', 'FloorController@blockFloors');
-
 // disply a page for units in a floor 
 Route::get('/floorunits/{id}', 'UnitController@floorUnits');
+// create new site
+Route::post('/storeSite', 'SiteController@store')->name('storeSite');
+// create new block
+Route::post('/storeBlock', 'BlockController@store')->name('storeBlock');
+
+
+
+
+
+
+
+
 
 
 // Route::get('/','DashboardController@index');

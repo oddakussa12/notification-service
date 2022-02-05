@@ -3,87 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Block;
+use App\Models\Site;
+use Validator;
 use Illuminate\Http\Request;
 
 class BlockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         
     }
 
     public function siteBlocks($id){
+        $site = Site::select('id','name')->where('id',$id)->first();
         $blocks = Block::where('site_id',$id)->withCount('floors')->paginate(5);
         $blockCount = Block::where('site_id', $id)->count();
-        return view('blocks',compact('blocks','blockCount'));
+        return view('blocks',compact('blocks','blockCount','site'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'site_id' => 'required',
+            'direction' => 'required',
+            'block_code' => 'required|unique:blocks',
+            'description' => 'required',
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $block = Block::create([
+            'location' => $request->direction,
+            'site_id' => $request->site_id,
+            'block_code' => $request->block_code,
+            'description' => $request->description,
+        ]);
+
+        return response()->json(['success'=> 'New block created successfully.']); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
     public function show(Block $block)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Block $block)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Block $block)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Block $block)
     {
         //
