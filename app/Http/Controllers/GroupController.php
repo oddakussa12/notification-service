@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Agent;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -24,7 +25,8 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'groupName' => 'required',
+            'name' => 'required|unique:agents',
+            'phone' => 'required|unique:agents',
         );
         $error = Validator::make($request->all(),$rules);
         if($error->fails()){
@@ -32,10 +34,11 @@ class GroupController extends Controller
         }
         
         $form_data = array(
-            'name' => $request->groupName,
+            'name' => $request->name,
+            'phone' => $request->phone,
         ); 
-        Group::create($form_data);
-        return response()->json(['success'=> 'New customer group created successfully.']); 
+        Agent::create($form_data);
+        return response()->json(['success'=> 'New agent registered successfully.']); 
     }
 
     public function show(Group $group)

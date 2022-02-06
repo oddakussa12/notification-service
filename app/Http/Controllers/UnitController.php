@@ -3,24 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
+use App\Models\Floor;
+use App\Models\Block;
 use Illuminate\Http\Request;
+use Validator;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
     public function floorUnits($id){
+        $floor = Floor::select('id','level','block_id')->where('id',$id)->first();
+        $block = Block::where('id',$floor->block_id)->first();
         $units = Unit::where('floor_id',$id)->get();
         $unitCount = $units->count();
-        return view('units',compact('units','unitCount'));
+        return view('units',compact('units','unitCount','floor','block'));
     }
 
     public function create()
@@ -28,57 +29,48 @@ class UnitController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'floor_id' => 'required',
+            'unit_code' => 'required|unique:units',
+            'bedrooms' => 'required',
+            'direction' => 'required',
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $unit = Unit::create([
+            'unit_code' => $request->unit_code,
+            'bedrooms' => $request->bedrooms,
+            'direction' => $request->direction,
+            'floor_id' => $request->floor_id,
+            'status' => "Available",
+        ]);
+
+        return response()->json(['success'=> 'New Unit added successfully.']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Unit $unit)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Unit $unit)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Unit $unit)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Unit $unit)
     {
         //

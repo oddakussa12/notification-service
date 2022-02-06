@@ -1,49 +1,48 @@
-@include('/modals/createGroupModal')
+@include('/modals/registerAgentModal')
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
       <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
-              <h4 class="card-title text-primary">Customers group</h4>
+              <h4 class="card-title text-primary">Sales agents</h4>
               </div>
               <div class="col-sm-4">
-              @if(!$groups->isempty())
-                <input type="text" placeholder="Search group" class="form-control form-control-sm" style="border-radius:5px;"/>
+              @if(!$agents->isempty())
+                <input type="text" placeholder="Search agent here" class="form-control form-control-sm" style="border-radius:5px;"/>
               @endif
               </div>
               <div class="col-sm-4" style="text-align:right;">
-              <button type="button" class="btn btn-inverse-primary btn-fw" id="createGroup">New group</button>
+              <button type="button" class="btn btn-inverse-primary btn-fw" id="createGroup">Register agent</button>
               </div>
         </div>
-        @if(!$groups->isEmpty())
+        @if(!$agents->isEmpty())
         <div class="table-responsive table-condensed">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th> Avatar </th>
-                <th> Group name </th>
-                <th> Total Customers</th>
-                <th> Created at</th>
-                <th> Updated at</th>
+                <th> Name</th>
+                <th> Phone</th>
+                <th> Total leads</th>
+                <th> Total deals</th>
                 <th> Actions</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($groups as $group)
+              @foreach($agents as $agent)
               <tr>
                 <td class="py-1">
                   <img src="{{ url('assets/images/faces-clipart/pic-1.png') }}" alt="image" /> 
                 </td>
-                <td> {{$group->name}} </td>
-                <td>{{$group->customers_count}}</td>
-                <td>{{ Carbon\Carbon::parse($group->created_at)->format('D, M d, Y h:i A') }}</td>
-                <td>{{ Carbon\Carbon::parse($group->updated_at)->format('D, M d, Y h:i A') }}</td>
+                <td> {{$agent->name}} </td>
+                <td> {{$agent->phone}} </td>
+                <td>{{$agent->leads_count}}</td>
+                <td>{{$agent->leads_count}}</td>
+                
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">Export</button>
                         <button type="button" class="btn btn-outline-secondary">Edit</button>
                         <button type="button" class="btn btn-outline-secondary">Delete</button>
-                        <button type="button" class="btn btn-outline-secondary">SMS</button>
                     </div>  
                 </td>
               </tr>
@@ -53,7 +52,7 @@
         </div>
         @else
         <div class="text-center" style="margin-top:30px;">
-          <h5 class="text-danger">No customer group created yet</ht>
+          <h5 class="text-danger">No agent registered yet</ht>
         </div>
         @endif
       </div>

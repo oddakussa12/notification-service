@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Lead;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Bus;
 use Validator;
@@ -48,6 +49,7 @@ class CustomerController extends Controller
     public function createCustomer(Request $request){
         $rules = array(
             'phone' => 'required|min:9|max:9',
+            'name' => 'required',
         );
         $error = Validator::make($request->all(),$rules);
         if($error->fails()){
@@ -55,23 +57,22 @@ class CustomerController extends Controller
         }
     
         // $customer = Customer::create($request->all());
-        $checkCustomer = Customer::where('phone','251'.$request->phone)->first();
-        if($checkCustomer == null){
-            $customer = new Customer();
-            $customer->phone = '251'.$request->phone;
-            if($request->group_id){
-                $customer->group_id = $request->group_id;
-            }
-            $today = Carbon::now();
-            $customer->payingDate = $today->addDays(3);
-            $customer->save();
-            if ($customer->exists) {
-                return response()->json(['success' => 'Contact created'], 200);
+        $checklead = Lead::where('prospect_phone','251'.$request->phone)->first();
+        if($checklead == null){
+            $lead = new Lead();
+            $lead->prospect_phone = '251'.$request->phone;
+            $lead->prospect_name = $request->name;
+            $lead->status = "Prospecting";
+            $lead->agent_id = 1;
+            $lead->progress = 25;
+            $lead->save();
+            if ($lead->exists) {
+                return response()->json(['success' => 'Lead created'], 200);
              } else {
                 return response()->json(['error' => 'Error'], 422);
             }
         }else{
-            $error->errors()->add('field', 'Contact is already registered');
+            $error->errors()->add('field', 'Prospect is already registered');
             return response()->json(['errors' => $error->errors()->all()]);
         }
     }

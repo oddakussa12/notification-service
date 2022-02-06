@@ -25,6 +25,10 @@ Route::get('/floorunits/{id}', 'UnitController@floorUnits');
 Route::post('/storeSite', 'SiteController@store')->name('storeSite');
 // create new block
 Route::post('/storeBlock', 'BlockController@store')->name('storeBlock');
+// create new floor
+Route::post('/storeFloor', 'FloorController@store')->name('storeFloor');
+// create new unit
+Route::post('/storeUnit', 'UnitController@store')->name('storeUnit');
 
 
 

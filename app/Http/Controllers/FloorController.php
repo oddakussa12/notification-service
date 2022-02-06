@@ -3,87 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Floor;
+use App\Models\Block;
+use App\Models\Site;
+use Validator;
 use Illuminate\Http\Request;
 
 class FloorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
     public function blockFloors($id){
+        $block = Block::select('id','block_code','site_id')->where('id',$id)->first();
+        $site = Site::where('id',$block->site_id)->first();
         $floors = Floor::where('block_id',$id)->withCount('units')->get();
         $floorCount = $floors->count();
-        return view('floors',compact('floors','floorCount'));
+        return view('floors',compact('floors','floorCount','block','site'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'floor_level' => 'required',
+            'block_id' => 'required',
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $floor = Floor::create([
+            'level' => $request->floor_level,
+            'block_id' => $request->block_id,
+        ]);
+
+        return response()->json(['success'=> 'New floor added successfully.']); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Floor  $floor
-     * @return \Illuminate\Http\Response
-     */
     public function show(Floor $floor)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Floor  $floor
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Floor $floor)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Floor  $floor
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Floor $floor)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Floor  $floor
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Floor $floor)
     {
         //

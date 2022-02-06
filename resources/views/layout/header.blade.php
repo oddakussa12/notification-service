@@ -12,14 +12,17 @@
     </button>
     <ul class="navbar-nav navbar-nav-left header-links">
       <li class="nav-item d-none d-xl-flex" id="createRecord">
-        <a href="#" class="nav-link">Add contact</a>
+        <a href="#" class="nav-link">New lead</a>
       </li>
-      <li class="nav-item d-none d-xl-flex" id="createGroupHeader">
+      <li class="nav-item d-none d-xl-flex" id="createRecord">
+        <a href="#" class="nav-link">Units</a>
+      </li>
+      <!-- <li class="nav-item d-none d-xl-flex" id="createGroupHeader">
         <a href="#" class="nav-link">Create group</a>
       </li>
       <li class="nav-item d-none d-xl-flex" id="singleSMS">
         <a href="#" class="nav-link">Send Single SMS</a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item active d-none d-lg-flex">
         <a href="#" class="nav-link">
           <i class="mdi mdi-elevation-rise"></i>Reports</a>

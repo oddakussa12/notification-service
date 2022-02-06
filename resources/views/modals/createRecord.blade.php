@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#006699;">
-        <h5 class="modal-title" style="color:white;">Create contact</h5>
+        <h5 class="modal-title" style="color:white;">New Lead</h5>
         <button type="button"  class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -12,20 +12,11 @@
         @csrf
         <div>
           <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Target group:</label>
+              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Prospect name:</label>
               <div class="col-sm-9">
-                <select id="inputState" name="group_id" class="form-control form-control-sm" style="padding:5px;border-radius:5px;margin-top:5px;">
-                    <option selected disabled>Choose target group (Optional)</option>
-                    <option value="1">One</option>
-                </select>
+                <input type="text" style="margin-top:5px;" name="name" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Prospect name">
               </div>
           </div>
-          <!-- <div class="form-group row">
-              <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Phone number:</label>
-              <div class="col-sm-9">
-                <input type="number" style="margin-top:5px;" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Start with 251 9">
-              </div>
-          </div> -->
 
           <div class="form-group row">
               <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Phone number:</label>

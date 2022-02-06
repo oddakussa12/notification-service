@@ -19,4 +19,7 @@ class Unit extends Model
     public function floor(){
         return $this->belongsTo('App\Models\Floor');
     }
+    public function lead(){
+        return $this->hasOne('App\Models\Lead');
+    }
 }

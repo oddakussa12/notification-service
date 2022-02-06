@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AutoReply;
+use App\Models\Lead;
 use App\Models\Group;
+use App\Models\Agent;
 use App\Models\Site;
 use App\Models\Schedule;
 use App\Models\IncommingMessage;
@@ -19,8 +21,11 @@ class SidemenuController extends Controller
         return view('sendSMS');
     }
     public function smsReportView(){
-        $job_batches = DB::table('job_batches')->get();
-        return view('reports',compact('job_batches'));
+        // $job_batches = DB::table('job_batches')->get();
+        // return view('reports',compact('job_batches'));
+
+        $leads = Lead::all();
+        return view('reports',compact('leads'));
     }
 
     public function customers(){
@@ -53,8 +58,10 @@ class SidemenuController extends Controller
 
 
     public function targets(){
-        $groups = Group::withCount('customers')->latest()->get();
-        return view('targets',compact('groups'));
+        // $groups = Group::withCount('customers')->latest()->get();
+        // return view('targets',compact('groups'));
+        $agents = Agent::withCount('leads')->latest()->get();
+        return view('targets',compact('agents'));
     }
     public function incommingSMS(){
         $messages = IncommingMessage::latest()->get();
