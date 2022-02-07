@@ -47,12 +47,12 @@
         <span class="menu-title">Sites</span>
       </a>
     </li>
-    <!-- <li id="payment" class="nav-item">
+    <li id="payment" class="nav-item">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-cash-multiple"></i>
-        <span class="menu-title">Sales offices</span>
+        <span class="menu-title">Units</span>
       </a>
-    </li> -->
+    </li>
 
     {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">

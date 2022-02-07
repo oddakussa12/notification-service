@@ -16,4 +16,8 @@ class Agent extends Model
     public function leads(){
         return $this->hasMany('App\Models\Lead');
     }
+
+    public function reservations(){
+        return $this->hasMany('App\Models\Reservation');
+    }
 }

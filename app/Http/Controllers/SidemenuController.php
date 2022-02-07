@@ -7,6 +7,8 @@ use App\Models\AutoReply;
 use App\Models\Lead;
 use App\Models\Group;
 use App\Models\Agent;
+use App\Models\Unit;
+use App\Models\Reservation;
 use App\Models\Site;
 use App\Models\Schedule;
 use App\Models\IncommingMessage;
@@ -78,20 +80,25 @@ class SidemenuController extends Controller
     }
 
     public function importCustomerView(){
-        $groups = Group::select('id','name')->get();
-        $batch = DB::table('job_batches')->where('name','=','Importing excel file')->latest()->first();
-        return view('importCustomer',compact('groups','batch'));
+        // $groups = Group::select('id','name')->get();
+        // $batch = DB::table('job_batches')->where('name','=','Importing excel file')->latest()->first();
+        // return view('importCustomer',compact('groups','batch'));
+        $reservations = Reservation::all();
+        return view('importCustomer',compact('reservations'));
     }
     public function payment(){
-        $today = Carbon::now();
-        // $batch = [];
-        $batch = DB::table('job_batches')->where('name','=','Payement processing')->latest()->first();
-        // return $batch;
-        // $day = $today->toDateString();
-        $totalCustomer = Customer::all()->count();
-        $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->count();
-        // $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->count();
-        return view('payment',compact('totalCustomer','totalPayingCustomer','batch'));
+        // $today = Carbon::now();
+        // // $batch = [];
+        // $batch = DB::table('job_batches')->where('name','=','Payement processing')->latest()->first();
+        // // return $batch;
+        // // $day = $today->toDateString();
+        // $totalCustomer = Customer::all()->count();
+        // $totalPayingCustomer = Customer::where('is_active',1)->whereDate('payingDate',Carbon::today())->count();
+        // // $totalPayingCustomer = Customer::where('is_active',1)->where('payingDate','<',$today)->count();
+        // return view('payment',compact('totalCustomer','totalPayingCustomer','batch'));
+        $units = Unit::all();
+        $totalUnits = $units->count();
+        return view('payment',compact('units','totalUnits'));
     }
 
     public function dashboard(){
