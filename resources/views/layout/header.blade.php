@@ -2,7 +2,7 @@
   style="border-bottom:2px #4da6ff solid;">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="{{ url('/') }}">
-      <img src="{{ url('assets/images/logo.png') }}" alt="logo" /> </a>
+      <img src="{{ url('assets/images/gift.svg') }}" alt="logo" /> </a>
     <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
       <img src="{{ asset('/favicon.jpg') }}" alt="logo" /> </a>
   </div>
