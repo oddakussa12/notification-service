@@ -25,8 +25,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // question routes
     Route::post('/question','App\Http\Controllers\QuestionController@store');
     Route::post('/like_question','App\Http\Controllers\QuestionController@likeQuestion');
-    Route::post('/dislike_question','App\Http\Controllers\QuestionController@dislikeQuestion');
-
+    Route::post('answer_question','App\Http\Controllers\AnswerController@store');
+    Route::put('update_answer','App\Http\Controllers\AnswerController@update');
 });
 
 // ADMIN ROUTES

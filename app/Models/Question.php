@@ -12,25 +12,21 @@ class Question extends Model
     public $fillable = [
         'body',
         'user_id',
-        'like_count',
-        'dislike_count',
-        'reply_count',
         'is_approved',
         'is_rejected'
     ];
+
+    public function answers(){
+        return $this->hasMany('App\Models\Answer');
+    }
     public function likes(){
         return $this->hasMany('App\Models\Like');
+    }
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 
     public function isAuthUserLikedQuestion(){
         return $this->likes()->where('user_id',  auth()->id())->exists();
-    }
-
-    public function dislikes(){
-        return $this->hasMany('App\Models\Dislike');
-    }
-
-    public function isAuthUserDislikedQuestion(){
-        return $this->dislikes()->where('user_id',  auth()->id())->exists();
     }
 }
