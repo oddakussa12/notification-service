@@ -30,6 +30,9 @@ Route::post('/storeFloor', 'FloorController@store')->name('storeFloor');
 // create new unit
 Route::post('/storeUnit', 'UnitController@store')->name('storeUnit');
 
+// update lead
+Route::post('/updateLead', 'LeadController@update')->name('updateLead');
+
 
 
 
