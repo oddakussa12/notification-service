@@ -16,10 +16,8 @@ class QuestionController extends Controller
         $questions = Question::
                 where('is_approved',1)
                 ->where('is_rejected',0)
-                ->withCount('likes')
-                ->withCount('answers')
-                ->with('user')
-                ->with('tags')
+                ->withCount('likes','answers')
+                ->with('user','tags')
                 ->get();
         if(!$questions->isEmpty()){
             return $questions;
@@ -69,10 +67,14 @@ class QuestionController extends Controller
     public function show(Question $question, $id)
     {
         $question = Question::where('id',$id)
-                            ->with('user')
-                            ->with('answers')
-                            ->with('tags')
+                            ->with('user','tags')
+                            // ->with('answers',function($query){
+                            //     return $query->limit(1);
+                            // })
                             ->first();
+
+        $question->setRelation('answers', $question->answers()->select('id','body','user_id')->paginate(1));
+
         if($question != null){
             return $question;
         }else{
