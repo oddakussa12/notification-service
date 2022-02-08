@@ -59,42 +59,46 @@ class AnswerController extends Controller
         //
     }
 
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request,$id)
     {
         $validator = Validator::make($request->all(), [
             'body' => 'required',
-            'question_id' => 'required',
-            'answer_id' => 'required',
         ]);
 
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()]);
         }
-
-        $question = Question::where('id',$request->question_id)->first();
-        if($question != null){
-            $answer = Answer::where('id',$request->answer_id)->first();
-            if($answer != null){
-                // check the updator is the owner of the answer
-                if($answer->user_id == auth()->user()->id){
-                    $answer->body = $request->body;
-                    $answer->save();
-                    return response()->json(['success' => 'Answer updated successfuly'], 200);
-                }else{
-                    return response()->json(['Not allowed' => 'you are not the owner of the answer'], 422);
-                }
+        $answer = Answer::where('id',$id)->first();
+        if($answer != null){
+            // check the updator is the owner of the answer
+            if($answer->user_id == auth()->user()->id){
+                $answer->body = $request->body;
+                $answer->save();
+                return response()->json(['success' => 'Answer updated successfuly'], 200);
             }else{
-                return response()->json(['error' => 'Answer with the given id is not found'], 422);
+                return response()->json(['Not allowed' => 'you are not the owner of the answer'], 422);
             }
         }else{
-            return response()->json(['error' => 'question with the given id is not found'], 422);
+            return response()->json(['error' => 'Answer with the given id is not found'], 422);
         }
-
     }
 
 
-    public function destroy(Answer $answer)
+    public function destroy(Answer $answer,$id)
     {
-        //
+        $answer = Answer::where('id',$id)->first();
+        if($answer){
+            if($answer->user_id == auth()->user()->id){
+                $answer->delete();
+                // $answer->replies()->delete();
+                // $answer->likes()->delete();
+                // $answer->dislikes()->delete();
+                return response()->json(['success' => 'Answer deleted successfuly'], 200);
+            }else{
+                return response()->json(['Error' => 'You can not delete this answer']);
+            }
+        }else{
+            return response()->json(['error' => 'Delete unsuccessful, answer not found'], 404);
+        }
     }
 }

@@ -25,8 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // question routes
     Route::post('/question','App\Http\Controllers\QuestionController@store');
     Route::post('/like_question','App\Http\Controllers\QuestionController@likeQuestion');
-    Route::post('answer_question','App\Http\Controllers\AnswerController@store');
-    Route::put('update_answer','App\Http\Controllers\AnswerController@update');
+    Route::post('/answer_question','App\Http\Controllers\AnswerController@store');
+    Route::put('/update_answer/{id}','App\Http\Controllers\AnswerController@update');
+    Route::delete('/delete_answer/{id}','App\Http\Controllers\AnswerController@destroy');
     // category public
     Route::get('/category','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::delete('/question/{id}','App\Http\Controllers\QuestionController@destroy');
     Route::put('/approve_question','App\Http\Controllers\Admin\QuestionController@approveQuestion');
     Route::put('/decline_question','App\Http\Controllers\Admin\QuestionController@declineQuestion');
+    
     // category CRUD
     Route::post('/category','App\Http\Controllers\Admin\CategoryController@store');
     Route::put('/category/{id}','App\Http\Controllers\Admin\CategoryController@update');

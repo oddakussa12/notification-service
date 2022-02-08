@@ -19,6 +19,7 @@ class QuestionController extends Controller
                 ->withCount('likes')
                 ->withCount('answers')
                 ->with('user')
+                ->with('tags')
                 ->get();
         if(!$questions->isEmpty()){
             return $questions;
@@ -53,6 +54,9 @@ class QuestionController extends Controller
                 'user_id' => auth()->user()->id,
             ]);
             if ($question->exists) {
+                if($request->tag_ids){
+                    $question->tags()->sync($request->tag_ids);
+                }
                 return response()->json(['success' => 'Question created successfuly'], 200);
              } else {
                 return response()->json(['error' => 'Error'], 422);
@@ -64,7 +68,11 @@ class QuestionController extends Controller
 
     public function show(Question $question, $id)
     {
-        $question = Question::where('id',$id)->with('user')->with('answers')->first();
+        $question = Question::where('id',$id)
+                            ->with('user')
+                            ->with('answers')
+                            ->with('tags')
+                            ->first();
         if($question != null){
             return $question;
         }else{
@@ -79,9 +87,40 @@ class QuestionController extends Controller
     }
 
 
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'body' => 'required',
+            'category_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+    
+        $category = Category::where('id',$request->category_id)->first();
+        if($category != null){
+            $question = Question::where('id',$id)->first();
+            if($question != null){
+                $question->body = $request->body;
+                $question->category_id = $request->category_id;
+                if($request->tag_ids){
+                    $question->tags()->sync($request->tag_ids);
+                }
+                $question->save();
+                if ($question->exists) {
+                    if($request->tag_ids){
+                        $question->tags()->sync($request->tag_ids);
+                    }
+                    return response()->json(['success' => 'Question updated successfuly'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }else{
+                return response()->json(['Error' => 'Question not found']);
+            }
+        }else{
+            return response()->json(['Error'=>"Category not found"]);
+        }
     }
 
 
