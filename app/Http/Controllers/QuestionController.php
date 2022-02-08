@@ -38,6 +38,7 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'body' => 'required',
+            'category_id' => 'required',
         ]);
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()]);
@@ -46,6 +47,7 @@ class QuestionController extends Controller
         // $qusetion = Question::create($request->all());
         $question = Question::create([
             'body' => $request->body,
+            'category_id' => $request->category_id,
             'user_id' => auth()->user()->id,
         ]);
         if ($question->exists) {

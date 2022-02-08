@@ -12,6 +12,7 @@ class Question extends Model
     public $fillable = [
         'body',
         'user_id',
+        'category_id',
         'is_approved',
         'is_rejected'
     ];
@@ -28,5 +29,12 @@ class Question extends Model
 
     public function isAuthUserLikedQuestion(){
         return $this->likes()->where('user_id',  auth()->id())->exists();
+    }
+    public function category(){
+        return $this->belongsTo('App\Models\Category');
+    }
+    
+    public function tags(){
+        return $this->hasMany('App\Models\Tag');
     }
 }
