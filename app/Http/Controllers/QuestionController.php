@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Like;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -44,17 +45,21 @@ class QuestionController extends Controller
             return response()->json(['errors'=>$validator->errors()]);
         }
     
-        // $qusetion = Question::create($request->all());
-        $question = Question::create([
-            'body' => $request->body,
-            'category_id' => $request->category_id,
-            'user_id' => auth()->user()->id,
-        ]);
-        if ($question->exists) {
-            return response()->json(['success' => 'Question created successfuly'], 200);
-         } else {
-            return response()->json(['error' => 'Error'], 422);
-         }
+        $category = Category::where('id',$request->category_id)->first();
+        if($category != null){
+            $question = Question::create([
+                'body' => $request->body,
+                'category_id' => $request->category_id,
+                'user_id' => auth()->user()->id,
+            ]);
+            if ($question->exists) {
+                return response()->json(['success' => 'Question created successfuly'], 200);
+             } else {
+                return response()->json(['error' => 'Error'], 422);
+             }
+        }else{
+            return response()->json(['Error'=>"Category not found"]);
+        }
     }
 
     public function show(Question $question)

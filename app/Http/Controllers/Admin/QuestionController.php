@@ -16,7 +16,7 @@ class QuestionController extends Controller
             $question->save();
             return response()->json(["Message" => "Question approved successfully"],200);
         }else{
-            return response()->json(['Error' => "Something went wrong"]);
+            return response()->json(['Error' => "Question not found"]);
         } 
     }
     public function declineQuestion(Request $request){
@@ -27,7 +27,7 @@ class QuestionController extends Controller
             $question->save();
             return response()->json(["Message" => "Question rejected successfully"],200);
         }else{
-            return response()->json(['Error' => "Something went wrong"]);
+            return response()->json(['Error' => "Question not found"]);
         } 
     }
 }

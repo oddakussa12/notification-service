@@ -27,9 +27,12 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/like_question','App\Http\Controllers\QuestionController@likeQuestion');
     Route::post('answer_question','App\Http\Controllers\AnswerController@store');
     Route::put('update_answer','App\Http\Controllers\AnswerController@update');
-    // index category
+    // category public
     Route::get('/category','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');
+    // Tag public
+    Route::get('/tag','App\Http\Controllers\Admin\TagController@index');
+
 });
 
 // ADMIN ROUTES
@@ -42,4 +45,10 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // category CRUD
     Route::post('/category','App\Http\Controllers\Admin\CategoryController@store');
     Route::put('/category/{id}','App\Http\Controllers\Admin\CategoryController@update');
+    Route::delete('/category/{id}','App\Http\Controllers\Admin\CategoryController@destroy');
+
+    // tag CRUD
+    Route::post('/tag','App\Http\Controllers\Admin\TagController@store');
+    Route::put('/tag/{id}','App\Http\Controllers\Admin\TagController@update');
+    Route::delete('/tag/{id}','App\Http\Controllers\Admin\TagController@destroy');
 });

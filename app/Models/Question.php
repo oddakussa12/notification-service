@@ -35,6 +35,6 @@ class Question extends Model
     }
     
     public function tags(){
-        return $this->hasMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag');
     }
 }
