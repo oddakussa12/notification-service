@@ -28,6 +28,12 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/answer_question','App\Http\Controllers\AnswerController@store');
     Route::put('/update_answer/{id}','App\Http\Controllers\AnswerController@update');
     Route::delete('/delete_answer/{id}','App\Http\Controllers\AnswerController@destroy');
+
+    // reply Routes
+    Route::post('/reply','App\Http\Controllers\ReplyController@store');
+    Route::put('/reply/{id}','App\Http\Controllers\ReplyController@update');
+    Route::delete('/reply/{id}','App\Http\Controllers\ReplyController@destroy');
+
     // category public
     Route::get('/category','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');
