@@ -19,7 +19,7 @@ Route::get('/question/{id}','App\Http\Controllers\QuestionController@show');
 
 
 // AUTHENTICATED USERS ROUTES
-Route::group(['middleware' => ['auth:sanctum']], function(){
+// Route::group(['middleware' => ['auth:sanctum']], function(){
     // auth routes
     Route::post('/logout','App\Http\Controllers\AuthController@logout');
     // question routes
@@ -33,10 +33,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // Tag public
     Route::get('/tag','App\Http\Controllers\Admin\TagController@index');
 
-});
+// });
 
 // ADMIN ROUTES
-Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
+// Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // question routes
     Route::put('/question/{id}','App\Http\Controllers\QuestionController@update');
     Route::delete('/question/{id}','App\Http\Controllers\QuestionController@destroy');
@@ -51,4 +51,4 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::post('/tag','App\Http\Controllers\Admin\TagController@store');
     Route::put('/tag/{id}','App\Http\Controllers\Admin\TagController@update');
     Route::delete('/tag/{id}','App\Http\Controllers\Admin\TagController@destroy');
-});
+// });
