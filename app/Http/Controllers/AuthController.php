@@ -15,13 +15,14 @@ class AuthController extends Controller
         // return $request;
         $fields = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
+            // 'email' => 'required|string|unique:users,email',
+            'phone' => 'required',
             'password' => 'required|string|confirmed'
         ]);
 
         $user = User::create([
             'name' => $fields['name'],
-            'email' => $fields['email'],
+            'phone' => $fields['phone'],
             'password' => bcrypt($fields['password'])
         ]);
 
@@ -37,12 +38,12 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $fields = $request->validate([
-            'email' => 'required|string',
+            'phone' => 'required|string',
             'password' => 'required|string'
         ]);
 
         // Check email
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('phone', $fields['phone'])->first();
 
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {

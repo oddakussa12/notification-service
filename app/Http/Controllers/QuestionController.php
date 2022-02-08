@@ -62,9 +62,14 @@ class QuestionController extends Controller
         }
     }
 
-    public function show(Question $question)
+    public function show(Question $question, $id)
     {
-        //
+        $question = Question::where('id',$id)->with('user')->with('answers')->first();
+        if($question != null){
+            return $question;
+        }else{
+            return response()->json(['Message' => 'Question with the given id was not found' ]);
+        }
     }
 
 
