@@ -86,7 +86,7 @@ class AnswerController extends Controller
 
     public function destroy(Answer $answer,$id)
     {
-        // $answer = Answer::where('id',$id)->first();
+        $answer = Answer::where('id',$id)->first();
         if($answer){
             if($answer->user_id == auth()->user()->id){
                 $answer->delete();
