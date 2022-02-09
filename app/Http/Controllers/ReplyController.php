@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
+use App\Models\Likereply;
+use App\Models\Dislikereply;
 use App\Models\Answer;
 use Illuminate\Http\Request;
 use Validator;
@@ -102,10 +104,70 @@ class ReplyController extends Controller
         }
     }
 
-    public function likeReply(){
-
-    }
-    public function dislikeReply(){
+    public function likeReply(Request $request){
+        $validator = Validator::make($request->all(), [
+            'reply_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
         
+        $reply = Reply::where('id',$request->reply_id)->first();
+        if($reply != null){
+            if($reply->isAuthUserLikedReply()){
+                return response()->json(['Error' => "You have already liked the reply"]);
+            }else{
+                $replylike = Likereply::create([
+                    'reply_id' => $request->reply_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if($reply->isAuthUserDislikedReply()){
+                    $dislike = Dislikereply::where('user_id',auth()->user()->id)
+                                ->where('reply_id',$reply->id)->first();
+                    $dislike->delete();
+                }
+                if ($replylike->exists) {
+                    return response()->json(['success' => 'You liked the reply'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }
+
+        }else{
+            return response()->json(['Error' => "The reply does't exist"]);
+        }
+    }
+    public function dislikeReply(Request $request){
+        $validator = Validator::make($request->all(), [
+            'reply_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        
+        $reply = Reply::where('id',$request->reply_id)->first();
+        if($reply != null){
+            if($reply->isAuthUserDislikedReply()){
+                return response()->json(['Error' => "You have already disliked the reply"]);
+            }else{
+                $replydislike = Dislikereply::create([
+                    'reply_id' => $request->reply_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if($reply->isAuthUserLikedReply()){
+                    $like = Likereply::where('user_id',auth()->user()->id)
+                                ->where('reply_id',$reply->id)->first();
+                    $like->delete();
+                }
+                if ($replydislike->exists) {
+                    return response()->json(['success' => 'You disliked the reply'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }
+
+        }else{
+            return response()->json(['Error' => "The reply does't exist"]);
+        }
     }
 }

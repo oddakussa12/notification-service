@@ -19,7 +19,7 @@ class Reply extends Model
     }
 
     public function replylikes(){
-        return $this->hasMany('App\Models\likereply');
+        return $this->hasMany('App\Models\Likereply');
     }
 
     public function replydislikes(){
