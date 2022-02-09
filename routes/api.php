@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/update_answer/{id}','App\Http\Controllers\AnswerController@update');
     Route::delete('/delete_answer/{id}','App\Http\Controllers\AnswerController@destroy');
 
+    Route::post('/like_answer','App\Http\Controllers\AnswerController@likeAnswer');
+    Route::post('/dislike_answer','App\Http\Controllers\AnswerController@dislikeAnswer');
+
     // reply Routes
     Route::post('/reply','App\Http\Controllers\ReplyController@store');
     Route::put('/reply/{id}','App\Http\Controllers\ReplyController@update');

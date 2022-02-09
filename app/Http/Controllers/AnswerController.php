@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Answerlike;
+use App\Models\Dislikeanswer;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Validator;
@@ -99,6 +101,66 @@ class AnswerController extends Controller
             }
         }else{
             return response()->json(['error' => 'Delete unsuccessful, answer not found'], 404);
+        }
+    }
+
+    public function likeAnswer(Request $request){
+        $validator = Validator::make($request->all(), [
+            'answer_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        
+        $answer = Answer::where('id',$request->answer_id)->first();
+        if($answer != null){
+            // check if user liked the question already
+            if($answer->isAuthUserLikedAnswer()){
+                return response()->json(['Error' => "You have already liked the answer"]);
+            }else{
+                $answerlike = Answerlike::create([
+                    'answer_id' => $request->answer_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if ($answerlike->exists) {
+                    return response()->json(['success' => 'You liked the answer'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }
+
+        }else{
+            return response()->json(['Error' => "The answer does't exist"]);
+        }
+    }
+
+    public function dislikeAnswer(Request $request){
+        $validator = Validator::make($request->all(), [
+            'answer_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        
+        $answer = Answer::where('id',$request->answer_id)->first();
+        if($answer != null){
+            // check if user liked the question already
+            if($answer->isAuthUserDislikedAnswer()){
+                return response()->json(['Error' => "You have already disliked the answer"]);
+            }else{
+                $answerdislike = Dislikeanswer::create([
+                    'answer_id' => $request->answer_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if ($answerdislike->exists) {
+                    return response()->json(['success' => 'You disliked the answer'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }
+
+        }else{
+            return response()->json(['Error' => "The answer does't exist"]);
         }
     }
 }
