@@ -24,7 +24,16 @@ class QuestionController extends Controller
         }else{
             return response()->json(['Message' => 'No question created yet.']);
         }
-        
+    }
+
+    public function myQuestions(){
+        $questions = Question::where('user_id',auth()->user()->id)
+                    ->withCount('likes','answers')->get();
+        if(!$questions->isEmpty()){
+            return $questions;
+        }else{
+            return response()->json(['Message' => 'You have not created a question yet']);
+        }
     }
 
 
@@ -68,14 +77,14 @@ class QuestionController extends Controller
     {
         $question = Question::where('id',$id)
                             ->with('user','tags')
+                            ->withCount('likes','answers')
                             // ->with('answers',function($query){
                             //     return $query->limit(1);
                             // })
                             ->first();
 
-        $question->setRelation('answers', $question->answers()->select('id','body','user_id')->paginate(1));
-
         if($question != null){
+            $question->setRelation('answers', $question->answers()->select('id','body','user_id')->paginate(1));
             return $question;
         }else{
             return response()->json(['Message' => 'Question with the given id was not found' ]);
@@ -169,7 +178,24 @@ class QuestionController extends Controller
         }
     }
 
-    public function pinQuestion(Request $request){
+    public function searchQuestion(Request $request){
+        $validator = Validator::make($request->all(), [
+            'words' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
 
+        $questions = Question::where('body','LIKE', '%'. $request->words .'%')
+                            ->withCount('likes','answers')
+                            ->with('user','tags')
+                            ->get();
+
+        if(!$questions->isEmpty()){
+            return $questions;
+        }else{
+            return response()->json(['Message' => 'No question matched your query']);
+        }
     }
+
 }

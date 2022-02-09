@@ -91,7 +91,8 @@ class CategoryController extends Controller
     }
 
     public function categoryQuestions($categoryId){
-        $questions = Question::with('user')->where('category_id',$categoryId)->get();
+        $questions = Question::with('user')->where('category_id',$categoryId)
+                    ->withCount('likes','answers')->get();
         if(!$questions->isEmpty()){
             return $questions;
         }else{

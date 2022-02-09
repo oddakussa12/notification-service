@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/question','App\Http\Controllers\QuestionController@store');
     Route::put('/question/{id}','App\Http\Controllers\QuestionController@update');
     Route::delete('/question/{id}','App\Http\Controllers\QuestionController@destroy');
+
+    Route::get('/my_questions','App\Http\Controllers\QuestionController@myQuestions');
+    Route::get('/search_questions','App\Http\Controllers\QuestionController@searchQuestion');
     
     Route::post('/like_question','App\Http\Controllers\QuestionController@likeQuestion');
    
@@ -52,6 +55,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');
     // Tag public
     Route::get('/tag','App\Http\Controllers\Admin\TagController@index');
+    Route::get('/tag_questions/{id}','App\Http\Controllers\Admin\TagController@tagQuestions');
 
 });
 

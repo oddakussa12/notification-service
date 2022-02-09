@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -86,5 +87,13 @@ class TagController extends Controller
         }else{
             return response()->json(['error' => 'Delete unsuccessful, Tag not found'], 404);
         }
+    }
+
+    public function tagQuestions($tagId){
+        $tags = Tag::where('id',$tagId)->with('questions')->first();
+        return $tags;
+        $tag = Tag::where('id',$tagId)->first();
+        $questions = $tag->questions;
+        return $questions;
     }
 }
