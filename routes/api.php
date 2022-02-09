@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/reply/{id}','App\Http\Controllers\ReplyController@update');
     Route::delete('/reply/{id}','App\Http\Controllers\ReplyController@destroy');
 
+    Route::post('/like_reply','App\Http\Controllers\ReplyController@likeReply');
+    Route::post('/dislike_reply','App\Http\Controllers\ReplyController@dislikeReply');
+
+
     // category public
     Route::get('/category','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');

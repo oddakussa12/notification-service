@@ -101,4 +101,11 @@ class ReplyController extends Controller
             return response()->json(['error' => 'Delete unsuccessful, Reply not found'], 404);
         }
     }
+
+    public function likeReply(){
+
+    }
+    public function dislikeReply(){
+        
+    }
 }

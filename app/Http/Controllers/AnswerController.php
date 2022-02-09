@@ -122,6 +122,11 @@ class AnswerController extends Controller
                     'answer_id' => $request->answer_id,
                     'user_id' => auth()->user()->id,
                 ]);
+                if($answer->isAuthUserDislikedAnswer()){
+                    $dislike = Dislikeanswer::where('user_id',auth()->user()->id)
+                                ->where('answer_id',$answer->id)->first();
+                    $dislike->delete();
+                }
                 if ($answerlike->exists) {
                     return response()->json(['success' => 'You liked the answer'], 200);
                  } else {
@@ -152,6 +157,11 @@ class AnswerController extends Controller
                     'answer_id' => $request->answer_id,
                     'user_id' => auth()->user()->id,
                 ]);
+                if($answer->isAuthUserLikedAnswer()){
+                    $like = Answerlike::where('user_id',auth()->user()->id)
+                                ->where('answer_id',$answer->id)->first();
+                    $like->delete();
+                }
                 if ($answerdislike->exists) {
                     return response()->json(['success' => 'You disliked the answer'], 200);
                  } else {

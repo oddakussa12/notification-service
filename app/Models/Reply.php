@@ -17,4 +17,20 @@ class Reply extends Model
     public function answer(){
         return $this->belongsTo('App\Models\Answer');
     }
+
+    public function replylikes(){
+        return $this->hasMany('App\Models\likereply');
+    }
+
+    public function replydislikes(){
+        return $this->hasMany('App\Models\Dislikereply');
+    }
+
+    public function isAuthUserLikedReply(){
+        return $this->replylikes()->where('user_id',  auth()->id())->exists();
+    }
+
+    public function isAuthUserDislikedReply(){
+        return $this->replydislikes()->where('user_id',  auth()->id())->exists();
+    }
 }
