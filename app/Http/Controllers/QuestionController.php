@@ -14,8 +14,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::
-                where('is_approved',1)
-                ->where('is_rejected',0)
+                // where('is_approved',1)
+                where('is_rejected',0)
                 ->withCount('likes','answers')
                 ->with('user','tags')
                 ->get();
