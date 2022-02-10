@@ -181,6 +181,11 @@ class AnswerController extends Controller
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name');
                 }])->get();
-        return $replies;
+
+        if(!$replies->isEmpty()){
+            return $replies;
+        }else{
+            return response()->json(['No replies yet']);
+        }
     }
 }
