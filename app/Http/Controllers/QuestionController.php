@@ -20,6 +20,9 @@ class QuestionController extends Controller
                 ->with('user','tags')
                 ->get();
         if(!$questions->isEmpty()){
+            foreach($questions as $question){
+                $question->has_liked = $question->isAuthUserLikedQuestion();
+            }
             return $questions;
         }else{
             return response()->json(['Message' => 'No question created yet.']);
