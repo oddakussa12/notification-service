@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Reply;
 use App\Models\Answerlike;
 use App\Models\Dislikeanswer;
 use App\Models\Question;
@@ -172,5 +173,14 @@ class AnswerController extends Controller
         }else{
             return response()->json(['Error' => "The answer does't exist"]);
         }
+    }
+
+    public function answerReplies($answerId){
+        $replies = Reply::where('answer_id',$answerId)
+                ->withCount('replylikes','replydislikes')
+                ->with(['user' => function ($query) {
+                    $query->select('id', 'name');
+                }])->get();
+        return $replies;
     }
 }

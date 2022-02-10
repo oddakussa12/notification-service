@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/like_answer','App\Http\Controllers\AnswerController@likeAnswer');
     Route::post('/dislike_answer','App\Http\Controllers\AnswerController@dislikeAnswer');
 
+    Route::get('/answer_replies/{id}','App\Http\Controllers\AnswerController@answerReplies');
+
     // reply Routes
     Route::post('/reply','App\Http\Controllers\ReplyController@store');
     Route::put('/reply/{id}','App\Http\Controllers\ReplyController@update');
