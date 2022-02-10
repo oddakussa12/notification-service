@@ -76,8 +76,8 @@ class QuestionController extends Controller
     public function show(Question $question, $id)
     {
         $question = Question::where('id',$id)
-                            ->with('user','tags')
-                            ->withCount('likes','answers')
+                            // ->with('user','tags')
+                            // ->withCount('likes','answers')
                             // ->with('answers',function($query){
                             //     return $query->limit(1);
                             // })
