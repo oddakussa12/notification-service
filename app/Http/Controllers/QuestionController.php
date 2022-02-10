@@ -87,6 +87,11 @@ class QuestionController extends Controller
                             ->first();
 
         if($question != null){
+            foreach($question->answers as $ans){
+                $ans->is_owner = (auth()->user()->id == $ans->user_id) ? 1 : 0;
+                $ans->has_liked = $ans->isAuthUserLikedAnswer();
+                $ans->has_disliked = $ans->isAuthUserDislikedAnswer();
+            }
             return $question;
         }else{
             return response()->json(['Message' => 'The question was not found']);

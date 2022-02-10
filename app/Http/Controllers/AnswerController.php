@@ -181,11 +181,11 @@ class AnswerController extends Controller
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name');
                 }])->get();
-
-        if(!$replies->isEmpty()){
-            return $replies;
-        }else{
-            return response()->json(['No replies yet']);
+        foreach($replies as $reply){
+            $reply->is_owner = (auth()->user()->id == $reply->user->id) ? 1 : 0;
+            $reply->has_liked = $reply->isAuthUserLikedReply();
+            $reply->has_disliked = $reply->isAuthUserDislikedReply();
         }
+        return $replies;
     }
 }
