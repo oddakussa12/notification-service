@@ -17,7 +17,10 @@ class QuestionController extends Controller
                 // where('is_approved',1)
                 where('is_rejected',0)
                 ->withCount('likes','answers')
-                ->with('user','tags')
+                ->with('tags')
+                ->with(['user' => function ($query) {
+                    $query->select('id', 'name');
+                }])
                 ->get();
         if(!$questions->isEmpty()){
             foreach($questions as $question){
@@ -33,6 +36,9 @@ class QuestionController extends Controller
         $questions = Question::where('user_id',auth()->user()->id)
                     ->withCount('likes','answers')->get();
         if(!$questions->isEmpty()){
+            foreach($questions as $question){
+                $question->has_liked = $question->isAuthUserLikedQuestion();
+            }
             return $questions;
         }else{
             return response()->json(['Message' => 'You have not created a question yet']);
@@ -205,10 +211,16 @@ class QuestionController extends Controller
 
         $questions = Question::where('body','LIKE', '%'. $request->words .'%')
                             ->withCount('likes','answers')
-                            ->with('user','tags')
+                            ->with('tags')
+                            ->with(['user' => function ($query) {
+                                $query->select('id', 'name');
+                            }])
                             ->get();
 
         if(!$questions->isEmpty()){
+            foreach($questions as $question){
+                $question->has_liked = $question->isAuthUserLikedQuestion();
+            }
             return $questions;
         }else{
             return response()->json(['Message' => 'No question matched your query']);
