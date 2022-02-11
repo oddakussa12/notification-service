@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Bloglike;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -99,6 +100,7 @@ class BlogController extends Controller
         if($blog != null){
             $category_id = $blog->category_id;
             $relatedBlogs = Blog::where('category_id',$category_id)
+                            ->where('id','!=',$id)
                             ->withCount('bloglikes')->latest()->paginate(6);
             foreach($relatedBlogs as $related){
                 $related->file_path = 'http://localhost:8000/blogImages/'.$related->file;
@@ -170,6 +172,39 @@ class BlogController extends Controller
             return response()->json(['success' => 'Blog deleted successfuly'], 200);
         }else{
             return response()->json(['error' => 'Delete unsuccessful, Blog not found'], 404);
+        }
+    }
+
+    public function likeBlog(Request $request){
+        $validator = Validator::make($request->all(), [
+            'blog_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        
+        $blog = Blog::where('id',$request->blog_id)->first();
+        if($blog != null){
+            // check if user liked the question already
+            if($blog->isAuthUserLikedBlog()){
+                $like = Bloglike::where('user_id',auth()->user()->id)
+                                ->where('blog_id',$blog->id)->first();
+                $like->delete();
+                return response()->json(['Error' => "You disliked the blog"]);
+            }else{
+                $bloglike = Bloglike::create([
+                    'blog_id' => $request->blog_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if ($bloglike->exists) {
+                    return response()->json(['success' => 'You liked the blog'], 200);
+                 } else {
+                    return response()->json(['error' => 'Error'], 422);
+                 }
+            }
+
+        }else{
+            return response()->json(['Error' => "The blog does't exist"]);
         }
     }
 }

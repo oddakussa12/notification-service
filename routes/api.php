@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/blog','App\Http\Controllers\BlogController@index');
     Route::get('/blog/{id}','App\Http\Controllers\BlogController@show');
     Route::get('/categoryBlogs/{id}','App\Http\Controllers\BlogController@categoryBlogs');
+    Route::post('/like_blog','App\Http\Controllers\BlogController@likeBlog');
 
 
 });
