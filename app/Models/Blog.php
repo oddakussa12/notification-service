@@ -30,6 +30,6 @@ class Blog extends Model
         return $this->hasMany('App\Models\Bloglike');
     }
     public function isAuthUserLikedBlog(){
-        return $this->answerdislikes()->where('user_id',  auth()->id())->exists();
+        return $this->bloglikes()->where('user_id',  auth()->id())->exists();
     }
 }

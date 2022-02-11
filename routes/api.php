@@ -59,6 +59,12 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/tag','App\Http\Controllers\Admin\TagController@index');
     Route::get('/tag_questions/{id}','App\Http\Controllers\Admin\TagController@tagQuestions');
 
+    // blog endpoints
+    Route::get('/blog','App\Http\Controllers\BlogController@index');
+    Route::get('/blog/{id}','App\Http\Controllers\BlogController@show');
+    Route::get('/categoryBlogs/{id}','App\Http\Controllers\BlogController@categoryBlogs');
+
+
 });
 
 // ADMIN ROUTES
@@ -76,4 +82,9 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::post('/tag','App\Http\Controllers\Admin\TagController@store');
     Route::put('/tag/{id}','App\Http\Controllers\Admin\TagController@update');
     Route::delete('/tag/{id}','App\Http\Controllers\Admin\TagController@destroy');
+
+    // blog endpoints
+    Route::post('/blog','App\Http\Controllers\BlogController@store');
+    Route::put('/blog/{id}','App\Http\Controllers\BlogController@update');
+    Route::delete('/blog/{id}','App\Http\Controllers\BlogController@destroy');
 });
