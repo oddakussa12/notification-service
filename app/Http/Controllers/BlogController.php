@@ -14,7 +14,7 @@ class BlogController extends Controller
     {
         $blogs = Blog::withCount('bloglikes')->latest()->paginate(10);
         foreach($blogs as $blog){
-            $blog->file_path = 'http://localhost:8000/blogImages/'.$blog->file;
+            $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
             $blog->has_liked = $blog->isAuthUserLikedBlog();
         }
         if(!$blogs->isEmpty()){
@@ -29,7 +29,7 @@ class BlogController extends Controller
         $blogs = Blog::where('category_id',$id)->withCount('bloglikes')->latest()->paginate(10);
         if(!$blogs->isEmpty()){
             foreach($blogs as $blog){
-                $blog->file_path = 'http://localhost:8000/blogImages/'.$blog->file;
+                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
                 $blog->has_liked = $blog->isAuthUserLikedBlog();
             }
             return $blogs;
@@ -103,7 +103,7 @@ class BlogController extends Controller
                             ->where('id','!=',$id)
                             ->withCount('bloglikes')->latest()->paginate(6);
             foreach($relatedBlogs as $related){
-                $related->file_path = 'http://localhost:8000/blogImages/'.$related->file;
+                $related->file_path = 'https://datingapi.yenesera.com/blogImages/'.$related->file;
                 $related->has_liked = $related->isAuthUserLikedBlog();
             }
             
