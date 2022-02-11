@@ -78,10 +78,12 @@ class BlogController extends Controller
             if($request->description_am){
                 $blog->description_am = $request->description_am;
             }
-           
             $blog->save();
 
             if ($blog->exists) {
+                if($request->tag_ids){
+                    $blog->tags()->sync($request->tag_ids);
+                }
                 return response()->json(['success' => 'Blog created successfuly'], 200);
             } else {
                 return response()->json(['error' => 'Error'], 422);
@@ -150,6 +152,10 @@ class BlogController extends Controller
             if($request->description_am){
                 $blog->description_am = $request->description_am;
             }
+            if($request->tag_ids){
+                $blog->tags()->attach($request->tag_ids);
+            }
+
             $blog->save();
 
             if ($blog->exists) {
