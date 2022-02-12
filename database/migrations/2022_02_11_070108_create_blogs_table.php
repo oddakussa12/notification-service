@@ -20,7 +20,7 @@ class CreateBlogsTable extends Migration
             $table->longText('description');
             $table->longText('description_am')->nullable();
             $table->string('file');
-            $table->integer('category_id');
+            $table->integer('blogcategory_id');
             $table->timestamps();
         });
     }
