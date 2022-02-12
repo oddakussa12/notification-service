@@ -94,6 +94,9 @@ class CategoryController extends Controller
         $questions = Question::with('user')->where('category_id',$categoryId)
                     ->withCount('likes','answers')->get();
         if(!$questions->isEmpty()){
+            foreach($questions as $question){
+                $question->has_liked = $question->isAuthUserLikedQuestion();
+            }
             return $questions;
         }else{
             return response()->json(['error' => 'No question found in this category']);
