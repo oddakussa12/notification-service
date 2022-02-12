@@ -21,7 +21,7 @@ class QuestionController extends Controller
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name');
                 }])
-                ->get();
+                ->latest()->get();
         if(!$questions->isEmpty()){
             foreach($questions as $question){
                 $question->has_liked = $question->isAuthUserLikedQuestion();

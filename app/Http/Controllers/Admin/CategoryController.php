@@ -91,8 +91,12 @@ class CategoryController extends Controller
     }
 
     public function categoryQuestions($categoryId){
-        $questions = Question::with('user')->where('category_id',$categoryId)
-                    ->withCount('likes','answers')->get();
+        $questions = Question::where('category_id',$categoryId)
+                    ->withCount('likes','answers')
+                    ->with(['user' => function ($query) {
+                            $query->select('id', 'name');
+                        }])
+                    ->with('tags')->latest()->get();
         if(!$questions->isEmpty()){
             foreach($questions as $question){
                 $question->has_liked = $question->isAuthUserLikedQuestion();
