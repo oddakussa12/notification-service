@@ -55,6 +55,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // category public
     Route::get('/category','App\Http\Controllers\Admin\CategoryController@index');
     Route::get('/category_questions/{id}','App\Http\Controllers\Admin\CategoryController@categoryQuestions');
+
+    // blog category endpoints
+    Route::get('/blogCategory','App\Http\Controllers\BlogcategoryController@index');
+    Route::get('/blogCategory_blogs/{id}','App\Http\Controllers\BlogcategoryController@categoryBlogs');
+    
     // Tag public
     Route::get('/tag','App\Http\Controllers\Admin\TagController@index');
     Route::get('/tag_questions/{id}','App\Http\Controllers\Admin\TagController@tagQuestions');
@@ -78,6 +83,11 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::post('/category','App\Http\Controllers\Admin\CategoryController@store');
     Route::put('/category/{id}','App\Http\Controllers\Admin\CategoryController@update');
     Route::delete('/category/{id}','App\Http\Controllers\Admin\CategoryController@destroy');
+
+    // blog category CRUD
+    Route::post('/blogCategory','App\Http\Controllers\BlogcategoryController@store');
+    Route::put('/blogCategory/{id}','App\Http\Controllers\BlogcategoryController@update');
+    Route::delete('/blogCategory/{id}','App\Http\Controllers\BlogcategoryController@destroy');
 
     // tag CRUD
     Route::post('/tag','App\Http\Controllers\Admin\TagController@store');

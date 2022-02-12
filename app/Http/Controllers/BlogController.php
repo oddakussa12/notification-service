@@ -12,7 +12,8 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::withCount('bloglikes')->latest()->paginate(10);
+        $blogs = Blog::withCount('bloglikes')
+            ->latest()->paginate(10);
         foreach($blogs as $blog){
             $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
             $blog->has_liked = $blog->isAuthUserLikedBlog();
@@ -70,7 +71,7 @@ class BlogController extends Controller
             $blog->title = $request->title;
             $blog->description = $request->description;
             $blog->file = $name;
-            $blog->category_id = $request->category_id;
+            $blog->blogcategory_id = $request->category_id;
 
             if($request->title_am){
                 $blog->title_am = $request->title_am;
@@ -100,8 +101,8 @@ class BlogController extends Controller
         $blog = Blog::where('id',$id)->first();
         
         if($blog != null){
-            $category_id = $blog->category_id;
-            $relatedBlogs = Blog::where('category_id',$category_id)
+            $category_id = $blog->blogcategory_id;
+            $relatedBlogs = Blog::where('blogcategory_id',$category_id)
                             ->where('id','!=',$id)
                             ->withCount('bloglikes')->latest()->paginate(6);
             foreach($relatedBlogs as $related){
@@ -145,7 +146,7 @@ class BlogController extends Controller
             $blog->title = $request->title;
             $blog->file = $name;
             $blog->description = $request->description;
-            $blog->category_id = $request->category_id;
+            $blog->blogcategory_id = $request->category_id;
             if($request->title_am){
                 $blog->title_am = $request->title_am;
             }

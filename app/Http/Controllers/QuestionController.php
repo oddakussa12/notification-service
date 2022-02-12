@@ -91,7 +91,7 @@ class QuestionController extends Controller
                                 return $query->withCount('answerlikes','answerdislikes','replies')
                                                 ->with(['user' => function ($query) {
                                                     $query->select('id', 'name');
-                                                }])->limit(2);
+                                                }]);
                             })
                             ->first();
 

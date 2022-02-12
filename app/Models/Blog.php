@@ -14,12 +14,12 @@ class Blog extends Model
         'title_am',
         'description',
         'description_am',
-        'category_id',
+        'blogcategory_id',
         'file'
     ];
 
-    public function category(){
-        return $this->belongsTo('App\Models\Category');
+    public function blogcategory(){
+        return $this->belongsTo('App\Models\Blogcategory');
     }
 
     public function tags(){
