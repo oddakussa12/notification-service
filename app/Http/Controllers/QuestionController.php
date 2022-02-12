@@ -183,7 +183,10 @@ class QuestionController extends Controller
         if($question != null){
             // check if user liked the question already
             if($question->isAuthUserLikedQuestion()){
-                return response()->json(['Error' => "You have already liked the question"]);
+                $like = Like::where('user_id',auth()->user()->id)
+                        ->where('question_id',$question->id)->first();
+                $like->delete();
+                return response()->json(['Message' => "Like revoked"]);
             }else{
                 $like = Like::create([
                     'question_id' => $request->question_id,
