@@ -99,7 +99,8 @@ class CategoryController extends Controller
             }
             return $questions;
         }else{
-            return response()->json(['error' => 'No question found in this category']);
+            return $questions;
+            // return response()->json(['Message' => 'No question found in this category']);
         }
     }
 }
