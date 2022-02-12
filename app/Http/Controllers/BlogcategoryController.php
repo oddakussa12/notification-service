@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blogcategory;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -19,8 +20,18 @@ class BlogcategoryController extends Controller
         }
     }
 
-    public function categoryBlogs(){
-
+    public function categoryBlogs($categoryId){
+        $blogs = Blog::where('blogcategory_id',$categoryId)
+                    ->withCount('bloglikes')->get();
+        if(!$blogs->isEmpty()){
+            foreach($blogs as $blog){
+                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->has_liked = $blog->isAuthUserLikedBlog();
+            }
+            return $blogs;
+        }else{
+            return response()->json(['error' => 'No blogs are found in this category']);
+        }
     }
 
 
