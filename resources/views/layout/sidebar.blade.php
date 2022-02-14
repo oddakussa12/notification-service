@@ -236,7 +236,7 @@
     });
 </script>
 
-<!-- script to display all customers table -->
+<!-- script to display active customers table -->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();
