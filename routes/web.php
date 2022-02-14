@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-// Route::get('/','DashboardController@index');
+// BELOW ARE ROUTES FOR DATING APPLICATION ADMIN ROLE
+Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
+Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
 
+// BELOW ARE ROUTES FROM VAS SYSTEM
 Route::get('/sendSMS', 'SidemenuController@sendSMSView')->name('sendSMS');
 Route::get('/SMSReport', 'SidemenuController@smsReportView')->name('SMSReport');
 Route::get('/importCustomer', 'SidemenuController@importCustomerView')->name('importCustomer');
@@ -36,8 +39,6 @@ Route::get('/sdp/sync.php', 'CustomerController@syncCustomer');
 // return all customer view page
 Route::get('/allcustomers', 'CustomerController@allCustomers')->name('allcustomers');
 
-
-
 // incomming message
 Route::get('/getMessage', 'IncommingMessageController@store');
 
@@ -52,7 +53,7 @@ Route::post('/storeSchedule', 'ScheduleController@store')->name('storeSchedule')
 
 
 
-
+// BELOW ARE ROUTES FROM DASHBOARD ITSELF
 Route::group(['prefix' => 'basic-ui'], function(){
     Route::get('accordions', function () { return view('pages.basic-ui.accordions'); });
     Route::get('buttons', function () { return view('pages.basic-ui.buttons'); });

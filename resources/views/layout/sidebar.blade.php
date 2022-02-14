@@ -65,6 +65,21 @@
         </ul>
       </div>
     </li>
+
+    <li id="unapproved" class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <span class="menu-title">Approve questions</span>
+      </a>
+    </li>
+    <li id="payment" class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <span class="menu-title">Tags and categories</span>
+      </a>
+    </li>
+
+
     <li id="payment" class="nav-item">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-cash-multiple"></i>
@@ -178,6 +193,47 @@
 
 
 @section('js')
+
+<!-- script to show unapproved questions -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function unapprovedQuestions(){
+            $.ajax({
+              url:'{{route('unapprovedQuestions')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#unapproved').on('click',function(){
+            unapprovedQuestions();
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- script to load dashbaord page -->
 <script>

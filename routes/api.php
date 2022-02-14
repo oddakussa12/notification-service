@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // question routes
     Route::get('/question','App\Http\Controllers\QuestionController@index');
     Route::get('/question/{id}','App\Http\Controllers\QuestionController@show');
-    Route::post('/question','App\Http\Controllers\QuestionController@store');
+    Route::post('/question','QuestionController@store');
     Route::put('/question/{id}','App\Http\Controllers\QuestionController@update');
     Route::delete('/question/{id}','App\Http\Controllers\QuestionController@destroy');
 
@@ -79,13 +79,13 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 // ADMIN ROUTES
 Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // question routes
-    Route::put('/approve_question','App\Http\Controllers\Admin\QuestionController@approveQuestion');
-    Route::put('/decline_question','App\Http\Controllers\Admin\QuestionController@declineQuestion');
+    Route::put('/approve_question','Admin\QuestionController@approveQuestion');
+    Route::put('/decline_question','Admin\QuestionController@declineQuestion');
     
     // category CRUD
-    Route::post('/category','App\Http\Controllers\Admin\CategoryController@store');
-    Route::put('/category/{id}','App\Http\Controllers\Admin\CategoryController@update');
-    Route::delete('/category/{id}','App\Http\Controllers\Admin\CategoryController@destroy');
+    Route::post('/category','Admin\CategoryController@store');
+    Route::put('/category/{id}','Admin\CategoryController@update');
+    Route::delete('/category/{id}','Admin\CategoryController@destroy');
 
     // blog category CRUD
     Route::post('/blogCategory','App\Http\Controllers\BlogcategoryController@store');
@@ -93,9 +93,9 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::delete('/blogCategory/{id}','App\Http\Controllers\BlogcategoryController@destroy');
 
     // tag CRUD
-    Route::post('/tag','App\Http\Controllers\Admin\TagController@store');
-    Route::put('/tag/{id}','App\Http\Controllers\Admin\TagController@update');
-    Route::delete('/tag/{id}','App\Http\Controllers\Admin\TagController@destroy');
+    Route::post('/tag','Admin\TagController@store');
+    Route::put('/tag/{id}','Admin\TagController@update');
+    Route::delete('/tag/{id}','Admin\TagController@destroy');
 
     // blog endpoints
     Route::post('/blog','App\Http\Controllers\BlogController@store');
