@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <button id="sendSMS" class="btn btn-primary btn-block">Send SMS <i class="mdi mdi-bullhorn"></i>
+        <button id="sendSMS" class="btn btn-primary btn-block">User reports <i class="mdi mdi-bullhorn"></i>
         </button>
       </div>
     </li>
@@ -47,15 +47,6 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li id="payment" class="nav-item">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-cash-multiple"></i>
-        <span class="menu-title">Payment</span>
-      </a>
-    </li>
-
-
-
     
     <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
@@ -73,6 +64,12 @@
           </li>
         </ul>
       </div>
+    </li>
+    <li id="payment" class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <span class="menu-title">Payment</span>
+      </a>
     </li>
     <li id="targets" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">

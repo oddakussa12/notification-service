@@ -14,8 +14,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // PUBLIC ROUTES
 // auth routes
-Route::post('/register','App\Http\Controllers\AuthController@register');
-Route::post('/login','App\Http\Controllers\AuthController@login');
+Route::post('/register','AuthController@register');
+Route::post('/login','AuthController@login');
 
 
 // AUTHENTICATED USERS ROUTES
