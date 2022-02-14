@@ -23,6 +23,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // auth routes
     Route::post('/logout','AuthController@logout');
 
+    Route::post('/save_blog','SaveController@saveBlog');
+    Route::post('/detach_blog','SaveController@unsaveBlog');
+    Route::get('/mySavedBlogs','SaveController@mySavedBlogs');
+
     // question routes
     Route::get('/question','QuestionController@index');
     Route::get('/question/{id}','QuestionController@show');

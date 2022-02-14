@@ -33,6 +33,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function blogsaves(){
+        return $this->belongsToMany('App\Models\Blog');
+    }
+
     public function questions(){
         return $this->hasMany('App\Models\Question');
     }
@@ -43,5 +47,11 @@ class User extends Authenticatable
 
     public function replies(){
         return $this->hasMany('App\Models\Reply');
+    }
+
+    // used to check if user saved a given blog
+    public function hasSavedBlog($blog)
+    {
+        return $this->blogsaves()->where('blog_id', $blog->id)->exists();
     }
 }

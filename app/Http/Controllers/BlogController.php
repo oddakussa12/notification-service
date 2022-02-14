@@ -99,9 +99,12 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::where('id',$id)->first();
-        $tags = $blog->tags;
         
         if($blog != null){
+            $hasSaved = auth()->user()->hasSavedBlog($blog);
+            
+            $blog->hasSaved = auth()->user()->hasSavedBlog($blog);
+            $tags = $blog->tags;
             $category_id = $blog->blogcategory_id;
             $relatedBlogs = Blog::where('blogcategory_id',$category_id)
                             ->where('id','!=',$id)
@@ -110,7 +113,9 @@ class BlogController extends Controller
                 $related->file_path = 'https://datingapi.yenesera.com/blogImages/'.$related->file;
                 $related->has_liked = $related->isAuthUserLikedBlog();
             }
-            return response()->json(['related' => $relatedBlogs , 'tags' => $tags]);
+            return response()->json(['related' => $relatedBlogs ,
+                                     'tags' => $tags,
+                                    'hasSaved' => $hasSaved]);
         }else{
             return response()->json(['error' => 'Blog not found'], 404);
         }

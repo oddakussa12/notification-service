@@ -25,6 +25,9 @@ class Blog extends Model
     public function tags(){
         return $this->belongsToMany('App\Models\Tag');
     }
+    public function userBlogSaves(){
+        return $this->belongsToMany('App\Models\User');
+    }
 
     public function bloglikes(){
         return $this->hasMany('App\Models\Bloglike');
