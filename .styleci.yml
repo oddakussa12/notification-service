@@ -1,7 +1,13 @@
 php:
   preset: laravel
+<<<<<<< HEAD
   disabled:
     - unused_use
+=======
+  version: 8
+  disabled:
+    - no_unused_imports
+>>>>>>> 5200bc76a3c9d3a61b056b9b87fb93e866e87503
   finder:
     not-name:
       - index.php
