@@ -20,20 +20,13 @@ Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions
 Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
 
 // BELOW ARE ROUTES FROM VAS SYSTEM
-Route::get('/sendSMS', 'SidemenuController@sendSMSView')->name('sendSMS');
-Route::get('/SMSReport', 'SidemenuController@smsReportView')->name('SMSReport');
-Route::get('/importCustomer', 'SidemenuController@importCustomerView')->name('importCustomer');
 Route::get('/customers', 'SidemenuController@customers')->name('customers');
 Route::get('/disabledCustomers', 'SidemenuController@disabledCustomers')->name('disabledCustomers');
-Route::get('/targets', 'SidemenuController@targets')->name('targets');
 Route::get('/newCustomers', 'SidemenuController@newCustomers')->name('newCustomers');
-Route::get('/incommingSMS', 'SidemenuController@incommingSMS')->name('incommingSMS');
-Route::get('/autoReplayTable', 'SidemenuController@autoReplyTable')->name('autoReplayTable');
-Route::get('/smsSchedule', 'SidemenuController@SMSschedule')->name('smsSchedule');
 
-Route::get('/payment', 'SidemenuController@payment')->name('payment');//return payment dashboard
+
 Route::get('/dash', 'SidemenuController@dashboard')->name('dash');
-Route::get('/paymentProcessing', 'CustomerController@paymentProcessing')->name('paymentProcessing');//when pay button is clicked
+
 
 Route::get('/sdp/sync.php', 'CustomerController@syncCustomer');
 // return all customer view page
@@ -42,8 +35,7 @@ Route::get('/allcustomers', 'CustomerController@allCustomers')->name('allcustome
 // incomming message
 Route::get('/getMessage', 'IncommingMessageController@store');
 
-// autoreply CRUD routes
-Route::post('/storeautoreply', 'AutoReplyController@store')->name('storeautoreply');
+
 // target group CRUD routes
 Route::post('/storeGroup', 'GroupController@store')->name('storeGroup');
 // schedule CRUD Routes

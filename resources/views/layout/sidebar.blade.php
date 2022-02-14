@@ -68,60 +68,21 @@
 
     <li id="unapproved" class="nav-item">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <i class="menu-icon mdi mdi-comment-question-outline"></i>
         <span class="menu-title">Approve questions</span>
       </a>
     </li>
-    <li id="payment" class="nav-item">
+    <li id="tagscategories" class="nav-item">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-cash-multiple"></i>
+        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
         <span class="menu-title">Tags and categories</span>
       </a>
     </li>
 
 
-    <li id="payment" class="nav-item">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-cash-multiple"></i>
-        <span class="menu-title">Payment</span>
-      </a>
-    </li>
-    <li id="targets" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
-        <span class="menu-title">Customers group</span>
-      </a>
-    </li>
-    <li id="importCustomer" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-download"></i>
-        <span class="menu-title">Import customer</span>
-      </a>
-    </li>
-    <li id="SMSReport" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
-        <span class="menu-title">Broadcast History</span>
-      </a>
-    </li>
-    <li id="incomming" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-comment-multiple-outline"></i>
-        <span class="menu-title">Incomming SMS</span>
-      </a>
-    </li>
-    <li id="schedule" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-calendar"></i>
-        <span class="menu-title">SMS Schedule</span>
-      </a>
-    </li>
-    <li id="auto_reply" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-alarm-plus"></i>
-        <span class="menu-title">Auto reply SMS</span>
-      </a>
-    </li>
+
+
+
     
     <!-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
@@ -220,28 +181,13 @@
         });
     });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- script to load dashbaord page -->
+<!-- script to show categories and tags page -->
 <script>
     $(document).ready(function(){
         var token = $('input[name="_token"]').val();
-        function displayDash(){
+        function displyTagsCategories(){
             $.ajax({
-              url:'{{route('dash')}}',
+              url:'{{route('categorytag')}}',
                 cache:false,
                 method:'GET',
                 beforeSend: function()
@@ -256,117 +202,12 @@
             });
         }
 
-        $('#dash').on('click',function(){
-            displayDash();
-        });
-    });
-</script>
-<!-- script to disply sms schedule page-->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displaySMSschedule(){
-            $.ajax({
-              url:'{{route('smsSchedule')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#schedule').on('click',function(){
-            displaySMSschedule();
-        });
-    });
-</script>
-  <!-- script to load sms report page -->
-  <script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displaySMSReport(){
-            $.ajax({
-              url:'{{route('SMSReport')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#SMSReport').on('click',function(){
-            displaySMSReport();
-        });
-    });
-  </script>
-<!-- script to load send SMS -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displaySendSMS(){
-            $.ajax({
-              url:'{{route('sendSMS')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#sendSMS').on('click',function(){
-            displaySendSMS();
+        $('#tagscategories').on('click',function(){
+            displyTagsCategories();
         });
     });
 </script>
 
-
-<!-- script to load import customer page -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displayImportCustomer(){
-            $.ajax({
-              url:'{{route('importCustomer')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#importCustomer').on('click',function(){
-            displayImportCustomer();
-        });
-    });
-</script>
 
 <!-- script to load disabled customers page page -->
 <script>
@@ -421,280 +262,6 @@
         });
     });
 </script>
-<!-- script to display incomming SMS table -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displayIncommingSMS(){
-            $.ajax({
-              url:'{{route('incommingSMS')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#incomming').on('click',function(){
-            displayIncommingSMS();
-        });
-    });
-</script>
-
-<!-- script to display all targets table -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displayTargetsTable(){
-            $.ajax({
-              url:'{{route('targets')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#targets').on('click',function(){
-            displayTargetsTable();
-        });
-    });
-</script>
-<!-- script to display auto reply sms table -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displayAutoReplyTable(){
-            $.ajax({
-              url:'{{route('autoReplayTable')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#auto_reply').on('click',function(){
-            displayAutoReplyTable();
-        });
-    });
-</script>
-
-
-<!-- script to show payements dashboard -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displayPaymentDash(){
-            $.ajax({
-              url:'{{route('payment')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#payment').on('click',function(){
-            displayPaymentDash();
-        });
-    });
-</script>
-
-<!-- script to create a single contact -->
-<script>
-    $(document).ready(function(){
-       // show create contact modal
-       $('#createRecord').click(function(){
-          $('#createRecordModal').modal('show');
-      });
-       // implementation when submit button is clicked from create contact modal
-      $('#createRecordForm').on('submit', function(event){
-          event.preventDefault();
-          if($('#createContactBtn').val() == 'Create'){
-              $.ajax({
-                  url:"{{ route('api.createCustomer') }}",
-                  method:"POST",
-                  data: new FormData(this),
-                  contentType:false,
-                  cache:false,
-                  processData:false,
-                  dataType:'json',
-                  beforeSend: function()
-                  {
-                      $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
-                  },
-                  success:function(data){
-                      var html = '';
-                      if(data.errors){
-                          html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
-                          for(var count = 0; count<data.errors.length; count++){
-                              html += '<p>' + data.errors[count] + '</p>';
-                          }
-                          html += '</div>';
-                          $('#createContactBtn').html('Create'); 
-                      }
-                      if(data.success){
-                          html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-                          + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-                          // empty form field values  
-                          $('#createRecordForm')[0].reset();
-                          $('#createContactBtn').html('Create');
-
-                      }
-                      // render error or success message in html variable to span element with id value form_result
-                      $('#form_result').html(html);
-                  }
-              })
-          }
-      });
-    });
-</script>
-
-<!-- script to send single sms -->
-<script>
-    $(document).ready(function(){
-       // show create contact modal
-       $('#singleSMS').click(function(){
-          $('#sendSingleSMS').modal('show');
-      });
-       // implementation when send button is clicked from send single sms modal
-      // $('#createRecordForm').on('submit', function(event){
-      //     event.preventDefault();
-      //     if($('#createContactBtn').val() == 'Create'){
-      //         $.ajax({
-      //             url:"{{ route('api.createCustomer') }}",
-      //             method:"POST",
-      //             data: new FormData(this),
-      //             contentType:false,
-      //             cache:false,
-      //             processData:false,
-      //             dataType:'json',
-      //             beforeSend: function()
-      //             {
-      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
-      //             },
-      //             success:function(data){
-      //                 var html = '';
-      //                 if(data.errors){
-      //                     html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
-      //                     for(var count = 0; count<data.errors.length; count++){
-      //                         html += '<p>' + data.errors[count] + '</p>';
-      //                     }
-      //                     html += '</div>';
-      //                     $('#createContactBtn').html('Create'); 
-      //                 }
-      //                 if(data.success){
-      //                     html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
-      //                     + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-      //                     // empty form field values  
-      //                     $('#createRecordForm')[0].reset();
-      //                     $('#createContactBtn').html('Create');
-
-      //                 }
-      //                 // render error or success message in html variable to span element with id value form_result
-      //                 $('#form_result').html(html);
-      //             }
-      //         })
-      //     }
-      // });
-    });
-</script>
-
-
-<!-- script to create group -->
-<script>
-    $(document).ready(function(){
-       // show create contact modal
-       $('#createGroupHeader').click(function(){
-          $('#createGroupHeaderModal').modal('show');
-      });
-      //  implementation when send button is clicked from send single sms modal
-      $('#createGroupHeaderForm').on('submit', function(event){
-          event.preventDefault();
-          if($('#createHeaderGroupBtn').val() == 'Create'){
-              $.ajax({
-                  url:"{{ route('storeGroup') }}",
-                  method:"POST",
-                  data: new FormData(this),
-                  contentType:false,
-                  cache:false,
-                  processData:false,
-                  dataType:'json',
-                  beforeSend: function()
-                  {
-                      $('#createHeaderGroupBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
-                  },
-                  success:function(data){
-                      var html = '';
-                      if(data.errors){
-                          html = '<div class="alert alert-danger alert-block" style="height:30px;padding:2px;">';
-                          for(var count = 0; count<data.errors.length; count++){
-                              html += '<p>' + data.errors[count] + '</p>';
-                          }
-                          html += '</div>';
-                          $('#createHeaderGroupBtn').html('Create'); 
-                          // render error or success message in html variable to span element with id value form_result
-                          $('#create_group_header_form_result').html(html);
-                      }
-                      if(data.success){
-                        $('#create_group_header_form_result').html('');
-                        $('#createGroupHeaderForm')[0].reset();
-                        $('#createHeaderGroupBtn').html('Create'); 
-                        $('#createGroupHeaderModal').modal('hide');
-                          setTimeout(function() { odda(); }, 500);
-                          function odda(){
-                            $.ajax({
-                              url:'{{route('targets')}}',
-                                cache:false,
-                                method:'GET',
-                                beforeSend: function()
-                                {  
-                                    $("#loading-overlay").show();
-                                },
-                                success:function(data){
-                                    $('#odda').empty();
-                                    $('#odda').append(data);
-                                    $("#loading-overlay").hide();
-                                }
-                            });
-                          }
-                      }
-                  }
-              })
-          }
-      });
-    });
-</script>
-
 
 @endsection
 

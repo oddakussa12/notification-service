@@ -34,11 +34,17 @@
                 </td>
                 <td>{{ Carbon\Carbon::parse($question->created_at)->format('D, M d, Y h:i A') }}</td>
                 <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">Approve</button>
-                        <button type="button" class="btn btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-outline-secondary">Decline</button>
-                    </div>  
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-outline-success">
+                      <i class="mdi mdi-check-circle-outline"></i>
+                      </button>
+                      <button type="button" class="btn btn-outline-danger">
+                      <i class="mdi mdi-delete"></i>
+                      </button>
+                      <button type="button" class="btn btn-outline-primary">
+                      <i class="mdi mdi-eye"></i>
+                      </button>
+                  </div>
                 </td>
               </tr>
               @endforeach

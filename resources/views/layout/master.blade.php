@@ -89,9 +89,6 @@
                 <div class="loading-icon"></div>
             </div>
         </div>
-        @include('/modals/createRecord')
-        @include('/modals/sendSingleSMS')
-        @include('/modals/createGroupHeaderModal')
         <div class="content-wrapper" id="odda">
           @yield('content')
         </div>
