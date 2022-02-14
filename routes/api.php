@@ -119,15 +119,15 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
 
 
 
-// Route::get('/getCustomers','CustomerController@getCustomers');
-// Route::get('/disableCustomers/{id}','CustomerController@disableCustomer');
-// Route::get('/enableCustomers/{id}','CustomerController@enableCustomer');
-// Route::post('/createCustomer','CustomerController@createCustomer')->name('api.createCustomer');
+Route::get('/getCustomers','CustomerController@getCustomers');
+Route::get('/disableCustomers/{id}','CustomerController@disableCustomer');
+Route::get('/enableCustomers/{id}','CustomerController@enableCustomer');
+Route::post('/createCustomer','CustomerController@createCustomer')->name('api.createCustomer');
 
-// Route::post('/importCustomer','CustomerController@importCustomer')->name('api.importCustomer');
+Route::post('/importCustomer','CustomerController@importCustomer')->name('api.importCustomer');
 
-// Route::get('batch/{id}','CustomerController@batchStatus');
+Route::get('batch/{id}','CustomerController@batchStatus');
 
-// // route for the ajax pagination on all customers table
-// Route::get('/api/customers','CustomerController@allCustomerApi')->name('api.customers');
+// route for the ajax pagination on all customers table
+Route::get('/api/customers','CustomerController@allCustomerApi')->name('api.customers');
 

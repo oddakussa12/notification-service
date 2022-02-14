@@ -15,33 +15,6 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-// disply a page for blocks in a site
-Route::get('/siteblocks/{id}', 'BlockController@siteBlocks');
-// disply a page for floors in a block
-Route::get('/blockfloors/{id}', 'FloorController@blockFloors');
-// disply a page for units in a floor 
-Route::get('/floorunits/{id}', 'UnitController@floorUnits');
-// create new site
-Route::post('/storeSite', 'SiteController@store')->name('storeSite');
-// create new block
-Route::post('/storeBlock', 'BlockController@store')->name('storeBlock');
-// create new floor
-Route::post('/storeFloor', 'FloorController@store')->name('storeFloor');
-// create new unit
-Route::post('/storeUnit', 'UnitController@store')->name('storeUnit');
-
-// update lead
-Route::post('/updateLead', 'LeadController@update')->name('updateLead');
-
-
-
-
-
-
-
-
-
-
 // Route::get('/','DashboardController@index');
 
 Route::get('/sendSMS', 'SidemenuController@sendSMSView')->name('sendSMS');
@@ -74,6 +47,10 @@ Route::post('/storeautoreply', 'AutoReplyController@store')->name('storeautorepl
 Route::post('/storeGroup', 'GroupController@store')->name('storeGroup');
 // schedule CRUD Routes
 Route::post('/storeSchedule', 'ScheduleController@store')->name('storeSchedule');
+
+
+
+
 
 
 Route::group(['prefix' => 'basic-ui'], function(){

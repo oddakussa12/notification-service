@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#006699;">
-        <h5 class="modal-title" style="color:white;">Register new sales agent</h5>
+        <h5 class="modal-title" style="color:white;">Create new customer group</h5>
         <button type="button"  class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -12,15 +12,9 @@
           @csrf
           <div>
             <div class="form-group row">
-                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Agent name:</label>
+                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Group name:</label>
                 <div class="col-sm-9">
-                    <input type="text" style="margin-top:5px;" name="name" class="form-control form-control-sm"  placeholder="Agent name...">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Agent phone:</label>
-                <div class="col-sm-9">
-                    <input type="number" style="margin-top:5px;" name="phone" class="form-control form-control-sm"  placeholder="Agent phone number...">
+                    <input type="text" style="margin-top:5px;" name="groupName" class="form-control form-control-sm"  placeholder="Group name...">
                 </div>
             </div>
           </div>

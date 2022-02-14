@@ -37,24 +37,27 @@
             </div>
           </div>
         </div>
-        <button id="sendSMS" class="btn btn-primary btn-block">Active leads
+        <button id="sendSMS" class="btn btn-primary btn-block">Send SMS <i class="mdi mdi-bullhorn"></i>
         </button>
       </div>
     </li>
     <li id="dash" class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-television"></i>
-        <span class="menu-title">Sites</span>
+        <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li id="payment" class="nav-item">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-cash-multiple"></i>
-        <span class="menu-title">Units</span>
+        <span class="menu-title">Payment</span>
       </a>
     </li>
 
-    {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+
+
+    
+    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-account-multiple-plus"></i>
         <span class="menu-title">Customers</span>
@@ -70,39 +73,44 @@
           </li>
         </ul>
       </div>
-    </li> --}}
+    </li>
     <li id="targets" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
-        <span class="menu-title">Sales persons</span>
+        <span class="menu-title">Customers group</span>
       </a>
     </li>
     <li id="importCustomer" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-download"></i>
-        <span class="menu-title">Reservation requests</span>
+        <span class="menu-title">Import customer</span>
       </a>
     </li>
     <li id="SMSReport" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
-        <span class="menu-title">Leads</span>
-      </a>
-    </li>
-    <li id="SMSReport" class="nav-item {{ active_class(['charts/chartjs']) }}">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
-        <span class="menu-title">Deals</span>
+        <span class="menu-title">Broadcast History</span>
       </a>
     </li>
     <li id="incomming" class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-comment-multiple-outline"></i>
-        <span class="menu-title">settings</span>
+        <span class="menu-title">Incomming SMS</span>
       </a>
     </li>
-
-
+    <li id="schedule" class="nav-item {{ active_class(['charts/chartjs']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-calendar"></i>
+        <span class="menu-title">SMS Schedule</span>
+      </a>
+    </li>
+    <li id="auto_reply" class="nav-item {{ active_class(['charts/chartjs']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-alarm-plus"></i>
+        <span class="menu-title">Auto reply SMS</span>
+      </a>
+    </li>
+    
     <!-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
@@ -184,7 +192,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -210,7 +218,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -236,7 +244,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -262,7 +270,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -290,7 +298,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -317,7 +325,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -344,7 +352,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -370,7 +378,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -397,7 +405,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -423,7 +431,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -451,7 +459,7 @@
                 cache:false,
                 method:'GET',
                 beforeSend: function()
-                {
+                {  
                     $("#loading-overlay").show();
                 },
                 success:function(data){
@@ -489,7 +497,7 @@
                   dataType:'json',
                   beforeSend: function()
                   {
-                      $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+                      $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
                   },
                   success:function(data){
                       var html = '';
@@ -499,12 +507,12 @@
                               html += '<p>' + data.errors[count] + '</p>';
                           }
                           html += '</div>';
-                          $('#createContactBtn').html('Create');
+                          $('#createContactBtn').html('Create'); 
                       }
                       if(data.success){
                           html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
                           + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-                          // empty form field values
+                          // empty form field values  
                           $('#createRecordForm')[0].reset();
                           $('#createContactBtn').html('Create');
 
@@ -539,7 +547,7 @@
       //             dataType:'json',
       //             beforeSend: function()
       //             {
-      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+      //                 $('#createContactBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
       //             },
       //             success:function(data){
       //                 var html = '';
@@ -549,12 +557,12 @@
       //                         html += '<p>' + data.errors[count] + '</p>';
       //                     }
       //                     html += '</div>';
-      //                     $('#createContactBtn').html('Create');
+      //                     $('#createContactBtn').html('Create'); 
       //                 }
       //                 if(data.success){
       //                     html = '<div class = "alert alert-success alert-block" style="height:30px;padding:2px;">'
       //                     + data.success + '<button type="button" class="close" data-dismiss="alert">x</button</div>';
-      //                     // empty form field values
+      //                     // empty form field values  
       //                     $('#createRecordForm')[0].reset();
       //                     $('#createContactBtn').html('Create');
 
@@ -590,7 +598,7 @@
                   dataType:'json',
                   beforeSend: function()
                   {
-                      $('#createHeaderGroupBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+                      $('#createHeaderGroupBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
                   },
                   success:function(data){
                       var html = '';
@@ -600,14 +608,14 @@
                               html += '<p>' + data.errors[count] + '</p>';
                           }
                           html += '</div>';
-                          $('#createHeaderGroupBtn').html('Create');
+                          $('#createHeaderGroupBtn').html('Create'); 
                           // render error or success message in html variable to span element with id value form_result
                           $('#create_group_header_form_result').html(html);
                       }
                       if(data.success){
                         $('#create_group_header_form_result').html('');
                         $('#createGroupHeaderForm')[0].reset();
-                        $('#createHeaderGroupBtn').html('Create');
+                        $('#createHeaderGroupBtn').html('Create'); 
                         $('#createGroupHeaderModal').modal('hide');
                           setTimeout(function() { odda(); }, 500);
                           function odda(){
@@ -616,7 +624,7 @@
                                 cache:false,
                                 method:'GET',
                                 beforeSend: function()
-                                {
+                                {  
                                     $("#loading-overlay").show();
                                 },
                                 success:function(data){
