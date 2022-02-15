@@ -41,12 +41,12 @@ class SaveController extends Controller
     }
 
     public function mySavedBlogs(){
-        $blogs = auth()->user()->blogsaves()->latest()->get(
-
-
-        );
-        return $blogs;
+        $blogs = auth()->user()->blogsaves()->latest()->get();
+        if(!$blogs->isEmpty()){
+            return $blogs;
+        }else{
+            return response()->json(['Message'=> 'No saved blogs.',
+                                        'data' => []]);
+        }
     }
-
-
 }
