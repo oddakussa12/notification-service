@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Save;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -16,9 +17,15 @@ class SaveController extends Controller
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()]);
         }
-        auth()->user()->blogsaves()->attach($request->blog_id);
-
-        return response()->json(['Message' => "Blog saved"], 200);
+        $blog = Blog::where('id',$request->blog_id)->first();
+        if(auth()->user()->hasSavedBlog($blog)){
+            auth()->user()->blogsaves()->detach($request->blog_id);
+            return response()->json(['Message' => "Blog removed from saved list."], 200);
+        }else{
+            auth()->user()->blogsaves()->attach($request->blog_id);
+            return response()->json(['Message' => "Blog saved"], 200);
+        }
+        
     }
 
     public function unsaveBlog(Request $request){
@@ -34,7 +41,10 @@ class SaveController extends Controller
     }
 
     public function mySavedBlogs(){
-        $blogs = auth()->user()->blogsaves()->latest()->get();
+        $blogs = auth()->user()->blogsaves()->latest()->get(
+
+
+        );
         return $blogs;
     }
 
