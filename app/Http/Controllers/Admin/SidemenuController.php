@@ -23,4 +23,9 @@ class SidemenuController extends Controller
 
         return view('Admin/categorytag', compact('categories','blogCategories','tags'));
     }
+    public function blogs(){
+        $tags = Tag::select('id','name')->latest()->get();
+        $blogCategories = Blogcategory::select('id','name')->latest()->get();
+        return view('Admin/blogs',compact('blogCategories','tags'));
+    }
 }

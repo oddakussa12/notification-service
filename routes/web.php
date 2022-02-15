@@ -18,6 +18,7 @@ Route::get('/', function () {
 // BELOW ARE ROUTES FOR DATING APPLICATION ADMIN ROLE
 Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
 Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
+Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
 
 // BELOW ARE ROUTES FROM VAS SYSTEM
 Route::get('/customers', 'SidemenuController@customers')->name('customers');
@@ -36,10 +37,10 @@ Route::get('/allcustomers', 'CustomerController@allCustomers')->name('allcustome
 Route::get('/getMessage', 'IncommingMessageController@store');
 
 
-// target group CRUD routes
-Route::post('/storeGroup', 'GroupController@store')->name('storeGroup');
-// schedule CRUD Routes
-Route::post('/storeSchedule', 'ScheduleController@store')->name('storeSchedule');
+// blog CRUD Routes
+Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
+Route::put('/blog/{id}','Admin\BlogController@update');
+Route::delete('/blog/{id}','Admin\BlogController@destroy');
 
 
 

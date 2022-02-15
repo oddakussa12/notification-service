@@ -119,7 +119,7 @@
 
   <!-- scripts for the datatable -->
   <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-
-
+  <!-- script for the ck editor -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 </body>
 </html>

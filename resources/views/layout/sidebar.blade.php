@@ -78,6 +78,12 @@
         <span class="menu-title">Tags and categories</span>
       </a>
     </li>
+    <li id="blogs" class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
+        <span class="menu-title">Blogs</span>
+      </a>
+    </li>
 
 
 
@@ -204,6 +210,33 @@
 
         $('#tagscategories').on('click',function(){
             displyTagsCategories();
+        });
+    });
+</script>
+
+<!-- script to show blogs page -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function displyBlogs(){
+            $.ajax({
+              url:'{{route('blogs')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#blogs').on('click',function(){
+            displyBlogs();
         });
     });
 </script>

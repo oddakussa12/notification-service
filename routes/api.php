@@ -81,12 +81,13 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 // ADMIN ROUTES
-Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
+// Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // question routes
     Route::put('/approve_question','Admin\QuestionController@approveQuestion');
     Route::put('/decline_question','Admin\QuestionController@declineQuestion');
 
-    
+    Route::get('/api/users','Admin\QuestionController@unapprovedQuestions')->name('api.users');
+    Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
     
     // category CRUD
     Route::post('/category','Admin\CategoryController@store');
@@ -103,14 +104,11 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     Route::put('/tag/{id}','Admin\TagController@update');
     Route::delete('/tag/{id}','Admin\TagController@destroy');
 
-    // blog endpoints
-    Route::post('/blog','BlogController@store');
-    Route::put('/blog/{id}','BlogController@update');
-    Route::delete('/blog/{id}','BlogController@destroy');
-});
+   
+// });
 
 
-Route::get('/api/users','Admin\QuestionController@unapprovedQuestions')->name('api.users');
+
 
 
 
