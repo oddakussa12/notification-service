@@ -60,17 +60,12 @@
                             <p>No tags</p>
                     @endif
                 </div>
-               
-
-
                 <div>
                     <textarea id="texten" name="description" placeholder="Blog body in english" ></textarea>
                 </div>
                 <div style="margin-top:10px;" >
-                    <textarea id="textam" name="description_am" placeholder="Blog body in amharic" ></textarea>
+                    <textarea id="textam"  name="description_am" placeholder="Blog body in amharic" ></textarea>
                 </div>
-                
-                
             </div>
             <div style="text-align:right;margin-top:10px;">
                 <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
