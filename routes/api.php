@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
     // question routes
     Route::put('/approve_question','Admin\QuestionController@approveQuestion');
     Route::put('/decline_question','Admin\QuestionController@declineQuestion');
+
+    
     
     // category CRUD
     Route::post('/category','Admin\CategoryController@store');
@@ -108,7 +110,7 @@ Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
 });
 
 
-
+Route::get('/api/users','Admin\QuestionController@unapprovedQuestions')->name('api.users');
 
 
 
