@@ -15,27 +15,14 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-// BELOW ARE ROUTES FOR DATING APPLICATION ADMIN ROLE
+// application side menu links
 Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
 Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
 Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
 
-// BELOW ARE ROUTES FROM VAS SYSTEM
-Route::get('/customers', 'SidemenuController@customers')->name('customers');
-Route::get('/disabledCustomers', 'SidemenuController@disabledCustomers')->name('disabledCustomers');
-Route::get('/newCustomers', 'SidemenuController@newCustomers')->name('newCustomers');
-
-
-Route::get('/dash', 'SidemenuController@dashboard')->name('dash');
-
-
-Route::get('/sdp/sync.php', 'CustomerController@syncCustomer');
-// return all customer view page
-Route::get('/allcustomers', 'CustomerController@allCustomers')->name('allcustomers');
-
-// incomming message
-Route::get('/getMessage', 'IncommingMessageController@store');
-
+// datatable routes
+Route::get('/api/unapprovedquestions','Admin\QuestionController@unapprovedQuestions')->name('api.unapprovedquestions');
+Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
 
 // blog CRUD Routes
 Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
@@ -46,6 +33,16 @@ Route::delete('/blog/{id}','Admin\BlogController@destroy');
 Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcategory.store');
 Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');
 Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
+
+
+
+
+
+
+
+
+
+
 
 
 

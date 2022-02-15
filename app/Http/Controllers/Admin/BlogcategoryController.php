@@ -11,7 +11,6 @@ class BlogcategoryController extends Controller
 {
     public function store(Request $request)
     {
-
         $rules = array(
             'name' => 'required',
             'name_am' => 'required',

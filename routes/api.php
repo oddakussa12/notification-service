@@ -86,9 +86,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/approve_question','Admin\QuestionController@approveQuestion');
     Route::put('/decline_question','Admin\QuestionController@declineQuestion');
 
-    Route::get('/api/users','Admin\QuestionController@unapprovedQuestions')->name('api.users');
-    Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
-    
+
     // category CRUD
     Route::post('/category','Admin\CategoryController@store');
     Route::put('/category/{id}','Admin\CategoryController@update');

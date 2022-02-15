@@ -35,13 +35,11 @@
 
 
 <!-- script for the ck editor -->
-
 <script>
     //  text area on editBlog modal with id editoredit  
     ClassicEditor
         .create( document.querySelector( '#textam' ) )
         .catch( error => {
-            // console.error( error );
         } );
 </script>
 <script>
@@ -49,11 +47,10 @@
     ClassicEditor
         .create( document.querySelector( '#texten' ) )
         .catch( error => {
-            // console.error( error );
         } );
 </script>
 
-<!-- script for ajax loading unapproved questions -->
+<!-- script for ajax loading blogs -->
 <script>
     $(document).ready( function () {
         $('#datatable').DataTable({

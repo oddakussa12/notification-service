@@ -37,7 +37,7 @@
         $('#datatable').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "{{ route('api.users') }}",
+            "ajax": "{{ route('api.unapprovedquestions') }}",
             "columns": [
                 { "data": "body" },
                 {data: 'status', name: 'status', orderable: false, searchable: false},

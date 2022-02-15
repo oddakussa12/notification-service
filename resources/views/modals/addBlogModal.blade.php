@@ -46,6 +46,22 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    @if(!$tags->isEmpty())
+                        <div class="row" style="margin-left:10px;">
+                            @foreach($tags as $tag)
+                                <div class="form-group form-check" style="padding-right:15px;">
+                                    <input type="checkbox" name="tag_ids[]" value={{$tag->id}} class="form-check-input" id="exampleCheck{{$tag->id}}">
+                                    <label style="margin-left:-12px;margin-top:2px;" class="form-check-label" for="exampleCheck{{$tag->id}}">{{$tag->name}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        @else
+                            <p>No tags</p>
+                    @endif
+                </div>
+               
+
 
                 <div>
                     <textarea id="texten" name="description" placeholder="Blog body in english" ></textarea>
