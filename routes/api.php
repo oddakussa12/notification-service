@@ -94,10 +94,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/category/{id}','Admin\CategoryController@update');
     Route::delete('/category/{id}','Admin\CategoryController@destroy');
 
-    // blog category CRUD
-    Route::post('/blogCategory','BlogcategoryController@store');
-    Route::put('/blogCategory/{id}','BlogcategoryController@update');
-    Route::delete('/blogCategory/{id}','BlogcategoryController@destroy');
+    
 
     // tag CRUD
     Route::post('/tag','Admin\TagController@store');

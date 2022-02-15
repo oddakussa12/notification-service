@@ -12,7 +12,7 @@
               <button type="button" class="btn btn-inverse-primary btn-fw" id="addBlog">Add blog</button>
               </div>
         </div>
-        <div class="table-responsive table-condensed">
+        <!-- <div class="table-responsive table-condensed"> -->
           <table class="table table-hover" id="datatable">
             <thead>
               <tr>
@@ -28,7 +28,7 @@
     
             </tbody>
           </table>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
 </div>
