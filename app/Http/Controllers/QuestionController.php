@@ -95,7 +95,10 @@ class QuestionController extends Controller
                             })
                             ->first();
 
+        
+
         if($question != null){
+            $question->has_liked = $question->isAuthUserLikedQuestion();
             foreach($question->answers as $ans){
                 $ans->is_owner = (auth()->user()->id == $ans->user_id) ? 1 : 0;
                 $ans->has_liked = $ans->isAuthUserLikedAnswer();
