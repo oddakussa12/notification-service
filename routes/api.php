@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/question/{id}','QuestionController@update');
     Route::delete('/question/{id}','QuestionController@destroy');
 
+    Route::get('/question_filter','QuestionController@filter');
+
     Route::get('/my_questions','QuestionController@myQuestions');
     Route::get('/search_questions','QuestionController@searchQuestion');
     
@@ -86,10 +88,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/approve_question','Admin\QuestionController@approveQuestion');
     Route::put('/decline_question','Admin\QuestionController@declineQuestion');
 
-
-    
-
-   
 // });
 
 

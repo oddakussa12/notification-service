@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Blogcategory;
 use Illuminate\Http\Request;
+use App\Models\Reportword;
 
 class SidemenuController extends Controller
 {
@@ -20,8 +21,9 @@ class SidemenuController extends Controller
         $categories = Category::latest()->get();
         $blogCategories = Blogcategory::latest()->get();
         $tags = Tag::latest()->get();
+        $reportwords = Reportword::latest()->get();
 
-        return view('Admin/categorytag', compact('categories','blogCategories','tags'));
+        return view('Admin/categorytag', compact('categories','blogCategories','tags','reportwords'));
     }
     public function blogs(){
         $tags = Tag::select('id','name')->latest()->get();

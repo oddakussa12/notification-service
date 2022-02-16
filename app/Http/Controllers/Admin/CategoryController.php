@@ -47,19 +47,6 @@ class CategoryController extends Controller
         }
     }
 
-
-    public function show(Category $category)
-    {
-        //
-    }
-
-
-    public function edit(Category $category)
-    {
-        //
-    }
-
-
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [

@@ -44,6 +44,11 @@ Route::post('/tag','Admin\TagController@store')->name('tag.store');
 Route::put('/tag/{id}','Admin\TagController@update');
 Route::delete('/tag/{id}','Admin\TagController@destroy');
 
+// Reporting words CRUD
+Route::post('/reportword','Admin\ReportwordController@store')->name('reportword.store');
+Route::put('/reportword/{id}','Admin\ReportwordController@update');
+Route::delete('/reportword/{id}','Admin\ReportwordController@destroy');
+
 
 
 
