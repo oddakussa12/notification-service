@@ -100,29 +100,61 @@ class BlogController extends Controller
     public function filter(Request $request){
         if($request->filter_by){
             if($request->filter_by == 'popular'){
-                $questions = Blog::withCount('bloglikes')->orderBy('bloglikes_count','desc')->paginate(5);
-                return $questions;
-            }else{
-                $questions = Question::
-                // where('is_approved',1)
-                where('is_rejected',0)
-                ->withCount('likes','answers')
-                ->with('tags')
-                ->with(['user' => function ($query) {
-                    $query->select('id', 'name');
-                }])
-                ->latest()->get();
-                if(!$questions->isEmpty()){
-                    foreach($questions as $question){
-                        $question->has_liked = $question->isAuthUserLikedQuestion();
+                $blogs = Blog::
+                withCount('bloglikes')
+                
+                ->orderBy('bloglikes_count','desc')->paginate(10);
+                if(!$blogs->isEmpty()){
+                    foreach($blogs as $blog){
+                        $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                        $blog->has_liked = $blog->isAuthUserLikedBlog();
                     }
-                    return $questions;
+                    return $blogs;
                 }else{
-                    return response()->json(['Message' => 'No question created yet.']);
+                    return response()->json(['Message' => 'No blogs']);
+                }
+            }else{
+                $blogs = Blog::
+                withCount('bloglikes')
+                
+                ->orderBy('created_at','desc')->paginate(10);
+                if(!$blogs->isEmpty()){
+                    foreach($blogs as $blog){
+                        $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                        $blog->has_liked = $blog->isAuthUserLikedBlog();
+                    }
+                    return $blogs;
+                }else{
+                    return response()->json(['Message' => 'No blog found.']);
                 }
             }
         }else{
             return response()->json(['Message' => 'filter_by field is required']);
         }
+    }
+
+    public function searchBlog(Request $request){
+        $validator = Validator::make($request->all(), [
+            'words' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+
+        $questions = Question::where('body','LIKE', '%'. $request->words .'%')
+                            ->withCount('likes','answers')
+                            ->with('tags')
+                            ->with(['user' => function ($query) {
+                                $query->select('id', 'name');
+                            }])
+                            ->get();
+
+        if(!$questions->isEmpty()){
+            foreach($questions as $question){
+                $question->has_liked = $question->isAuthUserLikedQuestion();
+            }
+            return $questions;
+        }
+        return $questions;
     }
 }

@@ -79,6 +79,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/categoryBlogs/{id}','BlogController@categoryBlogs');
     Route::post('/like_blog','BlogController@likeBlog');
 
+    Route::get('/blog_filter','BlogController@filter');
+    Route::get('/search_blogs','BlogController@searchBlog');
+
 
 });
 
