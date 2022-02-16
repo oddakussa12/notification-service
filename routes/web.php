@@ -29,6 +29,11 @@ Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
 Route::put('/blog/{id}','Admin\BlogController@update');
 Route::delete('/blog/{id}','Admin\BlogController@destroy');
 
+// forum category CRUD
+Route::post('/category','Admin\CategoryController@store')->name('forumcategory.store');
+Route::put('/category/{id}','Admin\CategoryController@update');
+Route::delete('/category/{id}','Admin\CategoryController@destroy');
+
 // blog category CRUD
 Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcategory.store');
 Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');

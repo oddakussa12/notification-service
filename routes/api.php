@@ -87,13 +87,6 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('/decline_question','Admin\QuestionController@declineQuestion');
 
 
-    // category CRUD
-    Route::post('/category','Admin\CategoryController@store');
-    Route::put('/category/{id}','Admin\CategoryController@update');
-    Route::delete('/category/{id}','Admin\CategoryController@destroy');
-
-    
-
     
 
    
