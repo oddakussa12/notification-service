@@ -96,4 +96,33 @@ class BlogController extends Controller
             return response()->json(['Error' => "The blog does't exist"]);
         }
     }
+
+    public function filter(Request $request){
+        if($request->filter_by){
+            if($request->filter_by == 'popular'){
+                $questions = Blog::withCount('bloglikes')->orderBy('bloglikes_count','desc')->paginate(5);
+                return $questions;
+            }else{
+                $questions = Question::
+                // where('is_approved',1)
+                where('is_rejected',0)
+                ->withCount('likes','answers')
+                ->with('tags')
+                ->with(['user' => function ($query) {
+                    $query->select('id', 'name');
+                }])
+                ->latest()->get();
+                if(!$questions->isEmpty()){
+                    foreach($questions as $question){
+                        $question->has_liked = $question->isAuthUserLikedQuestion();
+                    }
+                    return $questions;
+                }else{
+                    return response()->json(['Message' => 'No question created yet.']);
+                }
+            }
+        }else{
+            return response()->json(['Message' => 'filter_by field is required']);
+        }
+    }
 }

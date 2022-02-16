@@ -21,7 +21,7 @@ class QuestionController extends Controller
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name');
                 }])
-                ->latest()->get();
+                ->orderBy('likes_count','desc')->paginate(15);
         if(!$questions->isEmpty()){
             foreach($questions as $question){
                 $question->has_liked = $question->isAuthUserLikedQuestion();
@@ -232,8 +232,21 @@ class QuestionController extends Controller
     public function filter(Request $request){
         if($request->filter_by){
             if($request->filter_by == 'popular'){
-                $questions = Question::withCount('likes')->orderBy('likes_count','desc')->paginate(5);
-                return $questions;
+                $questions = Question::where('is_rejected',0)
+                ->withCount('likes','answers')
+                ->with('tags')
+                ->with(['user' => function ($query) {
+                    $query->select('id', 'name');
+                }])
+                ->orderBy('likes_count','desc')->paginate(10);
+                if(!$questions->isEmpty()){
+                    foreach($questions as $question){
+                        $question->has_liked = $question->isAuthUserLikedQuestion();
+                    }
+                    return $questions;
+                }else{
+                    return response()->json(['Message' => 'No questions found.']);
+                }
             }else{
                 $questions = Question::
                 // where('is_approved',1)
@@ -243,14 +256,14 @@ class QuestionController extends Controller
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name');
                 }])
-                ->latest()->get();
+                ->orderBy('created_at','desc')->paginate(10);
                 if(!$questions->isEmpty()){
                     foreach($questions as $question){
                         $question->has_liked = $question->isAuthUserLikedQuestion();
                     }
                     return $questions;
                 }else{
-                    return response()->json(['Message' => 'No question created yet.']);
+                    return response()->json(['Message' => 'No questions found.']);
                 }
             }
         }else{
