@@ -141,20 +141,17 @@ class BlogController extends Controller
             return response()->json(['errors'=>$validator->errors()]);
         }
 
-        $questions = Question::where('body','LIKE', '%'. $request->words .'%')
-                            ->withCount('likes','answers')
-                            ->with('tags')
-                            ->with(['user' => function ($query) {
-                                $query->select('id', 'name');
-                            }])
-                            ->get();
+        $blogs = Blog::where('title','LIKE', '%'. $request->words .'%')
+                            ->withCount('bloglikes')
+                            ->orderBy('bloglikes_count','desc')->paginate(10);
 
-        if(!$questions->isEmpty()){
-            foreach($questions as $question){
-                $question->has_liked = $question->isAuthUserLikedQuestion();
+        if(!$blogs->isEmpty()){
+            foreach($blogs as $blog){
+                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->has_liked = $blog->isAuthUserLikedBlog();
             }
-            return $questions;
+            return $blogs;
         }
-        return $questions;
+        return $blogs;
     }
 }
