@@ -34,7 +34,10 @@ Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcat
 Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');
 Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
 
-
+// tag CRUD
+Route::post('/tag','Admin\TagController@store')->name('tag.store');
+Route::put('/tag/{id}','Admin\TagController@update');
+Route::delete('/tag/{id}','Admin\TagController@destroy');
 
 
 

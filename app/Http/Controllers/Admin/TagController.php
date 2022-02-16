@@ -21,23 +21,17 @@ class TagController extends Controller
         }
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required',
             'name_am' => 'required',
-        ]);
-
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()]);
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
         }
+
         $tag = Tag::create($request->all());
         if ($tag->exists) {
             return response()->json(['success' => 'Tag created successfuly'], 200);
@@ -45,18 +39,6 @@ class TagController extends Controller
             return response()->json(['error' => 'Error'], 422);
         }
     }
-
-    public function show(Tag $tag)
-    {
-        //
-    }
-
-
-    public function edit(Tag $tag)
-    {
-        //
-    }
-
 
     public function update(Request $request, $id)
     {

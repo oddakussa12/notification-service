@@ -94,10 +94,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     
 
-    // tag CRUD
-    Route::post('/tag','Admin\TagController@store');
-    Route::put('/tag/{id}','Admin\TagController@update');
-    Route::delete('/tag/{id}','Admin\TagController@destroy');
+    
 
    
 // });

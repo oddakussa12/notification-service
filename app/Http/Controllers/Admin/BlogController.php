@@ -44,7 +44,6 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-       
         $rules = array(
             'title'         => 'required',
             // 'title_am'         => 'required',
