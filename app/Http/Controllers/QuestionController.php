@@ -225,9 +225,8 @@ class QuestionController extends Controller
                 $question->has_liked = $question->isAuthUserLikedQuestion();
             }
             return $questions;
-        }else{
-            return response()->json(['Message' => 'No question matched your query']);
         }
+        return $questions;
     }
 
 }
