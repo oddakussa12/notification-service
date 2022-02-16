@@ -65,22 +65,39 @@
         </ul>
       </div>
     </li>
+    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+      <a class="nav-link" data-toggle="collapse" href="#basic-uii" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
+        <i class="menu-icon mdi mdi-alert-octagon"></i>
+        <span class="menu-title">User Reports</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-uii">
+        <ul class="nav flex-column sub-menu">
+          <li id="customers"  class="nav-item {{ active_class(['basic-ui/buttons']) }}">
+            <a class="nav-link">Bad answer reports</a>
+          </li>
+          <li id="disabledCustomers" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link">Bad reply reports</a>
+          </li>
+        </ul>
+      </div>
+    </li>
 
     <li id="unapproved" class="nav-item">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-comment-question-outline"></i>
+        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
         <span class="menu-title">Approve questions</span>
       </a>
     </li>
     <li id="tagscategories" class="nav-item">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
+        <i class="menu-icon mdi mdi-folder-outline"></i>
         <span class="menu-title">Tags and categories</span>
       </a>
     </li>
     <li id="blogs" class="nav-item">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-folder-multiple-outline"></i>
+        <i class="menu-icon mdi mdi-alphabetical"></i>
         <span class="menu-title">Blogs</span>
       </a>
     </li>

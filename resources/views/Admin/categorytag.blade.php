@@ -13,7 +13,7 @@
                 <button class="btn btn-outline-primary" id="addforumcategory">Add category</button>
             </div>
           </div>
-        <div class="table-responsive">
+        <div class="table-responsive admincards" style="height:200px; overflow-y:auto;">
           <table class="table table-hover">
             <thead>
               <tr>
@@ -62,7 +62,7 @@
                 <button class="btn btn-outline-primary" id="blogcategory">Add category</button>
             </div>
           </div>
-        <div class="table-responsive">
+        <div class="table-responsive admincards" style="height:200px; overflow-y:auto;">
           <table class="table table-hover">
             <thead>
               <tr>
@@ -114,7 +114,7 @@
                 <button class="btn btn-outline-primary" id="addTag">Add tag</button>
             </div>
           </div>
-        <div class="table-responsive">
+        <div class="table-responsive admincards" style="height:200px; overflow-y:auto;" >
           <table class="table table-hover">
             <thead>
               <tr>

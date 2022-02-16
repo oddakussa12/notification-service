@@ -42,8 +42,22 @@
         @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
         @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }  
     </style>
-    <!-- style for the style of scrollbar on the sidemenu -->
+    <!-- style for the style of scrollbar on the sidemenu and admin dashboards -->
     <style>
+      .admincards::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .admincards::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+            border-radius: 0px;
+        }
+
+        .admincards::-webkit-scrollbar-thumb {
+            border-radius: 50px;
+            /* background:#cce6ff; */
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+        }
   
         .sidebar::-webkit-scrollbar {
             width: 5px;
