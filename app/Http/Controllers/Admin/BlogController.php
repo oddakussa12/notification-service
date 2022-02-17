@@ -11,7 +11,9 @@ use Validator;
 class BlogController extends Controller
 {
     public function blogs(){
-        $data = Blog::select('title','title_am','description','description_am','created_at');
+        $data = Blog::select('created_at')
+        ->selectRaw('SUBSTRING(title, 1, 15) as title_part')
+        ->selectRaw('SUBSTRING(description, 1, 25) as description_part');
         return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

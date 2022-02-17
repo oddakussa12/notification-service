@@ -17,9 +17,7 @@
             <thead>
               <tr>
                 <th> Title En </th>
-                <th> Title Am </th>
                 <th> Body En</th>
-                <th> Body Am</th>
                 <th> Posted at</th>
                 <th> Actions</th>
               </tr>
@@ -58,10 +56,8 @@
             "serverSide": true,
             "ajax": "{{ route('api.blogs') }}",
             "columns": [
-                { "data": "title" },
-                { "data": "title_am" },
-                { "data": "description" },
-                { "data": "description_am" },
+                { "data": "title_part" },
+                { "data": "description_part" },
                 { "data": "created_at" },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 
