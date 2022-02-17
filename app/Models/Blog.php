@@ -15,7 +15,8 @@ class Blog extends Model
         'description',
         'description_am',
         'blogcategory_id',
-        'file'
+        'file',
+        'reading_time'
     ];
 
     public function blogcategory(){
