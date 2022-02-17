@@ -72,10 +72,24 @@ class TagController extends Controller
     }
 
     public function tagQuestions($tagId){
-        $tags = Tag::where('id',$tagId)->with('questions')->first();
-        return $tags;
         $tag = Tag::where('id',$tagId)->first();
-        $questions = $tag->questions;
-        return $questions;
+        if($tag != null){
+            $questions = $tag->questions()->withCount('likes','answers')
+                        ->with('tags')
+                        ->with(['user' => function ($query) {
+                            $query->select('id', 'name');
+                        }])
+                        ->orderBy('likes_count','desc')->paginate(10);
+            if(!$questions->isEmpty()){
+                foreach($questions as $question){
+                    $question->has_liked = $question->isAuthUserLikedQuestion();
+                }
+                return $questions;
+            }else{
+                return response()->json(['Message' => 'No questions are found in this tag.']);
+            }
+        }else{
+            return response()->json(['Message' => "Tag not found"]);
+        }
     }
 }
