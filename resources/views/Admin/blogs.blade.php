@@ -56,8 +56,8 @@
             "serverSide": true,
             "ajax": "{{ route('api.blogs') }}",
             "columns": [
-                { "data": "title_part" },
-                { "data": "description_part" },
+                { "data": "title" },
+                { "data": "description" },
                 { "data": "created_at" },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 
