@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Tag;
 use App\Models\Bloglike;
 use Illuminate\Http\Request;
 use Validator;
@@ -30,7 +31,7 @@ class BlogController extends Controller
     }
 
     public function categoryBlogs($id){
-        $blogs = Blog::where('category_id',$id)->withCount('bloglikes')->latest()->paginate(10);
+        $blogs = Blog::where('blogcategory_id',$id)->withCount('bloglikes')->latest()->paginate(10);
         if(!$blogs->isEmpty()){
             foreach($blogs as $blog){
                 $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
@@ -39,6 +40,20 @@ class BlogController extends Controller
             return $blogs;
         }else{
             return response()->json(['Message' => 'No blogs are found in the category.']);
+        }
+    }
+    public function tagBlogs($tagid){
+        $tag = Tag::where('id',$tagid)->first();
+        if($tag != null){
+            $blogs = $tag->blogs()->withCount('bloglikes')->paginate(10);
+            foreach($blogs as $blog){
+                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->has_liked = $blog->isAuthUserLikedBlog();
+                // $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
+            }
+            return $blogs;
+        }else{
+            return response()->json(['Message' => "Tag not found"]);
         }
     }
 
