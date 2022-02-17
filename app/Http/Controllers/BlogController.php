@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\Bloglike;
 use Illuminate\Http\Request;
 use Validator;
+use Carbon\Carbon;
+
 
 class BlogController extends Controller
 {
@@ -17,6 +19,7 @@ class BlogController extends Controller
         foreach($blogs as $blog){
             $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
             $blog->has_liked = $blog->isAuthUserLikedBlog();
+            $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
         }
         if(!$blogs->isEmpty()){
             return $blogs;

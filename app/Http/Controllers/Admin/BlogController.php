@@ -50,6 +50,7 @@ class BlogController extends Controller
             // 'description_am'         => 'required',
             'description'   => 'required',
             'category_id'   => 'required',
+            'reading_time'   => 'required',
             'file'     => 'mimes:jpeg,jpg,png,gif|required|max:10000', //kb
         );
         $error = Validator::make($request->all(),$rules);
@@ -65,6 +66,7 @@ class BlogController extends Controller
         $blog = new Blog();
         
         $blog->title = $request->title;
+        $blog->reading_time = $request->reading_time;
         $blog->description = $request->description;
         $blog->file = $name;
         $blog->blogcategory_id = $request->category_id;
@@ -96,6 +98,7 @@ class BlogController extends Controller
                 'title' => 'required',
                 'description' => 'required',
                 'category_id' => 'required',
+                'reading_time' => 'required',
                 'file'     => 'mimes:jpeg,jpg,png,gif|required|max:10000', //kb
             ]);
             if($validator->fails()){
@@ -111,6 +114,7 @@ class BlogController extends Controller
             $blog->file = $name;
             $blog->description = $request->description;
             $blog->blogcategory_id = $request->category_id;
+            $blog->reading_time = $request->reading_time;
             if($request->title_am){
                 $blog->title_am = $request->title_am;
             }

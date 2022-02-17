@@ -24,6 +24,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Reading time</label>
+                    <div class="col-sm-8">
+                        <input type = "number" name="reading_time" class="form-control" style="margin-top:5px;border-radius:5px;padding:5px;"placeholder="Estimated reading time in mins..."/>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Blog image</label>
                     <div class="col-sm-8">
                     <input type="file" name="file"  class="form-control" style="padding:6px;"/>
