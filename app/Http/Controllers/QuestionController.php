@@ -34,7 +34,10 @@ class QuestionController extends Controller
 
     public function myQuestions(){
         $questions = Question::where('user_id',auth()->user()->id)
-                    ->withCount('likes','answers')->get();
+                    ->withCount('likes','answers')
+                    ->with(['user' => function ($query) {
+                        $query->select('id', 'name');
+                    }])->paginate(10);
         if(!$questions->isEmpty()){
             foreach($questions as $question){
                 $question->has_liked = $question->isAuthUserLikedQuestion();
