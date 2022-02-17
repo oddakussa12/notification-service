@@ -25,8 +25,9 @@ class BlogcategoryController extends Controller
                     ->withCount('bloglikes')->get();
         if(!$blogs->isEmpty()){
             foreach($blogs as $blog){
-                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                 $blog->has_liked = $blog->isAuthUserLikedBlog();
+                $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
             }
             return $blogs;
         }else{

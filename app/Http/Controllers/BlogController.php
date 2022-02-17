@@ -18,7 +18,7 @@ class BlogController extends Controller
         $blogs = Blog::withCount('bloglikes')
             ->latest()->paginate(10);
         foreach($blogs as $blog){
-            $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+            $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
             $blog->has_liked = $blog->isAuthUserLikedBlog();
             $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
         }
@@ -34,8 +34,9 @@ class BlogController extends Controller
         $blogs = Blog::where('blogcategory_id',$id)->withCount('bloglikes')->latest()->paginate(10);
         if(!$blogs->isEmpty()){
             foreach($blogs as $blog){
-                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                 $blog->has_liked = $blog->isAuthUserLikedBlog();
+                $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
             }
             return $blogs;
         }else{
@@ -47,9 +48,9 @@ class BlogController extends Controller
         if($tag != null){
             $blogs = $tag->blogs()->withCount('bloglikes')->paginate(10);
             foreach($blogs as $blog){
-                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                 $blog->has_liked = $blog->isAuthUserLikedBlog();
-                // $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
+                $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
             }
             return $blogs;
         }else{
@@ -71,8 +72,9 @@ class BlogController extends Controller
                             ->where('id','!=',$id)
                             ->withCount('bloglikes')->latest()->paginate(6);
             foreach($relatedBlogs as $related){
-                $related->file_path = 'https://datingapi.yenesera.com/blogImages/'.$related->file;
+                $related->file_path = 'https://dating.yenesera.com/blogImages/'.$related->file;
                 $related->has_liked = $related->isAuthUserLikedBlog();
+                $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
             }
             return response()->json(['related' => $relatedBlogs ,
                                      'tags' => $tags,
@@ -124,8 +126,9 @@ class BlogController extends Controller
                 ->orderBy('bloglikes_count','desc')->paginate(10);
                 if(!$blogs->isEmpty()){
                     foreach($blogs as $blog){
-                        $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                        $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                         $blog->has_liked = $blog->isAuthUserLikedBlog();
+                        $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
                     }
                     return $blogs;
                 }else{
@@ -138,8 +141,9 @@ class BlogController extends Controller
                 ->orderBy('created_at','desc')->paginate(10);
                 if(!$blogs->isEmpty()){
                     foreach($blogs as $blog){
-                        $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                        $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                         $blog->has_liked = $blog->isAuthUserLikedBlog();
+                        $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
                     }
                     return $blogs;
                 }else{
@@ -165,8 +169,9 @@ class BlogController extends Controller
 
         if(!$blogs->isEmpty()){
             foreach($blogs as $blog){
-                $blog->file_path = 'https://datingapi.yenesera.com/blogImages/'.$blog->file;
+                $blog->file_path = 'https://dating.yenesera.com/blogImages/'.$blog->file;
                 $blog->has_liked = $blog->isAuthUserLikedBlog();
+                $blog->posted_on = Carbon::parse($blog->created_at)->format('D,d M,Y');
             }
             return $blogs;
         }
