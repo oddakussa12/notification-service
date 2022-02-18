@@ -29,6 +29,9 @@ Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
 Route::put('/blog/{id}','Admin\BlogController@update');
 Route::delete('/blog/{id}','Admin\BlogController@destroy');
 
+// Question store by admin
+Route::post('/question', 'Admin\QuestionController@store')->name('question.store');
+
 // forum category CRUD
 Route::post('/category','Admin\CategoryController@store')->name('forumcategory.store');
 Route::put('/category/{id}','Admin\CategoryController@update');

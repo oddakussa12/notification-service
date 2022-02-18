@@ -13,8 +13,10 @@ use App\Models\Reportword;
 class SidemenuController extends Controller
 {
     public function unapprovedQuestions(){
+        $tags = Tag::select('id','name')->latest()->get();
+        $categories = Category::select('id','name')->latest()->get();
         $questions = Question::where('is_approved',0)->latest()->get();
-        return view('Admin/unapprovedQuestions',compact('questions'));
+        return view('Admin/unapprovedQuestions',compact('questions','tags','categories'));
     }
 
     public function categoryTag(){
