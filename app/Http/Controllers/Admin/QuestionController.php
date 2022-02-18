@@ -38,7 +38,9 @@ class QuestionController extends Controller
         $data = Question::where('is_approved',0)->select('body','created_at','updated_at');
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('status', '<span class="badge badge-pill badge-success">Active</span>')       
+                    ->addColumn('status', '<span class="badge badge-pill badge-success">Active</span>')
+                    ->addColumn('action', function($row){
+       
                         //    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
                         //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
                         //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
