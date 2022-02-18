@@ -60,9 +60,9 @@ class TagController extends Controller
     }
 
 
-    public function destroy(Tag $tag,$id)
+    public function destroy(Request $request)
     {
-        $tag = Tag::where('id',$id)->first();
+        $tag = Tag::where('id',$request->id)->first();
         if($tag){
             $tag->delete();
             return response()->json(['success' => 'Tag deleted successfuly'], 200);

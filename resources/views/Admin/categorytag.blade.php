@@ -2,6 +2,7 @@
 @include('/modals/addTagModal')
 @include('/modals/addForumCategoryModal')
 @include('/modals/addReportWordModal')
+@include('/modals/deleteModal')
 
 <div class="row">
   <div class="col-lg-6 grid-margin stretch-card">
@@ -120,6 +121,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>Name EN</th>
                     <th>Name AM</th>
                     <th>Actions</th>
@@ -129,6 +131,7 @@
                     @if(!$tags->isEmpty())
                     @foreach($tags as $tag)
                         <tr>
+                            <td>{{$tag->id}}</td>
                             <td>{{$tag->name}}</td>
                             <td>{{$tag->name_am}}</td>
                             <td>
@@ -136,7 +139,7 @@
                                     <button type="button" class="btn btn-outline-primary">
                                         <i class="mdi mdi-lead-pencil"></i>
                                     </button>
-                                    <button type="button" class="btn btn-outline-danger">
+                                    <button type="button" id="deleteTag" class="btn btn-outline-danger">
                                         <i class="mdi mdi-delete"></i>
                                     </button>
                                 </div>
@@ -442,3 +445,60 @@
     });
 </script>
 
+<!-- script to delete tag -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function deleteTag(id,token){
+            $.ajax({
+                url:"{{route('tag.delete')}}",
+                method:'DELETE',
+                data:{id:id,_token:token},
+                beforeSend: function()
+                {   
+                    $('#deleteModal').modal('hide');
+                },
+                success:function(data){
+                    setTimeout(function() { odda(); }, 500);
+                        function odda(){
+                            $.ajax({
+                                url:'{{route('categorytag')}}',
+                                cache: false,
+                                type:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $("#odda").html(data);
+                                    $("#loading-overlay").hide();
+                                }
+                        });
+                    }
+                }
+            });
+        }
+        $('body').on('click','#deleteTag',function(e){
+            e.preventDefault();
+            // var subcatid = $(this).data('subcategoryid');
+            // deleteSubCat(subcatid,token);
+            // open delete sub category confimation modal
+            $('#deleteModal').modal('show');
+
+            var $tr =$(this).closest('tr');
+            var data = $tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            // console.log(data);
+            $('#deleteitemid').val(data[0]);
+            // $('#catNameInDelCatModal').val(data[1]); 
+            $('#deleteitemname').html('"'+data[1]+'"');
+        });
+        // when delete button is clicked from delete subcategory modal
+        $('#delete_form').on('submit',function(e){
+            e.preventDefault();
+            var id = $('#deleteitemid').val();
+            deleteTag(id,token);
+        });
+    });
+</script>
