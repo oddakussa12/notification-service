@@ -1,4 +1,5 @@
 @include('/modals/addBlogModal')
+@include('/modals/editBlogModal')
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -48,6 +49,27 @@
         } );
 </script>
 
+<!-- script to edit blog -->
+<script>
+    $(document).ready(function(){
+        $('#editblog').click(function(e){
+            console.log("clicked");
+            $('#editBlogModal').modal('show');
+
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            console.log(data);
+
+            $('#editcatid').val(data[0]);
+            $('#editcatname').val(data[1]);
+        });
+    });
+    // implementation when edit brand button is clicked from addBrandModal
+   
+</script>
+
 <!-- script for ajax loading blogs -->
 <script>
     $(document).ready( function () {
@@ -56,10 +78,10 @@
             "serverSide": true,
             "ajax": "{{ route('api.blogs') }}",
             "columns": [
-                { "data": "title" },
-                { "data": "description" },
-                { "data": "created_at" },
-                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: "title" },
+                {data: "description" },
+                {data: "created_at" },
+                {data: 'action', name: 'action', orderable: true, searchable: true},
                 
             ]
         });
@@ -124,3 +146,4 @@
         });
     });
 </script>
+

@@ -24,11 +24,11 @@ class BlogController extends Controller
      
                     //     return $btn;
 
-                        $btn = '              <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-secondary">
+                        $btn = '<div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-primary" id="editblog">
                           <i class="mdi mdi-lead-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-secondary">
+                        <button type="button" class="btn btn-outline-danger delete-blog">
                           <i class="mdi mdi-delete"></i>
                         </button>
                       </div>';
