@@ -35,26 +35,41 @@ class QuestionController extends Controller
     }
 
     public function unapprovedQuestions(){
-        $data = Question::where('is_approved',0)->select('body','created_at','updated_at');
+        // $questions = Question::where('is_approved',0)->select('id','created_at','updated_at')
+        //             ->selectRaw('SUBSTRING(body, 1, 40) as body')
+        //             ->with('tags','category');
+        // return Datatables::eloquent($questions)
+        // ->addColumn('status', '<span class="badge badge-pill badge-danger">Unapproved</span>')
+        // ->addColumn('action', function($question) {
+        //     // unapprovedQuestionsAction is a blade file
+        //     return view('unapprovedQuestionsAction', compact('question'));
+        // })
+
+        // ->editColumn('created_at', function ($request) {
+        //     return $request->created_at->format('Y-m-d h:i:s'); // human readable format
+        // })
+        // ->rawColumns(['status'])
+        // ->make(true);
+
+
+        // OPTION TWO
+
+        $data = Question::where('is_approved',0)->select('id','created_at','updated_at')
+                ->selectRaw('SUBSTRING(body, 1, 40) as body');
+
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('status', '<span class="badge badge-pill badge-success">Active</span>')
+                    ->addColumn('status', '<span class="badge badge-pill badge-danger">Unapproved</span>')
                     ->addColumn('action', function($row){
        
-                        //    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
-                        //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                        //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
-         
-                        //     return $btn;
-
-                            $btn = '              <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-secondary">
-                              <i class="mdi mdi-send"></i>
+                            $btn = '<div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary">
+                              <i class="mdi mdi-eye"></i>
                             </button>
-                            <button type="button" class="btn btn-outline-secondary">
-                              <i class="mdi mdi-lead-pencil"></i>
+                            <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success">
+                              <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                             </button>
-                            <button type="button" class="btn btn-outline-secondary">
+                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-danger">
                               <i class="mdi mdi-delete"></i>
                             </button>
                           </div>';
@@ -64,10 +79,7 @@ class QuestionController extends Controller
                     ->editColumn('created_at', function ($request) {
                         return $request->created_at->format('Y-m-d h:i:s'); // human readable format
                     })
-                    ->editColumn('updated_at', function ($request) {
-                        return $request->updated_at->format('Y-m-d h:i:s'); // human readable format
-                    })
-                    ->rawColumns(['status','action'])
+                    ->rawColumns(['status','category','action'])
                     ->make(true);
     }
     public function store(Request $request)

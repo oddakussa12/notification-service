@@ -17,9 +17,8 @@
             <thead>
               <tr>
                 <th> Question </th>
-                <th> Categories </th>
-                <th> Tags</th>
-                <th> Asked at at</th>
+                <th> Status </th>
+                <th> Asked at</th>
                 <th> Actions</th>
               </tr>
             </thead>
@@ -40,10 +39,9 @@
             "serverSide": true,
             "ajax": "{{ route('api.unapprovedquestions') }}",
             "columns": [
-                { "data": "body" },
+                {data: 'body' },
                 {data: 'status', name: 'status', orderable: false, searchable: false},
-                { "data": "created_at" },
-                { "data": "updated_at" },
+                {data: 'created_at' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 
             ]
