@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpIncludePathManager">
+  <component name="ChangeListManager">
+    <list default="true" id="dac65b66-1d80-4cc2-910d-971e7bdc65a2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/sdp/CustomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SidemenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SidemenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/ImportExcel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ImportExcel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_29_061133_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_29_061133_create_customers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SMSschedule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SMSschedule.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/autoreply.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/autoreply.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/disabledcustomers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/disabledcustomers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/importCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/importCustomer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/incommingSMS.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/incommingSMS.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/reports.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reports.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/running.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/running.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/68/3b/683b41b10cea4963d7c8f71ede74b16b7fe3e09e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/92/98/92988c5ec813998e20537cd75c426b048c4476ad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c4/fd/c4fd054a69216bd6a4601b10d9ba4b9a05314b1b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/df/f6/dff69b0296b5c1ad9eb643c8ec20fe9345064e39" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
@@ -118,10 +164,53 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
-    </phpunit_settings>
+  <component name="ProjectId" id="24GvH30GDOSSeyLvJ572aqy7x7e" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
+      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
+      <method v="2" />
+    </configuration>
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dac65b66-1d80-4cc2-910d-971e7bdc65a2" name="Changes" comment="" />
+      <created>1643269659940</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1643269659940</updated>
+      <workItem from="1643269662361" duration="1318000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
