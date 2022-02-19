@@ -16,11 +16,7 @@
                 <button class="btn btn-outline-primary" id="addforumcategory">Add category</button>
             </div>
           </div>
-<<<<<<< HEAD
-        <div class="table-responsive admincards" style="height:200px; overflow-x:auto; overflow-y:auto;">
-=======
-        <div class="table-responsive admincards" style="height:200px; overflow-y:auto;">
->>>>>>> ff78aa05b49ab4a8a35e8ba8e05c6979294be14b
+        <div class="table-responsive admincards" style="height:200px;overflow-y:auto;">
           <table class="table table-hover">
             <thead>
               <tr>
