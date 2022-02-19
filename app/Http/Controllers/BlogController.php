@@ -74,7 +74,7 @@ class BlogController extends Controller
             foreach($relatedBlogs as $related){
                 $related->file_path = 'https://dating.yenesera.com/blogImages/'.$related->file;
                 $related->has_liked = $related->isAuthUserLikedBlog();
-                $blog->posted_on = Carbon::parse($related->created_at)->format('D,d M,Y');
+                $related->posted_on = Carbon::parse($related->created_at)->format('D,d M,Y');
             }
             return response()->json(['related' => $relatedBlogs ,
                                      'tags' => $tags,
