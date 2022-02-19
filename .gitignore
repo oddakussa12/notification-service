@@ -1,13 +1,36 @@
 /node_modules
 /public/hot
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+/public/blogImages
+>>>>>>> 5200bc76a3c9d3a61b056b9b87fb93e866e87503
+>>>>>>> ff78aa05b49ab4a8a35e8ba8e05c6979294be14b
 /public/storage
 /storage/*.key
 /vendor
 .env
 .env.backup
 .phpunit.result.cache
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+docker-compose.override.yml
+>>>>>>> 5200bc76a3c9d3a61b056b9b87fb93e866e87503
+>>>>>>> ff78aa05b49ab4a8a35e8ba8e05c6979294be14b
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
 composer.lock
+=======
+<<<<<<< HEAD
+composer.lock
+=======
+/.idea
+/.vscode
+>>>>>>> 5200bc76a3c9d3a61b056b9b87fb93e866e87503
+>>>>>>> ff78aa05b49ab4a8a35e8ba8e05c6979294be14b

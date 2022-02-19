@@ -54,7 +54,11 @@
         }
 
         .admincards::-webkit-scrollbar-thumb {
+<<<<<<< HEAD
             border-radius: 5px;
+=======
+            border-radius: 50px;
+>>>>>>> ff78aa05b49ab4a8a35e8ba8e05c6979294be14b
             /* background:#cce6ff; */
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
         }
