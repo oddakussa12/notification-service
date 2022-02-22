@@ -44,7 +44,7 @@ Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
 
 // tag CRUD
 Route::post('/tag','Admin\TagController@store')->name('tag.store');
-Route::put('/tag/{id}','Admin\TagController@update');
+Route::put('/tag','Admin\TagController@update')->name('tag.edit');
 Route::delete('/tag','Admin\TagController@destroy')->name('tag.delete');
 
 // Reporting words CRUD

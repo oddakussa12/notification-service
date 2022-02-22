@@ -40,17 +40,18 @@ class TagController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $rules = array(
             'name' => 'required',
             'name_am' => 'required',
-        ]);
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()]);
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $tag = Tag::where('id',$id)->first();
+        $tag = Tag::where('id',$request->id)->first();
         if($tag){
             $tag->update($request->all()); 
             return response()->json(['success' => 'Tag updated successfuly'], 200);
