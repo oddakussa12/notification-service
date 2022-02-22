@@ -22,6 +22,10 @@ Route::group(['middleware' => ['auth','check_admin']], function () {
     Route::get('/home', function () {
         return view('dashboard');
     })->name('home');
+
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('home');
     
     
     
