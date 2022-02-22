@@ -19,7 +19,7 @@ class CreateUsersSeeder extends Seeder
             [
                'name'=>'Admin',
                'email'=>'admin@jaktech.com',
-               'phone'=>'0900048949',
+               'phone'=>'0911111111',
                'role'=>'admin',
                'password'=> bcrypt('123456'),
             ],
