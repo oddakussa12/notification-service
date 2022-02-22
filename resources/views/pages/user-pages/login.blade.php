@@ -1,18 +1,25 @@
 @extends('layout.master-mini')
 @section('content')
+<!-- <input name="_token" type="hidden" value="{{ csrf_token() }}"/> -->
 
-<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: url({{ url('assets/images/auth/login_1.jpg') }}); background-size: cover;">
+<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: url({{ url('assets/images/auth/login_2.jpeg') }}); background-size: cover;">
   <div class="row w-100">
+    
     <div class="col-lg-4 mx-auto">
       <div class="auto-form-wrapper">
-        <form action="#">
+        <div class="text-center" style="margin-top:-20px;">
+        <img width="60" height="60"src="{{ asset('/favicon.jpg') }}"/>
+        </div>
+     
+        <form action="{{ url('/login') }}" method="post" accept-charset="UTF-8">
+          @csrf
           <div class="form-group">
-            <label class="label">Username</label>
+            <label class="label">Phone number</label>
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" class="form-control" name="phone" placeholder="Phone number">
               <div class="input-group-append">
                 <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
+                  <i class="mdi mdi-cellphone-iphone"></i>
                 </span>
               </div>
             </div>
@@ -20,32 +27,32 @@
           <div class="form-group">
             <label class="label">Password</label>
             <div class="input-group">
-              <input type="password" class="form-control" placeholder="*********">
+              <input type="password" name="password" class="form-control" placeholder="*********">
               <div class="input-group-append">
                 <span class="input-group-text">
-                  <i class="mdi mdi-check-circle-outline"></i>
+                  <i class="mdi mdi-lock"></i>
                 </span>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary submit-btn btn-block">Login</button>
+            <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
           </div>
-          <div class="form-group d-flex justify-content-between">
+          <!-- <div class="form-group d-flex justify-content-between">
             <div class="form-check form-check-flat mt-0">
               <label class="form-check-label">
                 <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
             </div>
             <a href="#" class="text-small forgot-password text-black">Forgot Password</a>
-          </div>
-          <div class="form-group">
+          </div> -->
+          <!-- <div class="form-group">
             <button class="btn btn-block g-login">
               <img class="mr-3" src="{{ url('assets/images/file-icons/icon-google.svg') }}" alt="">Log in with Google</button>
-          </div>
-          <div class="text-block text-center my-3">
+          </div> -->
+          <!-- <div class="text-block text-center my-3">
             <span class="text-small font-weight-semibold">Not a member ?</span>
             <a href="{{ url('/user-pages/register') }}" class="text-black text-small">Create new account</a>
-          </div>
+          </div> -->
         </form>
       </div>
       <ul class="auth-footer">

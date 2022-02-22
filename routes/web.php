@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    // return view('dashboard');
+    return view('pages.user-pages.login');
 });
+
+// auth routes
+Route::get('/registerAdminView','AuthController@registerPage');
+Route::get('/loginAdminView','AuthController@loginPage');
+Route::post('/login','AuthController@loginAdmin');
 
 // application side menu links
 Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
