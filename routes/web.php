@@ -1,62 +1,76 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    // return view('dashboard');
-    return view('pages.user-pages.login');
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::group(['middleware' => ['auth','check_admin']], function () {
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    // Registration Routes...
+    // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    // Route::post('register', 'Auth\RegisterController@register');
+
+    // Password Reset Routes...
+    // Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    // Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+    // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+    // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+
+    Route::get('/home', function () {
+        return view('dashboard');
+    })->name('home');
+    
+    
+    
+    // application side menu links
+    Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
+    Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
+    Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
+    
+    // datatable routes
+    Route::get('/api/unapprovedquestions','Admin\QuestionController@unapprovedQuestions')->name('api.unapprovedquestions');
+    Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
+    
+    // blog CRUD Routes
+    Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
+    Route::put('/blog/{id}','Admin\BlogController@update');
+    Route::delete('/blog/{id}','Admin\BlogController@destroy');
+    
+    // Question store by admin
+    Route::post('/question', 'Admin\QuestionController@store')->name('question.store');
+    
+    // forum category CRUD
+    Route::post('/category','Admin\CategoryController@store')->name('forumcategory.store');
+    Route::put('/category/{id}','Admin\CategoryController@update');
+    Route::delete('/category/{id}','Admin\CategoryController@destroy');
+    
+    // blog category CRUD
+    Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcategory.store');
+    Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');
+    Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
+    
+    // tag CRUD
+    Route::post('/tag','Admin\TagController@store')->name('tag.store');
+    Route::put('/tag','Admin\TagController@update')->name('tag.edit');
+    Route::delete('/tag','Admin\TagController@destroy')->name('tag.delete');
+    
+    // Reporting words CRUD
+    Route::post('/reportword','Admin\ReportwordController@store')->name('reportword.store');
+    Route::put('/reportword/{id}','Admin\ReportwordController@update');
+    Route::delete('/reportword/{id}','Admin\ReportwordController@destroy');
+    
+    
+    
+
 });
 
-// auth routes
-Route::get('/registerAdminView','AuthController@registerPage');
-Route::get('/loginAdminView','AuthController@loginPage');
-Route::post('/login','AuthController@loginAdmin');
 
-// application side menu links
-Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
-Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
-Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
 
-// datatable routes
-Route::get('/api/unapprovedquestions','Admin\QuestionController@unapprovedQuestions')->name('api.unapprovedquestions');
-Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
 
-// blog CRUD Routes
-Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
-Route::put('/blog/{id}','Admin\BlogController@update');
-Route::delete('/blog/{id}','Admin\BlogController@destroy');
 
-// Question store by admin
-Route::post('/question', 'Admin\QuestionController@store')->name('question.store');
-
-// forum category CRUD
-Route::post('/category','Admin\CategoryController@store')->name('forumcategory.store');
-Route::put('/category/{id}','Admin\CategoryController@update');
-Route::delete('/category/{id}','Admin\CategoryController@destroy');
-
-// blog category CRUD
-Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcategory.store');
-Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');
-Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
-
-// tag CRUD
-Route::post('/tag','Admin\TagController@store')->name('tag.store');
-Route::put('/tag','Admin\TagController@update')->name('tag.edit');
-Route::delete('/tag','Admin\TagController@destroy')->name('tag.delete');
-
-// Reporting words CRUD
-Route::post('/reportword','Admin\ReportwordController@store')->name('reportword.store');
-Route::put('/reportword/{id}','Admin\ReportwordController@update');
-Route::delete('/reportword/{id}','Admin\ReportwordController@destroy');
 
 
 
@@ -193,3 +207,6 @@ Route::get('/clear-cache', function() {
 Route::any('/{page?}',function(){
     return View::make('pages.error-pages.error-404');
 })->where('page','.*');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

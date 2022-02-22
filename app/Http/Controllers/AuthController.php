@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function loginPage(){
-        return view('pages.user-pages.login');
-    }
     
     public function register(Request $request) {
 
@@ -66,33 +63,7 @@ class AuthController extends Controller
 
         return response($response, 201);
     }
-    public function loginAdmin(Request $request) {
-        return $request;
-        $fields = $request->validate([
-            'phone' => 'required|string',
-            'password' => 'required|string'
-        ]);
-
-        $user = User::where('phone', $fields['phone'])->first();
-
-        // Check password
-        if(!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Bad credentials used!'
-            ], 401);
-        }
-
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        // return response($response, 201);
-        return redirect('/');
-    }
-
+   
     public function logout(Request $request) {
         auth()->user()->tokens()->delete();
         return [

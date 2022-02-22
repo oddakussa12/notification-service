@@ -126,7 +126,11 @@
           <a class="dropdown-item mt-2"> Manage Accounts </a>
           <a class="dropdown-item"> Change Password </a>
           <a class="dropdown-item"> Check Inbox </a>
-          <a class="dropdown-item"> Sign Out </a>
+          <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="dropdown-item"> Sign Out </button>
+          </form>
+          
         </div>
       </li>
     </ul>
