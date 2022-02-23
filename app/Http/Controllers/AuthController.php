@@ -56,7 +56,7 @@ class AuthController extends Controller
 
         // dd($request);
 
-        // Check email
+        // Check phone
         $user = User::where('phone', $fields['phone'])->first();
 
         // Check password

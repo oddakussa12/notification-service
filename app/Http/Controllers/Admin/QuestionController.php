@@ -100,8 +100,7 @@ class QuestionController extends Controller
             $question = Question::create([
                 'body' => $request->body,
                 'category_id' => $request->category_id,
-                // 'user_id' => auth()->user()->id,
-                'user_id' => 1,
+                'user_id' => auth()->user()->id,
                 'is_approved' => 1,
             ]);
             if ($question->exists) {
