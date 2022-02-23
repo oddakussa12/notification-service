@@ -16,7 +16,7 @@
           <div class="form-group">
             <label class="label">Phone number</label>
             <div class="input-group">
-              <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Your phone number" required>
+              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Your phone number" required>
               <div class="input-group-append">
                 <span class="input-group-text">
                   <i class="mdi mdi-cellphone-iphone"></i>
