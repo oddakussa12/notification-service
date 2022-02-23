@@ -14,26 +14,38 @@ class AuthController extends Controller
 
         // return $request;
         $fields = $request->validate([
-            'name' => 'required|string',
+            // 'name' => 'required|string',
             // 'email' => 'required|string|unique:users,email',
             'phone' => 'required',
-            'password' => 'required|string|confirmed'
+            // 'password' => 'required|string|confirmed'
         ]);
 
-        $user = User::create([
-            'name' => $fields['name'],
-            'phone' => $fields['phone'],
-            'password' => bcrypt($fields['password'])
-        ]);
+        // check if user already exist
+        if (User::where('phone', '=', $fields['phone'])->exists()) {
+            $response = [
+                'is_existing' => 1,
+            ];
+    
+            return response($response, 201);
+         }else{
+            $password = mt_rand(100000,999999);
+            $user = User::create([
+                // 'name' => $fields['name'],
+                'phone' => $fields['phone'],
+                // 'password' => bcrypt($fields['password'])
+                'password' => bcrypt($password)
+            ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+            $token = $user->createToken('myapptoken')->plainTextToken;
+            $response = [
+                'user' => $user,
+                'token' => $token,
+                'verificationCode' => $password,
+                'is_existing' => 0,
+            ];
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+            return response($response, 201);
+         }
     }
 
     public function login(Request $request) {
