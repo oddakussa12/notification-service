@@ -83,12 +83,28 @@
       </div>
     </li>
 
-    <li id="unapproved" class="nav-item">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-checkbox-marked-circle-outline"></i>
-        <span class="menu-title">Approve questions</span>
+    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+      <a class="nav-link" data-toggle="collapse" href="#basic-questions" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
+        <i class="menu-icon mdi mdi-comment-question-outline"></i>
+        <span class="menu-title">Questions</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-questions">
+        <ul class="nav flex-column sub-menu">
+          <li id="unapproved" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link">Unapproved questions</a>
+          </li>
+          <li id="approved" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link">Approved questions</a>
+          </li>
+          <li id="rejected" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
+            <a class="nav-link">Rejected questions</a>
+          </li>
+        </ul>
+      </div>
     </li>
+
+    
     <li id="tagscategories" class="nav-item">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-folder-outline"></i>
@@ -178,6 +194,7 @@
 
 @section('js')
 
+
 <!-- script to show unapproved questions -->
 <script>
     $(document).ready(function(){
@@ -201,6 +218,58 @@
 
         $('#unapproved').on('click',function(){
             unapprovedQuestions();
+        });
+    });
+</script>
+<!-- script to show approved questions -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function approvedQuestions(){
+            $.ajax({
+              url:'{{route('approvedQuestions')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#approved').on('click',function(){
+            approvedQuestions();
+        });
+    });
+</script>
+<!-- script to show rejected questions -->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function rejectedQuestions(){
+            $.ajax({
+              url:'{{route('rejectedQuestions')}}',
+                cache:false,
+                method:'GET',
+                beforeSend: function()
+                {  
+                    $("#loading-overlay").show();
+                },
+                success:function(data){
+                    $('#odda').empty();
+                    $('#odda').append(data);
+                    $("#loading-overlay").hide();
+                }
+            });
+        }
+
+        $('#rejected').on('click',function(){
+            rejectedQuestions();
         });
     });
 </script>

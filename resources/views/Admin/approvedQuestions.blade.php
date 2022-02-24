@@ -4,7 +4,7 @@
       <div class="card-body">
       <div class="row" style="padding-bottom:10px;">
               <div class="col-sm-4">
-              <h4 class="card-title text-primary">Unapproved questions</h4>
+              <h4 class="card-title text-primary">Approved questions</h4>
               </div>
               <div class="col-sm-4">
               </div>
@@ -19,7 +19,6 @@
                 <th> Question </th>
                 <th> Status </th>
                 <th> Asked at</th>
-                <th> Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -31,92 +30,17 @@
     </div>
 </div>
 
-
-<!-- script to approve question -->
-<script>
-    $(document).ready(function(){
-        $(document).on('click','.approve', function(event){
-        // $('.approve').on('click',function(event){
-            event.preventDefault();
-            var id = $(this).data('id');
-            var token = $('input[name="_token"]').val();
-            approveQuestion(id);
-            function approveQuestion(id){
-                $.ajax({
-                    url:"{{ route('question.approve') }}",
-                    data:{id:id,_token:token,},
-                    method:"PUT",
-                    success:function(){
-                      $.ajax({
-                        url:'{{route('unapprovedQuestions')}}',
-                          cache:false,
-                          method:'GET',
-                          beforeSend: function()
-                          {  
-                              $("#loading-overlay").show();
-                          },
-                          success:function(data){
-                              $('#odda').empty();
-                              $('#odda').append(data);
-                              $("#loading-overlay").hide();
-                          }
-                      });
-                    }
-                });
-            }
-        });
-    });
-</script>
-
-<!-- script to decline question -->
-<script>
-    $(document).ready(function(){
-        $(document).on('click','.decline', function(event){
-        // $('.approve').on('click',function(event){
-            event.preventDefault();
-            var id = $(this).data('id');
-            var token = $('input[name="_token"]').val();
-            approveQuestion(id);
-            function approveQuestion(id){
-                $.ajax({
-                    url:"{{ route('question.decline') }}",
-                    data:{id:id,_token:token,},
-                    method:"PUT",
-                    success:function(){
-                      $.ajax({
-                        url:'{{route('unapprovedQuestions')}}',
-                          cache:false,
-                          method:'GET',
-                          beforeSend: function()
-                          {  
-                              $("#loading-overlay").show();
-                          },
-                          success:function(data){
-                              $('#odda').empty();
-                              $('#odda').append(data);
-                              $("#loading-overlay").hide();
-                          }
-                      });
-                    }
-                });
-            }
-        });
-    });
-</script>
-
-<!-- script for ajax loading unapproved questions -->
+<!-- script for ajax loading approved questions -->
 <script>
     $(document).ready( function () {
         $('#datatable').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "{{ route('api.unapprovedquestions') }}",
+            "ajax": "{{ route('api.approvedQuestions') }}",
             "columns": [
                 {data: 'body' },
                 {data: 'status', name: 'status', orderable: false, searchable: false},
                 {data: 'created_at' },
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                
             ]
         });
     });

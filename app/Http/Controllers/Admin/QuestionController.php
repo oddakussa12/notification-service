@@ -54,19 +54,79 @@ class QuestionController extends Controller
 
         // OPTION TWO
 
-        $data = Question::where('is_approved',0)->select('id','created_at','updated_at')
+        $data = Question::where('is_approved',0)->where('is_rejected',0)->select('id','created_at','updated_at')
                 ->selectRaw('SUBSTRING(body, 1, 40) as body');
 
             return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('status', '<span class="badge badge-pill badge-danger">Unapproved</span>')
+                    ->addColumn('status', '<span class="badge badge-pill badge-warning">Unapproved</span>')
                     ->addColumn('action', function($row){
        
                             $btn = '<div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary">
                               <i class="mdi mdi-eye"></i>
                             </button>
-                            <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success">
+                            <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success approve">
+                              <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                            </button>
+                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-danger decline">
+                              <i class="mdi mdi-delete"></i>
+                            </button>
+                          </div>';
+
+                          return $btn;
+                    })
+                    ->editColumn('created_at', function ($request) {
+                        return $request->created_at->format('Y-m-d h:i:s'); // human readable format
+                    })
+                    ->rawColumns(['status','category','action'])
+                    ->make(true);
+    }
+
+    public function approvedQuestions(){
+        $data = Question::where('is_approved',1)->where('is_rejected',0)->select('id','created_at','updated_at')
+                ->selectRaw('SUBSTRING(body, 1, 40) as body');
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('status', '<span class="badge badge-pill badge-success">Approved</span>')
+                    // ->addColumn('action', function($row){
+       
+                    //         $btn = '<div class="btn-group" role="group" aria-label="Basic example">
+                    //         <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary">
+                    //           <i class="mdi mdi-eye"></i>
+                    //         </button>
+                    //         <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success approve">
+                    //           <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+                    //         </button>
+                    //         <button type="button" data-id="'.$row->id.'" class="btn btn-outline-danger">
+                    //           <i class="mdi mdi-delete"></i>
+                    //         </button>
+                    //       </div>';
+
+                    //       return $btn;
+                    // })
+                    ->editColumn('created_at', function ($request) {
+                        return $request->created_at->format('Y-m-d h:i:s'); // human readable format
+                    })
+                    ->rawColumns(['status','category'])
+                    ->make(true);
+    }
+
+    public function rejectedQuestions(){
+        $data = Question::where('is_rejected',1)->where('is_approved',0)->select('id','created_at','updated_at')
+                ->selectRaw('SUBSTRING(body, 1, 40) as body');
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('status', '<span class="badge badge-pill badge-danger">Rejected</span>')
+                    ->addColumn('action', function($row){
+       
+                            $btn = '<div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary">
+                              <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success approve">
                               <i class="mdi mdi-checkbox-marked-circle-outline"></i>
                             </button>
                             <button type="button" data-id="'.$row->id.'" class="btn btn-outline-danger">
@@ -82,6 +142,7 @@ class QuestionController extends Controller
                     ->rawColumns(['status','category','action'])
                     ->make(true);
     }
+
     public function store(Request $request)
     {
 

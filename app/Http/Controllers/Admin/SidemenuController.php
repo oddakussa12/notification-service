@@ -19,6 +19,18 @@ class SidemenuController extends Controller
         return view('Admin/unapprovedQuestions',compact('questions','tags','categories'));
     }
 
+    public function approvedQuestions(){
+        $tags = Tag::select('id','name')->latest()->get();
+        $categories = Category::select('id','name')->latest()->get();
+        $questions = Question::where('is_approved',1)->latest()->get();
+        return view('Admin/approvedQuestions',compact('questions','tags','categories'));
+    }
+
+    public function rejectedQuestions(){
+        $questions = Question::where('is_rejected',1)->latest()->get();
+        return view('Admin/rejectedQuestions',compact('questions'));
+    }
+
     public function categoryTag(){
         $categories = Category::latest()->get();
         $blogCategories = Blogcategory::latest()->get();

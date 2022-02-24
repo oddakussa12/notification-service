@@ -31,11 +31,23 @@ Route::group(['middleware' => ['auth','check_admin']], function () {
     
     // application side menu links
     Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
+    Route::get('/approvedQuestions', 'Admin\SidemenuController@approvedQuestions')->name('approvedQuestions');
+    Route::get('/rejectedQuestions', 'Admin\SidemenuController@rejectedQuestions')->name('rejectedQuestions');
+
+    
+
     Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
     Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
+
+    Route::put('/approve_question','Admin\QuestionController@approveQuestion')->name('question.approve');
+    Route::put('/decline_question','Admin\QuestionController@declineQuestion')->name('question.decline');
     
     // datatable routes
     Route::get('/api/unapprovedquestions','Admin\QuestionController@unapprovedQuestions')->name('api.unapprovedquestions');
+    Route::get('/api/approvedQuestions','Admin\QuestionController@approvedQuestions')->name('api.approvedQuestions');
+    Route::get('/api/rejectedQuestions','Admin\QuestionController@rejectedQuestions')->name('api.rejectedQuestions');
+
+    
     Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
     
     // blog CRUD Routes
