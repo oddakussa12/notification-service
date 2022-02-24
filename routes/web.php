@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth','check_admin']], function () {
         return view('dashboard');
     })->name('home');
     
+
+    Route::post('/viewUnapprovedQuestion', 'Admin\QuestionController@singleUnapprovedQuestion')->name('viewUnapprovedQuestion');
+
     
     
     // application side menu links
@@ -34,7 +37,6 @@ Route::group(['middleware' => ['auth','check_admin']], function () {
     Route::get('/approvedQuestions', 'Admin\SidemenuController@approvedQuestions')->name('approvedQuestions');
     Route::get('/rejectedQuestions', 'Admin\SidemenuController@rejectedQuestions')->name('rejectedQuestions');
 
-    
 
     Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
     Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');

@@ -14,7 +14,7 @@ class AuthController extends Controller
 
         // return $request;
         $fields = $request->validate([
-            // 'name' => 'required|string',
+            'name' => 'required|string',
             // 'email' => 'required|string|unique:users,email',
             'phone' => 'required',
             // 'password' => 'required|string|confirmed'
@@ -30,7 +30,7 @@ class AuthController extends Controller
          }else{
             $password = mt_rand(100000,999999);
             $user = User::create([
-                // 'name' => $fields['name'],
+                'name' => $fields['name'],
                 'phone' => $fields['phone'],
                 // 'password' => bcrypt($fields['password'])
                 'password' => bcrypt($password)

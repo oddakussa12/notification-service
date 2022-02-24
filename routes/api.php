@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
 
 // PUBLIC ROUTES
 // auth routes
@@ -87,38 +88,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 // ADMIN ROUTES
-// Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
-    // question routes
-    Route::put('/approve_question','Admin\QuestionController@approveQuestion');
-    Route::put('/decline_question','Admin\QuestionController@declineQuestion');
+Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
+   
 
-// });
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/getCustomers','CustomerController@getCustomers');
-Route::get('/disableCustomers/{id}','CustomerController@disableCustomer');
-Route::get('/enableCustomers/{id}','CustomerController@enableCustomer');
-Route::post('/createCustomer','CustomerController@createCustomer')->name('api.createCustomer');
-
-Route::post('/importCustomer','CustomerController@importCustomer')->name('api.importCustomer');
-
-Route::get('batch/{id}','CustomerController@batchStatus');
-
-// route for the ajax pagination on all customers table
-Route::get('/api/customers','CustomerController@allCustomerApi')->name('api.customers');
 

@@ -1,4 +1,5 @@
 @include('/modals/askQuestionModal')
+@include('/modals/viewQuestion')
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -100,6 +101,32 @@
                     }
                 });
             }
+        });
+    });
+</script>
+
+<!-- script to view question -->
+<script>
+    $(document).ready(function(){
+        $(document).on('click','.view-question', function(event){
+        // $('.approve').on('click',function(event){
+            event.preventDefault();
+            var id = $(this).data('id');
+            var token = $('input[name="_token"]').val();
+            $('#viewQuestionModal').modal('show');
+            $('#viewQuestionModal').on('shown.bs.modal', function (event) {
+              // console.log(id);
+              $.ajax({
+                    url:"{{ route('viewUnapprovedQuestion') }}",
+                    data:{id:id,_token:token,},
+                    method:"post",
+                    success:function(data){
+                      // fill the text fields from the returned data
+                      $('#viewquestionbody').val(data['body']);
+                      $('#viewcategory').text(data['category']['name']);
+                    }
+                });
+            })
         });
     });
 </script>

@@ -11,6 +11,11 @@ use Validator;
 
 class QuestionController extends Controller
 {
+
+    public function singleUnapprovedQuestion(Request $request){
+        $question = Question::with('tags','category')->where('id',$request->id)->first();
+        return $question;
+    }
     public function approveQuestion(Request $request){
         $question = Question::where('id',$request->id)->first();
         if($question != null){
@@ -63,7 +68,7 @@ class QuestionController extends Controller
                     ->addColumn('action', function($row){
        
                             $btn = '<div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary">
+                            <button type="button" data-id="'.$row->id.'" class="btn btn-outline-primary view-question">
                               <i class="mdi mdi-eye"></i>
                             </button>
                             <button type="button" data-id="'.$row->id.'"  class="btn btn-outline-success approve">
