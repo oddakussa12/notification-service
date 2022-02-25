@@ -28,7 +28,7 @@ class AuthController extends Controller
     
             return response($response, 201);
          }else{
-            $password = mt_rand(100000,999999);
+            $password = mt_rand(10000,99999);
             $user = User::create([
                 'name' => $fields['name'],
                 'phone' => $fields['phone'],
