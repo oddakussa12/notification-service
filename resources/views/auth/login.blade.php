@@ -2,13 +2,15 @@
 
 @extends('layout.master-mini')
 @section('content')
-<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: url({{ url('assets/images/auth/login_2.jpeg') }}); background-size: cover;">
+<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background-image: url({{ url('assets/images/auth/bg.webp') }}); background-size: cover;">
   <div class="row w-100">
     
-    <div class="col-lg-4 mx-auto">
+    <div class="col-lg-3 mx-auto">
       <div class="auto-form-wrapper">
         <div class="text-center" style="margin-top:-20px;">
-        <img width="60" height="60"src="{{ asset('/favicon.jpg') }}"/>
+        {{-- <img width="60" height="60"src="{{ asset('/favicon.jpg') }}"/> --}}
+
+        <img width="150" height="50"src="https://lmis.gov.et/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0cc17353.png&w=256&q=75"/>
         </div>
      
         <form method="POST" action="{{ route('login') }}">
@@ -16,13 +18,13 @@
           <div class="form-group">
             <label class="label">Phone number</label>
             <div class="input-group">
-              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Your phone number" required>
+              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Your email" required>
               <div class="input-group-append">
                 <span class="input-group-text">
-                  <i class="mdi mdi-cellphone-iphone"></i>
+                  <i class="mdi mdi-email-outline"></i>
                 </span>
               </div>
-              @error('phone')
+              @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -68,16 +70,16 @@
       </div>
       <ul class="auth-footer">
         <li>
-          <a href="#">Conditions</a>
+          <a target="_blank" href="https://lmis.gov.et/">LMIS</a>
         </li>
         <li>
-          <a href="#">Help</a>
+          <a target="_blank" href="#">Help</a>
         </li>
         <li>
-          <a href="#">Terms</a>
+          <a target="_blank" href="#">Terms</a>
         </li>
       </ul>
-      <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+      <p class="footer-text text-center">copyright © 2022 LMIS. All rights reserved.</p>
     </div>
   </div>
 </div>

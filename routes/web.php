@@ -5,7 +5,8 @@
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 
-Route::group(['middleware' => ['auth','check_admin']], function () {
+// Route::group(['middleware' => ['auth','check_admin']], function () {
+ Route::group(['middleware' => ['auth']], function () {
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     // Registration Routes...
     // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -37,6 +38,10 @@ Route::group(['middleware' => ['auth','check_admin']], function () {
     Route::get('/approvedQuestions', 'Admin\SidemenuController@approvedQuestions')->name('approvedQuestions');
     Route::get('/rejectedQuestions', 'Admin\SidemenuController@rejectedQuestions')->name('rejectedQuestions');
 
+    Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
+    Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
+    Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
+    
 
     Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
     Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Email</title>
+
+    <style>
+      body {
+        font-family: "poppins", "sans-serif";
+        width: 100%;
+        max-width: 750px;
+        margin: 0 auto;
+      }
+      .header {
+        background: #3170b5;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+      }
+      .logo-img {
+        height: 3rem;
+      }
+      .hero {
+        background-color: #E5EDF5;
+        padding: 1rem;
+        text-transform: capitalize;
+        color: #555;
+        text-align: center;
+      }
+      .heading-primary {
+        font-weight: normal;
+      }
+      .welcome {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .section-title {
+        text-transform: capitalize;
+        color: #333;
+        margin-bottom: .5rem;
+      }
+      .welcome-desc {
+        color: #777;
+        margin-bottom: 2rem;
+        font-size: .8rem;
+        width: 80%;
+        margin: 0 auto 2rem auto ;
+      }
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+        gap: 1rem;
+        text-transform: capitalize;
+      }
+      
+      .card-img {
+        height: 6rem;
+      }
+      .card-title {
+        color: #333;
+        margin-bottom: 0rem;
+      }
+      .card-desc {
+        font-size: 0.8rem;
+        text-transform: lowercase;
+        color: #555;
+      }
+
+      .guide {
+        text-align: center;
+        background-color: #3170b5;
+        color: white;
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+      }
+      .guide-title {
+        text-transform: capitalize;
+        width: 80%;
+        margin: 0 auto;
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+
+      .guide-img {
+        width: 3rem;
+        margin-top: 1rem;
+      }
+
+      .btn-primary {
+        padding: 0.8rem ;
+        background-color: #3170b5;
+        color: #fff;
+        text-transform: capitalize;
+        border: none;
+        border-radius: 5px;
+        margin: 0 auto;
+        box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+        margin-bottom: 4rem;
+        text-align: center;
+        font-size: .7rem;
+        cursor: pointer;
+      }
+
+      .include {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+      }
+
+      .include-title {
+        color: #333;
+        font-size: 1.1rem;
+        text-transform: capitalize;
+        font-weight: normal;
+        margin-bottom: 1rem;
+      }
+      .include-container h3 {
+        font-size: .8rem;
+        color: #333;
+        margin-bottom: 0.2rem;
+      }
+      .include-container span {
+        font-size: .8rem;
+      }
+      .news {
+          text-align: center;
+          padding: 0 .5rem;
+          margin-bottom: 2rem;
+      }
+
+      .news-subtitle {
+        margin-bottom: 0.5rem;
+      }
+
+      .news .card-desc {
+        font-size: .7rem;
+      }
+
+      .footer {
+          background-color: #3170b5;
+          color: #fff;
+          padding: 2rem 0 1rem 0;
+          text-align: center;
+          font-size: .6rem;
+          margin-bottom: 4rem;
+      }
+
+      .footer-top {
+          margin-bottom: 2rem;
+      }
+
+      .footer-bottom {
+          text-transform: capitalize;
+          color: #eee;
+      }
+
+      .footer-links {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .footer-links > *:not(:last-child) {
+          border-right: 1px solid #ddd;
+      }
+
+      .footer-links > * {
+          padding: 0rem 1rem;
+      }
+      .footer-address {
+          margin-bottom: 0;
+      }
+
+      .dear-name {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body class="body">
+    <header class="header">
+      <img src="https://live.staticflickr.com/65535/52246954879_938775f22c_c.jpg" alt="logo" class="logo-img" />
+    </header>
+    <main>
+      <section class="hero">
+        <h1 class="heading-primary">one network bringing it all together!</h1>
+      </section>
+      <section class="welcome">
+        <h2 class="section-title">welcome to E-lmis</h2>
+        <p class="welcome-desc">
+          <span class="dear-name">Dear {{$notificationData['name']}}, </span>
+          we're excited to have you get started. first you need to confirm your
+          account just press the betton below.
+        </p>
+        <div class="card-container">
+          <div class="card-item">
+            <img class="card-img" src="https://live.staticflickr.com/65535/52247194150_b78b420b6d_s.jpg" alt="e-learning" />
+            <h4 class="card-title">e-learning</h4>
+            <p class="card-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </div>
+          <div class="card-item">
+            <img class="card-img" src="https://live.staticflickr.com/65535/52246981924_5e57085433_s.jpg" alt="my future" />
+            <h4 class="card-title">my future</h4>
+            <p class="card-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </div>
+          <div class="card-item">
+            <img class="card-img" src="https://live.staticflickr.com/65535/52245723087_2cf04fd646_s.jpg" alt="my career" />
+            <h4 class="card-title">my career</h4>
+            <p class="card-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="guide">
+        <h2 class="guide-title">watch this quick video to learn the basics</h2>
+        <img src="https://live.staticflickr.com/65535/52247194140_ffb3c56d23_s.jpg" alt="play button" class="guide-img" />
+      </section>
+      <center>
+        @foreach($buttons as $button)
+          <a href="{{$button['url']}}">
+          <button  class="btn-primary">{{$button['text']}}</button>
+          </a>
+        @endforeach	
+      </center>
+      <section class="include">
+        <h2 class="include-title">your account includes:</h2>
+        <div class="include-container">
+          <div>
+            <h3>unlimited document uploads</h3>
+            <span
+              >upload & send as many documents for e-sign as you'd like.</span
+            >
+          </div>
+          <div>
+            <h3>unlimited services</h3>
+            <span
+              >Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span
+            >
+          </div>
+          <div>
+            <h3>unlimited document uploads</h3>
+            <span
+              >Lorem ipsum dolor sit, amet consectetur adipisicing elit.</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="news">
+          <h2 class="section-title">news & updates</h2>
+          <p class="welcome-desc news-subtitle">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, amet fugit vero reiciendis ipsum quisquam!</p>
+
+          <div class="card-container">
+            <div class="card-item">
+              <h4 class="card-title">project progress</h4>
+              <p class="card-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+            <div class="card-item">
+              <h4 class="card-title">trending</h4>
+              <p class="card-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+            <div class="card-item">
+              <h4 class="card-title">awards</h4>
+              <p class="card-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+          </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <p>if you have any questions, feel free to message us at support@lmis.com. all rights reserved.</p>
+            <span>update email preferences or unsubscribe</span>
+        </div>
+        <div class="footer-bottom"> 
+            <p class="footer-address">stadium, addis ababa 1000 ethiopia</p>
+            <div class="footer-links">
+                <p>terms of use</p>
+                <p>privacy policy</p>
+
+            </div>
+        </div>
+        
+    </footer>
+  </body>
+</html>

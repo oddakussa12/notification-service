@@ -1,0 +1,107 @@
+version: '3.6'
+
+services:
+
+  ### notification db ######################################
+  notification-db:
+    image: postgres:14
+    restart: unless-stopped    
+    environment:
+      - POSTGRES_USER=pgsql1
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=lmis_notifications
+    ports:
+      - 5432:5432
+    volumes:
+      - notification-db-data:/var/lib/postgresql/data
+    networks:
+      - notification-service
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ### notification-service #################################
+  notification-service:
+    restart: unless-stopped    
+    build:
+      context: .
+      target: php
+      dockerfile: ./notification-service.containerfile
+      args:
+        - APP_ENV=${APP_ENV}
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=app
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8005:8000
+    networks:
+       - notification-service
+       - shared
+    depends_on:
+      notification-db:
+        condition: service_healthy
+
+
+  # ### Nginx Service #########################################
+  # nginx-server:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./:/var/www
+  #     - ./docker/nginx/conf.d/notification-service.conf:/etc/nginx/conf.d/notification-service.conf
+  #   networks:
+  #     - notification-service
+
+  redis:
+     image: redis:alpine
+     restart: unless-stopped    
+     command: redis-server --appendonly yes --requirepass "12344321"
+     ports:
+       - 6379:6379
+     volumes:
+       - ./Docker/redis.conf:/etc/redis/redis.conf
+     networks:
+       - notification-service
+     healthcheck:
+       test: ["CMD", "redis-cli", "ping"]
+       retries: 3
+       timeout: 5s
+
+  ## mailhog Service #########################################
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    restart: unless-stopped    
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - notification-service
+  # notification_service_supervisor:
+  #   build:
+  #     context: .
+  #     dockerfile: ./supervisor.containerfile
+  #   container_name: notification_service_supervisor
+  #   volumes:
+  #     - ./:/var/www
+  #   depends_on:
+  #     - notification-service
+  #     - redis
+  #   networks:
+  #     - notification-service
+
+networks:
+  notification-service:
+  shared:
+    name: shared-net
+    external: true
+volumes:
+  notification-db-data:
+  notification-redis-data:
+  db-data:

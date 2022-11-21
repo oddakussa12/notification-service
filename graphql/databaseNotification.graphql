@@ -1,0 +1,23 @@
+extend type Query {
+    # notification(id: ID @eq): Notification @find
+    notification(
+        "Search by primary key."
+        id: ID @eq 
+
+        "Search by email address."
+        notifiable_id: String @eq 
+        ): Notification @find
+
+
+    notifications: [Notification] @paginate
+}
+
+
+type Notification {
+    id: ID!
+    notifiable_id: String,
+    data: String,
+    read_at: String,
+    created_at: String,
+    updated_at: String,
+}

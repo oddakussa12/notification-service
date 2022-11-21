@@ -2,7 +2,9 @@
   style="border-bottom:2px #4da6ff solid;">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="{{ url('/') }}">
-      <img src="{{ url('assets/images/logo.png') }}" alt="logo" /> </a>
+      <img src="{{ asset('/logo.webp') }}" alt="logo" /> </a>
+      {{-- <link rel="shortcut icon" href="{{ asset('/logo.webp') }}">
+      <img src="https://lmis.gov.et/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0cc17353.png&w=256&q=75" alt="logo" /> </a> --}}
     <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
       <img src="{{ asset('/favicon.jpg') }}" alt="logo" /> </a>
   </div>
@@ -12,10 +14,10 @@
     </button>
     <ul class="navbar-nav navbar-nav-left header-links">
       <li class="nav-item active d-none d-lg-flex">
-        <a href="#" class="nav-link">
-          <i class="mdi mdi-elevation-rise"></i>Reports</a>
+        <a target="_blank" href="{{ url('horizon/dashboard') }}" class="nav-link">
+          <i class="mdi mdi-elevation-rise"></i>Horizon</a>
       </li>
-      <li class="nav-item d-none d-md-flex">
+      {{-- <li class="nav-item d-none d-md-flex">
         <a href="#" class="nav-link">
           <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
       </li>
@@ -26,7 +28,7 @@
           <a href="#" class="dropdown-item"><i class="mdi mdi-elevation-rise"></i>Reports</a>
           <a href="#" class="dropdown-item"><i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
         </div>
-      </li>
+      </li> --}}
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item dropdown">

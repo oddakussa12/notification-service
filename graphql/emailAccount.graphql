@@ -1,0 +1,32 @@
+extend type Query {
+    email_account(id: ID @eq): EmailAccount @find
+    email_accounts: [EmailAccount] @paginate
+}
+type Mutation {
+    createEmailAccount(
+        ACCOUNT_NAME: String,
+        MAIL_MAILER: String,
+        MAIL_HOST: String,
+        MAIL_PORT: String,
+        MAIL_USERNAME: String @rules(apply: ["email", "unique:email_accounts"]),
+        MAIL_PASSWORD: String @rules(apply: ["min:8"]),
+        MAIL_ENCRYPTION: String,
+        MAIL_FROM_ADDRESS: String,
+        MAIL_FROM_NAME: String,
+    ): EmailAccount! @create
+}
+
+
+type EmailAccount {
+    id: ID!
+    ACCOUNT_NAME: String,
+    MAIL_MAILER: String,
+    MAIL_HOST: String,
+    MAIL_PORT: String,
+    MAIL_USERNAME: String,
+    MAIL_PASSWORD: String,
+    MAIL_ENCRYPTION: String,
+    MAIL_FROM_ADDRESS: String,
+    MAIL_FROM_NAME: String,
+    notificationTemplates: [NotificationTemplate] @hasMany
+}

@@ -46,11 +46,11 @@ class LoginController extends Controller
         $input = $request->all();
    
         $this->validate($request, [
-            'phone' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
    
-        if(auth()->attempt(array('phone' => $input['phone'], 'password' => $input['password'])))
+        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->role == "admin") {
                 return redirect()->route('home');
@@ -62,7 +62,7 @@ class LoginController extends Controller
             //     ->with('error','Phone And Password Are Wrong.');
 
             return back()->withErrors([
-                'phone' => 'Cedentials do not match our records.',
+                'email' => 'Cedentials do not match our records.',
                 'password' => 'Credentials do not match our records.',
             ]);
         }

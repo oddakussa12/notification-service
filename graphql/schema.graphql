@@ -1,0 +1,7 @@
+
+#import user.graphql
+#import emailAccount.graphql
+#import notificationTemplate.graphql
+#import databaseNotification.graphql
+
+type Query

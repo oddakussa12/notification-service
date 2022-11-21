@@ -1,0 +1,38 @@
+extend type Query {
+    notification_template(id: ID @eq): NotificationTemplate @find
+    notification_templates: [NotificationTemplate] @paginate
+}
+
+type Mutation {
+    createNotificationTemplate(
+        name:String!
+        templateId:String!
+        data:String!
+        description:String!
+        is_active:Boolean
+        email_account_id: String
+    ): NotificationTemplate! @create
+
+    updateNotificationTemplate(
+        id:ID!
+        name:String!
+        templateId:String!
+        data:String!
+        description:String!
+        is_active:Boolean
+    ): NotificationTemplate! @update
+
+    deleteNotificationTemplate(id:ID!): NotificationTemplate @delete
+
+}
+
+type NotificationTemplate {
+    id: ID!
+    name: String!
+    templateId: String!
+    data: String!
+    description: String
+    is_active: Boolean
+    email_account_id: String
+    emailAccount: EmailAccount! @belongsTo
+}

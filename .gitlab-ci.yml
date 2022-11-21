@@ -1,0 +1,48 @@
+stages:        
+  - deploy
+build-job-main:      
+  stage: deploy
+  only:
+    - main
+  tags:
+    - lmis-runner-server02
+  before_script:
+    - echo "$DOCKER_REGISTRY_PASS" | docker login registry.gitlab.com --username $DOCKER_REGISTRY_USER --password-stdin
+  script:
+    - docker-compose -f docker-compose.yml build --no-cache
+    - docker-compose down     
+    - docker-compose -f docker-compose.yml up -d  
+    - docker build -t registry.gitlab.com/project-lmis-et/backend-dev/notification-service -f notification-service.containerfile .
+    - docker push registry.gitlab.com/project-lmis-et/backend-dev/notification-service
+
+
+build-job-staging:      
+  stage: deploy
+  only:
+    - staging
+  tags:
+    - lmis-runner-server07
+  before_script:
+    - echo "$DOCKER_REGISTRY_PASS" | docker login registry.gitlab.com --username $DOCKER_REGISTRY_USER --password-stdin
+  script:
+    - docker-compose -f docker-compose.yml build --no-cache
+    - docker-compose down     
+    - docker-compose -f docker-compose.yml up -d  
+    - docker build -t registry.gitlab.com/project-lmis-et/backend-dev/notification-service -f notification-service.containerfile .
+    - docker push registry.gitlab.com/project-lmis-et/backend-dev/notification-service
+
+
+build-job-develop:      
+  stage: deploy
+  only:
+    - develop
+  tags:
+    - lmis-runner-server04
+  before_script:
+    - echo "$DOCKER_REGISTRY_PASS" | docker login registry.gitlab.com --username $DOCKER_REGISTRY_USER --password-stdin
+  script:
+    - docker-compose -f docker-compose.yml build --no-cache
+    - docker-compose down     
+    - docker-compose -f docker-compose.yml up -d  
+    - docker build -t registry.gitlab.com/project-lmis-et/backend-dev/notification-service -f notification-service.containerfile .
+    - docker push registry.gitlab.com/project-lmis-et/backend-dev/notification-service

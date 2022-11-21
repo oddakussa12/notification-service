@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\SocketsController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\HomeController;
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -18,9 +22,25 @@ use Illuminate\Http\Request;
 Route::post('/register','AuthController@register');
 Route::post('/login','AuthController@login');
 
+Route::post("/sockets/connect", [SocketsController::class, "connect"]);
+
+
+Route::post('/sendNotification', [NotificationController::class, "sendNotification"]);
+Route::post('/markAsRead', [NotificationController::class, "markNotificationAsRead"]);
+Route::post('/markAllAsRead', [NotificationController::class, "markAllNotificationsAsRead"]);
+Route::get('/userNotification/{user_id}', [NotificationController::class, "userNotification"]);
+
+
+
+
+
+
+
+
 
 // AUTHENTICATED USERS ROUTES
 Route::group(['middleware' => ['auth:sanctum']], function(){
+
     // auth routes
     Route::post('/logout','AuthController@logout');
 
@@ -88,9 +108,24 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 // ADMIN ROUTES
-Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
+// Route::group(['middleware' => ['auth:sanctum','check_admin']], function(){
    
 
+// });
+
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+Route::post("/sockets/connect", [SocketsController::class, "connect"]);
+
+
+Route::post('/sendNotification', [NotificationController::class, "sendNotification"]);
+Route::post('/markAsRead', [NotificationController::class, "markNotificationAsRead"]);
+Route::post('/markAllAsRead', [NotificationController::class, "markAllNotificationsAsRead"]);
+Route::get('/userNotification/{user_id}', [NotificationController::class, "userNotification"]);
+
+
 
 

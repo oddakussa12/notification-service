@@ -47,8 +47,26 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    <li id="email_accounts" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi mdi-email-lock"></i>
+        <span class="menu-title">Email accounts</span>
+      </a>
+    </li>
+    <li id="email_templates" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-email-outline"></i>
+        <span class="menu-title">Email templates</span>
+      </a>
+    </li>
+    <li id="sms_messages" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-cellphone-android"></i>
+        <span class="menu-title">SMS Messages</span>
+      </a>
+    </li>
     
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+    {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-account-multiple-plus"></i>
         <span class="menu-title">Customers</span>
@@ -116,14 +134,14 @@
         <i class="menu-icon mdi mdi-alphabetical"></i>
         <span class="menu-title">Blogs</span>
       </a>
-    </li>
+    </li> --}}
 
 
 
 
 
     
-    <!-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
         <span class="menu-title">Basic UI Elements</span>
@@ -187,12 +205,93 @@
         <i class="menu-icon mdi mdi-file-outline"></i>
         <span class="menu-title">Documentation</span>
       </a>
-    </li> -->
+    </li> 
   </ul>
 </nav>
 
 
 @section('js')
+
+<!-- script to show email templates -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function email_templates(){
+          $.ajax({
+            url:'{{route('emailTemplates')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_templates').on('click',function(){
+        email_templates();
+      });
+  });
+</script>
+
+<!-- script to show email accounts -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function emailAccounts(){
+          $.ajax({
+            url:'{{route('emailAccounts')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_accounts').on('click',function(){
+          emailAccounts();
+      });
+  });
+</script>
+
+{{-- sms messages  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function smsMessages(){
+          $.ajax({
+            url:'{{route('smsMessages')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#sms_messages').on('click',function(){
+          smsMessages();
+      });
+  });
+</script>
 
 
 <!-- script to show unapproved questions -->
