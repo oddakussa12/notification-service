@@ -41,6 +41,10 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
     Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
+
+    // Email account CRUD
+    Route::post('/email-account-create', 'EmailAccountController@store')->name('emailAccount.store');
+    Route::post('/email-account-update', 'EmailAccountController@update')->name('emailAccount.update');
     
 
     Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
