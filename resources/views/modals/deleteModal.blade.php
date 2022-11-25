@@ -12,7 +12,7 @@
                 <p class="font-weight-bold mb-2" style="font-family: Arial, Helvetica, sans-serif;"> Are you sure you wanna delete
                     <strong id="deleteitemname"></strong> 
                 </p>
-                <p class="text-muted" style="font-family: Arial, Helvetica, sans-serif;"> This will also delete all items in this sub category.</p>
+                <p class="text-muted" style="font-family: Arial, Helvetica, sans-serif;"> This may also delete all associated data.</p>
                 
                 <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
                     <div class="row justify-content-end no-gutters">

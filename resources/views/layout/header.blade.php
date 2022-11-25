@@ -17,11 +17,11 @@
         <a target="_blank" href="{{ url('horizon/dashboard') }}" class="nav-link">
           <i class="mdi mdi-elevation-rise"></i>Horizon</a>
       </li>
-      {{-- <li class="nav-item d-none d-md-flex">
+      <li class="nav-item d-none d-md-flex">
         <a href="#" class="nav-link">
-          <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
+          <i class="mdi mdi-bullhorn"></i>Send notification</a>
       </li>
-      <li class="nav-item dropdown d-none d-lg-flex">
+      {{-- <li class="nav-item dropdown d-none d-lg-flex">
         <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Quick Links </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown pt-3" aria-labelledby="quickDropdown">
           <a href="#" class="dropdown-item">Schedule <span class="badge badge-primary ml-1">New</span></a>

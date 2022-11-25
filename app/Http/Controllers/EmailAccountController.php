@@ -14,8 +14,17 @@ class EmailAccountController extends Controller
         $emailAccounts = EmailAccount::orderBy('created_at', 'desc')->get();
         return view('Admin/emailAccounts',compact('emailAccounts'));
     }
-
-    
+    // this is used in edit email template select field
+    public function fetchEmailAccount(Request $request){
+        
+        $data = EmailAccount::select('id','ACCOUNT_NAME')->get();
+        if(count($data) > 0){
+            return $data;
+        }else{
+            $output = '<option>No Category Found</option>';
+            echo $output;
+        }
+    }
 
     public function store(Request $request)
     {
@@ -56,30 +65,9 @@ class EmailAccountController extends Controller
         }
     }
 
-    public function show(EmailAccount $emailAccount)
-    {
-        //
-    }
-
-
     public function update(Request $request)
     {
         
-        // $validator = Validator::make($request->all(), [
-        //     'account_name'         => 'required',
-        //     'mail_mailer'         => 'required',
-        //     'mail_host'         => 'required',
-        //     'mail_port'   => 'required',
-        //     'mail_username'   => 'required',
-        //     'mail_password'   => 'required',
-        //     'mail_encryption'     => 'required',
-        //     'mail_from_address'   => 'required',
-        //     'mail_from_name'     => 'required',
-        // ]);
-        // if($validator->fails()){
-        //     return response()->json(['errors'=>$validator->errors()]);
-        // }
-
         $rules = array(
             'account_name'         => 'required',
             'mail_mailer'         => 'required',
@@ -109,19 +97,18 @@ class EmailAccountController extends Controller
         $email_account->MAIL_FROM_NAME = $request->mail_from_name;
 
         $email_account->save();
-       
 
-
-        return response()->json(['success' => 'Tag updated successfuly'], 200);
-        // if ($email_account->exists) {
-        //     return response()->json(['success' => 'Updated pdated successfuly'], 200);
-        // } else {
-        //     return response()->json(['error' => 'Error'], 422);
-        // }
+        return response()->json(['success' => 'Updated successfuly'], 200);
     }
 
-    public function destroy(EmailAccount $emailAccount)
+    public function destroy(Request $request)
     {
-        //
+        $email_account = EmailAccount::where('id',$request->id)->first();
+        if($email_account){
+            $email_account->delete();
+            return response()->json(['success' => 'Deleted successfuly'], 200);
+        }else{
+            return response()->json(['error' => 'Delete unsuccessful, Email account not found'], 404);
+        }
     }
 }

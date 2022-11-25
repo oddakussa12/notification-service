@@ -65,8 +65,14 @@
         <span class="menu-title">SMS Messages</span>
       </a>
     </li>
+    <li id="sms_messages" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-camera-timer"></i>
+        <span class="menu-title">Schedules</span>
+      </a>
+    </li>
     
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+    {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-account-multiple-plus"></i>
         <span class="menu-title">Customers</span>
@@ -134,14 +140,14 @@
         <i class="menu-icon mdi mdi-alphabetical"></i>
         <span class="menu-title">Blogs</span>
       </a>
-    </li>
+    </li> --}}
 
 
 
 
 
     
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
+    {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
         <span class="menu-title">Basic UI Elements</span>
@@ -205,7 +211,7 @@
         <i class="menu-icon mdi mdi-file-outline"></i>
         <span class="menu-title">Documentation</span>
       </a>
-    </li> 
+    </li>  --}}
   </ul>
 </nav>
 
