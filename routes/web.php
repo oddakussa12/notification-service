@@ -45,14 +45,21 @@ Route::post('login', 'Auth\LoginController@login');
     // Email account CRUD
     Route::post('/email-account-create', 'EmailAccountController@store')->name('emailAccount.store');
     Route::POST('/email-account-update', 'EmailAccountController@update')->name('emailAccount.update');
-    Route::delete('/email-account-update', 'EmailAccountController@destroy')->name('emailAccount.delete');
+    Route::delete('/email-account-delete', 'EmailAccountController@destroy')->name('emailAccount.delete');
+
+    Route::get('fetchEmailAccount', 'EmailAccountController@fetchEmailAccount')->name('fetchEmailAccount');
 
     // Email template CRUD
     Route::post('/email-template-create', 'NotificationTemplateController@store')->name('emailTemplate.store');
     Route::POST('/email-template-update', 'NotificationTemplateController@update')->name('emailTemplate.update');
-    Route::delete('/email-template-update', 'NotificationTemplateController@destroy')->name('emailTemplate.delete');
+    Route::delete('/email-template-delete', 'NotificationTemplateController@destroy')->name('emailTemplate.delete');
 
-    Route::get('fetchEmailAccount', 'EmailAccountController@fetchEmailAccount')->name('fetchEmailAccount');
+    // SMS message CRUD
+    Route::post('/sms-message-create', 'SmsmessageController@store')->name('SMSmessage.store');
+    Route::POST('/sms-message-update', 'SmsmessageController@update')->name('SMSmessage.update');
+    Route::delete('/sms-message-delete', 'SmsmessageController@destroy')->name('SMSmessage.delete');
+
+    
 
 
 
