@@ -39,7 +39,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="#" style="margin-left:10px;font-size:18px;" ><i class="edit_sms_message mdi mdi-lead-pencil"></i></a>
+                                <a href="#" style="margin-left:10px;font-size:18px;" ><i class="edit_sms_message mdi mdi-lead-pencil" data-id={{$smsMessage->id}}></i></a>
                                 <a href="#" style="margin-left:10px;font-size:18px;"><i class="delete_sms_message mdi mdi-delete text-danger "></i></a>
                             </td>
                             <td data-toggle="collapse" data-target="#group-of-rows-{{$smsMessage->id}}" aria-expanded="false" aria-controls="group-of-rows-{{$smsMessage->id}}">
@@ -63,7 +63,7 @@
                                 <td><span style="font-size: 15px; color:white;" class="badge badge-info">{{$language->code}}</span></td>
                                 <td>{{$language->message}}</td>
                                 <td>
-                                    <a href="#" style="margin-left:10px;font-size:18px;" ><i class="edit_template mdi mdi-lead-pencil"></i></a>
+                                    <a href="#" style="margin-left:10px;font-size:18px;" ><i class="edit_language_message mdi mdi-lead-pencil"></i></a>
                                     <a href="#" style="margin-left:10px;font-size:18px;"><i class="delete_language mdi mdi-delete text-danger "></i></a>
                                 </td>
                             </tr>
@@ -143,38 +143,20 @@
 <script>
     $(document).ready(function(){
         $('.edit_sms_message').click(function(e){
-            $('#editEmailTemplateModal').modal('show');
-
-            // populate email account select field
-            $.ajax({
-                url:"{{ route('fetchEmailAccount')}}",
-                type:"GET",
-                success:function(data){
-                    // console.log("data" data);
-                    $('#edit_email_account').append($('<option selected disabled> Select email account</option>'));
-                   for (var i = 0; i <= data.length; i++) {
-                        $('#edit_email_account').append('<option value="' + data[i]['id'] + '">' + data[i]['ACCOUNT_NAME'] + '</option>');
-                    }
-                }
-            });
+            $('#editSMSmessageModal').modal('show');
 
             $tr = $(this).closest('tr');
             var data = $tr.children("td").map(function(){
                 return $(this).text();
             }).get();
-            // console.log(data);
-
-            $('#template_id').val(data[0]);
-            $('#edit_template_name').val(data[1]);
-            $('#edit_template_id').val(data[2]);
-            $('#edit_description').val(data[3]);
-            $('#edit_data').val(data[4]);
+            $('#message_id').val(data[0]);
+            $('#message_name').val(data[1]);
 
         });
 
-        $('#edit_email_template_form').on('submit', function(event){
+        $('#edit_sms_message_form').on('submit', function(event){
             event.preventDefault();
-            if($('#editEmailTemplateBtn').val() == "Update"){
+            if($('#editSMSmessageBtn').val() == "Update"){
                 $.ajax({
                     url:"{{ route('SMSmessage.update') }}",
                     method:"POST",
@@ -185,7 +167,7 @@
                     dataType:'json',
                     beforeSend: function()
                     {   
-                        $('#editEmailTemplateBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                        $('#editSMSmessageBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
                     },
                     success:function(data){
                         var html = '';
@@ -195,12 +177,12 @@
                                 html += '<p>' + data.errors[count] + '</p>';
                             }
                             html += '</div>';
-                            $('#editEmailTemplateBtn').html('Update');
+                            $('#editSMSmessageBtn').html('Update');
                             // render error or success message in html variable to span element with id value form_result
-                            $('#edit_email_template_form_result').html(html);
+                            $('#edit_sms_message_form_result').html(html);
                         }
                         if(data.success){
-                            $('#editEmailTemplateModal').modal('hide');
+                            $('#editSMSmessageModal').modal('hide');
                                 setTimeout(function() { fetchtable(); }, 500);
                                 function fetchtable(){
                                     $.ajax({
@@ -279,5 +261,74 @@
     });
 </script>
 
+
+<!-- script to edit SMS message language-->
+<script>
+    $(document).ready(function(){
+        $('.edit_language_message').click(function(e){
+            $('#editSMSmessageModal').modal('show');
+
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            $('#message_id').val(data[0]);
+            $('#message_name').val(data[2]);
+
+        });
+
+        $('#edit_sms_message_form').on('submit', function(event){
+            event.preventDefault();
+            if($('#editSMSmessageBtn').val() == "Update"){
+                $.ajax({
+                    url:"{{ route('SMSmessageLanguage.update') }}",
+                    method:"POST",
+                    data: new FormData(this),
+                    contentType:false,
+                    cache:false,
+                    processData:false,
+                    dataType:'json',
+                    beforeSend: function()
+                    {   
+                        $('#editSMSmessageBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                    },
+                    success:function(data){
+                        var html = '';
+                        if(data.errors){
+                            html = '<div class="alert alert-danger alert-block">';
+                            for(var count = 0; count<data.errors.length; count++){
+                                html += '<p>' + data.errors[count] + '</p>';
+                            }
+                            html += '</div>';
+                            $('#editSMSmessageBtn').html('Update');
+                            // render error or success message in html variable to span element with id value form_result
+                            $('#edit_sms_message_form_result').html(html);
+                        }
+                        if(data.success){
+                            $('#editSMSmessageModal').modal('hide');
+                                setTimeout(function() { fetchtable(); }, 500);
+                                function fetchtable(){
+                                    $.ajax({
+                                        url:'{{route('smsMessages')}}',
+                                        cache: false,
+                                        type:'GET',
+                                        beforeSend: function()
+                                        {  
+                                            $("#loading-overlay").show();
+                                        },
+                                        success:function(data){
+                                            $("#odda").html(data);
+                                            $("#loading-overlay").hide();
+                                        }
+                                    });
+                                }
+                        }
+                    }
+                })
+            }
+        });    
+    });
+   
+</script>
 
 

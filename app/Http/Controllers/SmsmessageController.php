@@ -20,7 +20,7 @@ class SmsmessageController extends Controller
     {
         $rules = array(
             'message_name'         => 'required',
-            'EN'         => 'required',
+            'English'         => 'required',
         );
         $error = Validator::make($request->all(),$rules);
         if($error->fails()){
@@ -32,19 +32,19 @@ class SmsmessageController extends Controller
         $message->title = $request->message_name;
         $message->save();
 
-        if($request->EN){
+        if($request->English){
             $language = new Language();
             $language->smsmessage_id = $message->id;
             $language->code = 'EN';
-            $language->message = $request->EN;
+            $language->message = $request->English;
             $language->save();
         }
 
-        if($request->AM){
+        if($request->Amharic){
             $language = new Language();
             $language->smsmessage_id = $message->id;
             $language->code = 'AM';
-            $language->message = $request->AM;
+            $language->message = $request->Amharic;
             $language->save();
         }
 
@@ -57,14 +57,28 @@ class SmsmessageController extends Controller
 
     public function update(Request $request, Smsmessage $smsmessage)
     {
-        //
+        $rules = array(
+            'message_name'         => 'required',
+        );
+        $error = Validator::make($request->all(),$rules);
+        if($error->fails()){
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $message = Smsmessage::where('id', $request->message_id)->first();
+        $message->title = $request->message_name;
+        $message->save();
+        return response()->json(['success' => 'SMS message updated successfuly'], 200);
+
     }
 
     public function destroy(Request $request)
     {
         $message = Smsmessage::where('id',$request->id)->first();
         if($message){
+            $message->languages()->delete();
             $message->delete();
+
             return response()->json(['success' => 'Deleted successfuly'], 200);
         }else{
             return response()->json(['error' => 'Delete unsuccessful, Message not found'], 500);

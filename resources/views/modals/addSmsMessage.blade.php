@@ -2,7 +2,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="background-color:#006699;">
-          <h5 class="modal-title" style="color:white;">Add email template</h5>
+          <h5 class="modal-title" style="color:white;">Add SMS Message</h5>
           <button type="button"  class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="background-color: white;">
@@ -20,13 +20,13 @@
                   <div class="form-group row">
                       <div class="col-sm-12">
                         <small>Message in <b>English</b></small>
-                        <textarea class="form-control z-depth-1" name="EN" style="padding:10px;font-size:14px;border-radius:4px;" rows="2" placeholder="Message in English language ..."></textarea>
+                        <textarea class="form-control z-depth-1" name="English" style="padding:10px;font-size:14px;border-radius:4px;" rows="2" placeholder="Message in English language ..."></textarea>
                       </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <small>Message in <b>Amharic</b> (Optional)</small>
-                      <textarea class="form-control z-depth-1" name="AM" style="padding:10px;font-size:14px;border-radius:4px;" rows="2" placeholder="Message in Amharic language (Optional) ..."></textarea>
+                      <textarea class="form-control z-depth-1" name="Amharic" style="padding:10px;font-size:14px;border-radius:4px;" rows="2" placeholder="Message in Amharic language (Optional) ..."></textarea>
                     </div>
                   </div>
               </div>
