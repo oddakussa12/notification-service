@@ -24,7 +24,7 @@
                 <th> Title</th>
                 <th> Languages</th>
                 <th> ACTIONS</th>
-                <th> </th>
+                <th>Expand </th>
               </tr>
             </thead>
             <tbody>
@@ -55,7 +55,6 @@
                               <th> CODE</th>
                               <th> MESSAGE</th>
                               <th> ACTIONS</th>
-                              
                             </tr>
                         {{-- </thead> --}}
                         @foreach($smsMessage->languages as $language)
