@@ -1,7 +1,7 @@
 @include('/modals/addSmsMessage')
 @include('/modals/editSmsMessage')
 @include('/modals/deleteModal')
-
+@include('/modals/addLanguage')
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -41,6 +41,7 @@
                             <td>
                                 <a href="#" style="margin-left:10px;font-size:18px;" ><i class="edit_sms_message mdi mdi-lead-pencil" data-id={{$smsMessage->id}}></i></a>
                                 <a href="#" style="margin-left:10px;font-size:18px;"><i class="delete_sms_message mdi mdi-delete text-danger "></i></a>
+                                <a href="#" style="margin-left:10px;font-size:18px;" data-id={{$smsMessage->id}} class="add_sms_message_lang">Add language</a>
                             </td>
                             <td data-toggle="collapse" data-target="#group-of-rows-{{$smsMessage->id}}" aria-expanded="false" aria-controls="group-of-rows-{{$smsMessage->id}}">
                                 <i style="cursor: pointer;" class="fa fa-angle-down fa-2x" aria-hidden="true"></i>
@@ -261,6 +262,69 @@
     });
 </script>
 
+<!-- script to create new SMS message language -->
+<script>
+    $(document).ready(function(){
+        $('.add_sms_message_lang').click(function(){
+          $('#createSMSmessageLanguageModal').modal('show');
+          const message_id = $(this).data("id");
+          console.log(message_id);
+          $('#message_lang_id').val(message_id);
+        });
+
+        $('#createSMSLanguageForm').on('submit', function(event){
+          event.preventDefault();
+          if($('#createSMSmessageLanguageBtn').val() == 'Create'){
+              $.ajax({
+                url:"{{ route('SMSmessageLanguage.store') }}",
+                method:"POST",
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData:false,
+                dataType:'json',
+                beforeSend: function()
+                {
+                    $('#createSMSmessageLanguageBtn').html('<i class="fa fa-circle-o-notch fa-spin"></i>');                            
+                },
+                success:function(data){
+                    var html = '';
+                    if(data.errors){
+                        html = '<div class="alert alert-danger alert-block" style="padding:2px;">';
+                        for(var count = 0; count<data.errors.length; count++){
+                            html += '<p>' + data.errors[count] + '</p>';
+                        }
+                        html += '</div>';
+                        $('#createSMSmessageLanguageBtn').html('Create'); 
+                        // render error or success message in html variable to span element with id value form_result
+                        $('#create_sms_lang_form_result').html(html);
+                    }
+                    if(data.success){
+                        $('#createSMSmessageLanguageModal').modal('hide');
+                        setTimeout(function() { odda(); }, 500);
+                        function odda(){
+                            $.ajax({
+                                url:'{{route('smsMessages')}}',
+                                cache: false,
+                                type:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $("#odda").html(data);
+                                    $("#loading-overlay").hide();
+                                }
+                            });
+                        }
+                    }
+                },
+              })
+            }
+        });
+    });
+</script>
+
 
 <!-- script to edit SMS message language-->
 <script>
@@ -331,4 +395,55 @@
    
 </script>
 
+<!-- script to delete SMS message language-->
+<script>
+    $(document).ready(function(){
+        var token = $('input[name="_token"]').val();
+        function deleteSMSmessageLanguage(id,token){
+            $.ajax({
+                url:"{{route('SMSmessageLanguage.delete')}}",
+                method:'DELETE',
+                data:{id:id,_token:token},
+                beforeSend: function()
+                {   
+                    $('#deleteModal').modal('hide');
+                },
+                success:function(data){
+                    setTimeout(function() { odda(); }, 500);
+                        function odda(){
+                            $.ajax({
+                                url:'{{route('smsMessages')}}',
+                                cache: false,
+                                type:'GET',
+                                beforeSend: function()
+                                {  
+                                    $("#loading-overlay").show();
+                                },
+                                success:function(data){
+                                    $("#odda").html(data);
+                                    $("#loading-overlay").hide();
+                                }
+                        });
+                    }
+                }
+            });
+        }
+        $('body').on('click','.delete_language',function(e){
+            e.preventDefault();
+            $('#deleteModal').modal('show');
 
+            var $tr =$(this).closest('tr');
+            var data = $tr.children("td").map(function(){
+                return $(this).text();
+            }).get();
+            // console.log(data);
+            $('#deleteitemid').val(data[0]);
+            $('#deleteitemname').html('"'+data[2]+'"');
+        });
+        $('#delete_form').on('submit',function(e){
+            e.preventDefault();
+            var id = $('#deleteitemid').val();
+            deleteSMSmessageLanguage(id,token);
+        });
+    });
+</script>
