@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:coral;border-radius:4px;color:white; cursor: pointer;">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
               <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
@@ -16,39 +16,41 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total Customers</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">326859</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$users}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
             <!-- <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> -->
-            Total Customers </p>
+            Total admin users
+          </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color: yellowgreen;border-radius:4px;color:white; cursor: pointer;" id="email_account">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
               <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Active customers</p> -->
-              <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">320000</h3>
+              <div class="fluid-container" >
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$emailAccounts}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-            <!-- <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> -->
-            Active customers </p>
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" 
+             style="color:white; font-size:18px;">
+            {{-- <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> --}}
+            Email accounts </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:cornflowerblue;border-radius:4px;color:white; cursor: pointer;" id="email_template">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
               <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
@@ -56,19 +58,20 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Disabled customers</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">6859</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$notificationTemplate}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
             <!-- <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>  -->
-            Disabled customers </p>
+            Email templates
+          </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:blueviolet;border-radius:4px;color:white; cursor: pointer;" id="sms_message">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
               <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
@@ -76,13 +79,13 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total groups</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">12</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$smsMessages}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
             <!-- <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> -->
-             Total customer groups </p>
+             SMS Messages </p>
         </div>
       </div>
     </div>
@@ -90,86 +93,90 @@
   <div class="row">
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:orchid;border-radius:4px;color:white; cursor: pointer;">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-square-inc-cash text-success icon-lg"></i>
+              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
             </div>
             <div class="float-right">
-              <!-- <p class="mb-0 text-right">Total Earnings</p> -->
+              <!-- <p class="mb-0 text-right">Total Customers</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">726859</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$users}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-            <!-- <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>  -->
-            Total Earnings</p>
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
+            <!-- <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> -->
+            Email sent today
+          </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:orchid;border-radius:4px;color:white; cursor: pointer;" id="email_account">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-square-inc-cash text-success icon-lg"></i>
+              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
             </div>
             <div class="float-right">
-              <!-- <p class="mb-0 text-right">Earning: Last week</p> -->
-              <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">320000</h3>
+              <!-- <p class="mb-0 text-right">Active customers</p> -->
+              <div class="fluid-container" >
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$emailAccounts}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-            <!-- <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i>  -->
-            Earning: Last week </p>
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" 
+             style="color:white; font-size:18px;">
+            {{-- <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> --}}
+            Email sent last month </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:lightseagreen;border-radius:4px;color:white; cursor: pointer;" id="email_template">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-square-inc-cash text-success icon-lg"></i>
+              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
             </div>
             <div class="float-right">
-              <!-- <p class="mb-0 text-right">Earning: 14 days</p> -->
+              <!-- <p class="mb-0 text-right">Disabled customers</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">647658</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$notificationTemplate}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-            <!-- <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> -->
-            Earning: last 14 days </p>
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
+            <!-- <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>  -->
+            SMS sent today
+          </p>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body">
+        <div class="card-body" style="background-color:lightseagreen;border-radius:4px;color:white; cursor: pointer;" id="sms_message">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-square-inc-cash text-success icon-lg"></i>
+              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
             </div>
             <div class="float-right">
-              <!-- <p class="mb-0 text-right">Earning: 30 days</p> -->
+              <!-- <p class="mb-0 text-right">Total groups</p> -->
               <div class="fluid-container">
-                <h3 class="font-weight-medium text-right mb-0">702876</h3>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$smsMessages}}</h1>
               </div>
             </div>
           </div>
-          <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+          <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
             <!-- <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> -->
-             Earning: last 30 days </p>
+             SMS sent last month </p>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="row">
+  
+  {{-- <div class="row">
     <div class="col-md-12 grid-margin">
       <div class="card">
         <div class="card-body">
@@ -634,7 +641,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>  --}}
 @endsection
 
 @push('plugin-scripts')
@@ -645,3 +652,86 @@
 @push('custom-scripts')
   {!! Html::script('/assets/js/dashboard.js') !!}
 @endpush
+
+@section('js')
+<!-- script to show email accounts -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function emailAccount(){
+          $.ajax({
+            url:'{{route('emailAccounts')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_account').on('click',function(){
+          emailAccount();
+      });
+  });
+</script>
+
+<!-- script to show email templates -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function email_template(){
+          $.ajax({
+            url:'{{route('emailTemplates')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_template').on('click',function(){
+        email_template();
+      });
+  });
+</script>
+
+{{-- script to show sms messages  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function smsMessage(){
+          $.ajax({
+            url:'{{route('smsMessages')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#sms_message').on('click',function(){
+          smsMessage();
+      });
+  });
+</script>
+@endsection

@@ -20,13 +20,9 @@ Route::post('login', 'Auth\LoginController@login');
 
 
 
-    Route::get('/home', function () {
-        return view('dashboard');
-    })->name('home');
 
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     
 
     Route::post('/viewUnapprovedQuestion', 'Admin\QuestionController@singleUnapprovedQuestion')->name('viewUnapprovedQuestion');
