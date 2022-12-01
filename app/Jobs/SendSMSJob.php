@@ -11,11 +11,13 @@ use Illuminate\Queue\SerializesModels;
 use App\Http\Traits\FetchUserDataTrait;
 use Illuminate\Http\Request;
 use App\Models\Smsmessage;
+use App\Models\NotificationCount;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 class SendSMSJob implements ShouldQueue
 {
@@ -86,6 +88,18 @@ class SendSMSJob implements ShouldQueue
                         $response = $client->get($url1, [
                     
                         ]);
+                        // update sms count
+                        $sms_count = NotificationCount::whereDate('created_at', Carbon::today())->first();
+                        if($sms_count == null){
+                            // create new
+                            $newSMS = new NotificationCount();
+                            $newSMS->sms_count =  1;
+                            $newSMS->save();
+                        }else{
+                            // update count value
+                            $sms_count->sms_count = $sms_count->sms_count +1;
+                            $sms_count->save();
+                        }
                         // echo $url1;
                         echo $response->getBody();
                         

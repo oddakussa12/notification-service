@@ -16,6 +16,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
+use Carbon\Carbon;
+use App\Models\NotificationCount;
 
 use Illuminate\Support\Facades\Log;
 
@@ -43,12 +45,12 @@ class SendEmailJob implements ShouldQueue
 
     public function handle()
     {
-        Log::info("Send email job handle method");
+        // Log::info("Send email job handle method");
 
         ConfigureEmailAccount::setMailConfig($this->email['account_name']);
         $template = NotificationTemplate::where('templateId', $this->email['template_id'])->first();
 
-        Log::info($template);
+        // Log::info($template);
 
         if($this->is_for_all == "true"){
             $user_data = $this->fetchUserDataForAll();
@@ -67,8 +69,8 @@ class SendEmailJob implements ShouldQueue
                 $user->email = $hasura_user['email'];
                 $user->id = $hasura_user['id'];
 
-                Log::info("Thisis the user");
-                Log::info($user);
+                // Log::info("Thisis the user");
+                // Log::info($user);
                 
                 Notification::sendNow($user, new UserSignupNotification(
                     $this->email['data'],
@@ -78,7 +80,19 @@ class SendEmailJob implements ShouldQueue
                     $this->email['buttons'],
                 ));
 
-                Log::info("noti sent");
+                // Log::info("noti sent");
+                // update email count
+                $email_count = NotificationCount::whereDate('created_at', Carbon::today())->first();
+                if($email_count == null){
+                    // create new
+                    $newEmail = new NotificationCount();
+                    $newEmail->email_count =  1;
+                    $newEmail->save();
+                }else{
+                    // update count value
+                    $email_count->email_count = $email_count->email_count +1;
+                    $email_count->save();
+                }
             }
         }catch(Exception $e){
 

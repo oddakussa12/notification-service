@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
       <div class="card card-statistics">
-        <div class="card-body" style="background-color:coral;border-radius:4px;color:white; cursor: pointer;">
+        <div class="card-body admin_users_list" style="background-color:coral;border-radius:4px;color:white; cursor: pointer;">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
               <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
@@ -101,7 +101,7 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total Customers</p> -->
               <div class="fluid-container">
-                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$users}}</h1>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$todayEmailCount}}</h1>
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Active customers</p> -->
               <div class="fluid-container" >
-                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$emailAccounts}}</h1>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$monthEmailCount}}</h1>
               </div>
             </div>
           </div>
@@ -143,7 +143,7 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Disabled customers</p> -->
               <div class="fluid-container">
-                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$notificationTemplate}}</h1>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$todaySMSCount}}</h1>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total groups</p> -->
               <div class="fluid-container">
-                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$smsMessages}}</h1>
+                <h1 style="font-size: 60px;" class="font-weight-medium text-right mb-0">{{$monthSMSCount}}</h1>
               </div>
             </div>
           </div>

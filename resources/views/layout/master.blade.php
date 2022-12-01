@@ -136,5 +136,32 @@
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
   <!-- script for the ck editor -->
   <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+
+  <!-- script to show email accounts -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function fetchAdmins(){
+          $.ajax({
+            url:'{{route('adminUsers')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('.admin_users_list').on('click',function(){
+          fetchAdmins();
+      });
+  });
+</script>
 </body>
 </html>

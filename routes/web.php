@@ -37,6 +37,12 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
     Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
+    Route::get('/adminUsers', 'UserController@index')->name('adminUsers');
+
+    // Admin users CRUD
+    Route::post('/admin-user-create', 'EmailAccountController@store')->name('adminUsers.store');
+    Route::POST('/admin-user-update', 'EmailAccountController@update')->name('adminUsers.update');
+    Route::delete('/admin-user-delete', 'EmailAccountController@destroy')->name('adminUsers.delete');
 
     // Email account CRUD
     Route::post('/email-account-create', 'EmailAccountController@store')->name('emailAccount.store');

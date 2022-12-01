@@ -21,6 +21,10 @@
         <a href="#" class="nav-link">
           <i class="mdi mdi-bullhorn"></i>Send notification</a>
       </li>
+      <li class="nav-item d-none d-md-flex admin_users_list">
+        <a href="#" class="nav-link">
+          <i class="mdi mdi-account-key"></i>Admins</a>
+      </li>
       {{-- <li class="nav-item dropdown d-none d-lg-flex">
         <a class="nav-link dropdown-toggle px-0" id="quickDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Quick Links </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown pt-3" aria-labelledby="quickDropdown">
