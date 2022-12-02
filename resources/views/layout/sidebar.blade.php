@@ -6,7 +6,7 @@
       <div class="nav-link">
         <div class="user-wrapper">
           <div class="profile-image">
-            <img src="https://lh3.googleusercontent.com/a-/AOh14Ggu4BP4WamHdFcVsrDCWWQjY2iq2NKQqmV4e-ovxA=s96-c-rg-br100" >
+            <img src="{{ asset('/odda-pic.gif') }}" alt="pp" /> </a>
           </div>
           <div class="text-wrapper">
             <p class="profile-name">Odda Kussa</p>
@@ -42,7 +42,7 @@
       </div>
     </li>
     <li id="dash" class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link">
+      <a class="nav-link" href="{{ url('/') }}">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
@@ -53,7 +53,7 @@
         <span class="menu-title">Email accounts</span>
       </a>
     </li>
-    <li id="email_templates" class="nav-item {{ active_class(['/']) }}">
+    <li id="email_templatess" class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-email-outline"></i>
         <span class="menu-title">Email templates</span>
@@ -61,7 +61,7 @@
     </li>
     <li id="sms_messages" class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-cellphone-android"></i>
+        <i class="menu-icon mdi mdi-message-reply-text"></i>
         <span class="menu-title">SMS Messages</span>
       </a>
     </li>
@@ -71,82 +71,7 @@
         <span class="menu-title">Schedules</span>
       </a>
     </li>
-    
-    {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
-      <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
-        <i class="menu-icon mdi mdi-account-multiple-plus"></i>
-        <span class="menu-title">Customers</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-ui">
-        <ul class="nav flex-column sub-menu">
-          <li id="customers"  class="nav-item {{ active_class(['basic-ui/buttons']) }}">
-            <a class="nav-link">Active customers</a>
-          </li>
-          <li id="disabledCustomers" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link">Disabled customers</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
-      <a class="nav-link" data-toggle="collapse" href="#basic-uii" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
-        <i class="menu-icon mdi mdi-alert-octagon"></i>
-        <span class="menu-title">User Reports</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-uii">
-        <ul class="nav flex-column sub-menu">
-          <li id="customers"  class="nav-item {{ active_class(['basic-ui/buttons']) }}">
-            <a class="nav-link">Bad answer reports</a>
-          </li>
-          <li id="disabledCustomers" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link">Bad reply reports</a>
-          </li>
-        </ul>
-      </div>
-    </li>
 
-    <li class="nav-item {{ active_class(['basic-ui/*']) }}">
-      <a class="nav-link" data-toggle="collapse" href="#basic-questions" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
-        <i class="menu-icon mdi mdi-comment-question-outline"></i>
-        <span class="menu-title">Questions</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse {{ show_class(['basic-ui/*']) }}" id="basic-questions">
-        <ul class="nav flex-column sub-menu">
-          <li id="unapproved" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link">Unapproved questions</a>
-          </li>
-          <li id="approved" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link">Approved questions</a>
-          </li>
-          <li id="rejected" class="nav-item {{ active_class(['basic-ui/dropdowns']) }}">
-            <a class="nav-link">Rejected questions</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-
-    
-    <li id="tagscategories" class="nav-item">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-folder-outline"></i>
-        <span class="menu-title">Tags and categories</span>
-      </a>
-    </li>
-    <li id="blogs" class="nav-item">
-      <a class="nav-link">
-        <i class="menu-icon mdi mdi-alphabetical"></i>
-        <span class="menu-title">Blogs</span>
-      </a>
-    </li> --}}
-
-
-
-
-
-    
     {{-- <li class="nav-item {{ active_class(['basic-ui/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui" aria-expanded="{{ is_active_route(['basic-ui/*']) }}" aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
@@ -214,223 +139,4 @@
     </li>   --}}
   </ul>
 </nav>
-
-
-@section('js')
-
-<!-- script to show email templates -->
-<script>
-  $(document).ready(function(){
-      var token = $('input[name="_token"]').val();
-      function email_templates(){
-          $.ajax({
-            url:'{{route('emailTemplates')}}',
-              cache:false,
-              method:'GET',
-              beforeSend: function()
-              {  
-                  $("#loading-overlay").show();
-              },
-              success:function(data){
-                  $('#odda').empty();
-                  $('#odda').append(data);
-                  $("#loading-overlay").hide();
-              }
-          });
-      }
-
-      $('#email_templates').on('click',function(){
-        email_templates();
-      });
-  });
-</script>
-
-<!-- script to show email accounts -->
-<script>
-  $(document).ready(function(){
-      var token = $('input[name="_token"]').val();
-      function emailAccounts(){
-          $.ajax({
-            url:'{{route('emailAccounts')}}',
-              cache:false,
-              method:'GET',
-              beforeSend: function()
-              {  
-                  $("#loading-overlay").show();
-              },
-              success:function(data){
-                  $('#odda').empty();
-                  $('#odda').append(data);
-                  $("#loading-overlay").hide();
-              }
-          });
-      }
-
-      $('#email_accounts').on('click',function(){
-          emailAccounts();
-      });
-  });
-</script>
-
-{{-- sms messages  --}}
-<script>
-  $(document).ready(function(){
-      var token = $('input[name="_token"]').val();
-      function smsMessages(){
-          $.ajax({
-            url:'{{route('smsMessages')}}',
-              cache:false,
-              method:'GET',
-              beforeSend: function()
-              {  
-                  $("#loading-overlay").show();
-              },
-              success:function(data){
-                  $('#odda').empty();
-                  $('#odda').append(data);
-                  $("#loading-overlay").hide();
-              }
-          });
-      }
-
-      $('#sms_messages').on('click',function(){
-          smsMessages();
-      });
-  });
-</script>
-
-
-<!-- script to show unapproved questions -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function unapprovedQuestions(){
-            $.ajax({
-              url:'{{route('unapprovedQuestions')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#unapproved').on('click',function(){
-            unapprovedQuestions();
-        });
-    });
-</script>
-<!-- script to show approved questions -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function approvedQuestions(){
-            $.ajax({
-              url:'{{route('approvedQuestions')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#approved').on('click',function(){
-            approvedQuestions();
-        });
-    });
-</script>
-<!-- script to show rejected questions -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function rejectedQuestions(){
-            $.ajax({
-              url:'{{route('rejectedQuestions')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#rejected').on('click',function(){
-            rejectedQuestions();
-        });
-    });
-</script>
-<!-- script to show categories and tags page -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displyTagsCategories(){
-            $.ajax({
-              url:'{{route('categorytag')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#tagscategories').on('click',function(){
-            displyTagsCategories();
-        });
-    });
-</script>
-
-<!-- script to show blogs page -->
-<script>
-    $(document).ready(function(){
-        var token = $('input[name="_token"]').val();
-        function displyBlogs(){
-            $.ajax({
-              url:'{{route('blogs')}}',
-                cache:false,
-                method:'GET',
-                beforeSend: function()
-                {  
-                    $("#loading-overlay").show();
-                },
-                success:function(data){
-                    $('#odda').empty();
-                    $('#odda').append(data);
-                    $("#loading-overlay").hide();
-                }
-            });
-        }
-
-        $('#blogs').on('click',function(){
-            displyBlogs();
-        });
-    });
-</script>
-
-@endsection
 

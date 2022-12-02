@@ -3,8 +3,6 @@
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="{{ url('/') }}">
       <img src="{{ asset('/logo.webp') }}" alt="logo" /> </a>
-      {{-- <link rel="shortcut icon" href="{{ asset('/logo.webp') }}">
-      <img src="https://lmis.gov.et/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0cc17353.png&w=256&q=75" alt="logo" /> </a> --}}
     <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
       <img src="{{ asset('/favicon.jpg') }}" alt="logo" /> </a>
   </div>

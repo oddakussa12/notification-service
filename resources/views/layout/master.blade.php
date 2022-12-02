@@ -137,7 +137,7 @@
   <!-- script for the ck editor -->
   <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 
-  <!-- script to show email accounts -->
+  <!-- script to show ADMIN users -->
 <script>
   $(document).ready(function(){
       var token = $('input[name="_token"]').val();
@@ -160,6 +160,87 @@
 
       $('.admin_users_list').on('click',function(){
           fetchAdmins();
+      });
+  });
+</script>
+
+<!-- script to show email templates -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function email_templatesss(){
+          $.ajax({
+            url:'{{route('emailTemplates')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_templatess').on('click',function(){
+        console.log("What");
+        email_templatesss();
+      });
+  });
+</script>
+<!-- script to show email accounts -->
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function emailAccounts(){
+          $.ajax({
+            url:'{{route('emailAccounts')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#email_accounts').on('click',function(){
+          emailAccounts();
+      });
+  });
+</script>
+
+{{-- sms messages  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function smsMessages(){
+          $.ajax({
+            url:'{{route('smsMessages')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#sms_messages').on('click',function(){
+          smsMessages();
       });
   });
 </script>

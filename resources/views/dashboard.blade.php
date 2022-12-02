@@ -11,7 +11,7 @@
         <div class="card-body admin_users_list" style="background-color:coral;border-radius:4px;color:white; cursor: pointer;">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-account-key text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total Customers</p> -->
@@ -32,7 +32,7 @@
         <div class="card-body" style="background-color: yellowgreen;border-radius:4px;color:white; cursor: pointer;" id="email_account">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-email-lock text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Active customers</p> -->
@@ -53,7 +53,7 @@
         <div class="card-body" style="background-color:cornflowerblue;border-radius:4px;color:white; cursor: pointer;" id="email_template">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-email text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Disabled customers</p> -->
@@ -74,7 +74,7 @@
         <div class="card-body" style="background-color:blueviolet;border-radius:4px;color:white; cursor: pointer;" id="sms_message">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-message-reply-text text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total groups</p> -->
@@ -96,7 +96,7 @@
         <div class="card-body" style="background-color:orchid;border-radius:4px;color:white; cursor: pointer;">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-send text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total Customers</p> -->
@@ -106,7 +106,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
-            <!-- <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> -->
+            <i class="mdi mdi-email-open-outline mr-1" aria-hidden="true"></i>
             Email sent today
           </p>
         </div>
@@ -117,7 +117,7 @@
         <div class="card-body" style="background-color:orchid;border-radius:4px;color:white; cursor: pointer;" id="email_account">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-send text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Active customers</p> -->
@@ -128,7 +128,7 @@
           </div>
           <p class="mt-3 mb-0 text-left text-md-center text-xl-left" 
              style="color:white; font-size:18px;">
-            {{-- <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> --}}
+            <i class="mdi mdi-email-open-outline mr-1" aria-hidden="true"></i>
             Email sent last month </p>
         </div>
       </div>
@@ -138,7 +138,7 @@
         <div class="card-body" style="background-color:lightseagreen;border-radius:4px;color:white; cursor: pointer;" id="email_template">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-send text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Disabled customers</p> -->
@@ -148,7 +148,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
-            <!-- <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>  -->
+            <i class="mdi mdi-message-text-outline mr-1" aria-hidden="true"></i>
             SMS sent today
           </p>
         </div>
@@ -159,7 +159,7 @@
         <div class="card-body" style="background-color:lightseagreen;border-radius:4px;color:white; cursor: pointer;" id="sms_message">
           <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
             <div class="float-left">
-              <i class="mdi mdi-account-box-multiple text-info icon-lg"></i>
+              <i class="mdi mdi-send text-white icon-lg"></i>
             </div>
             <div class="float-right">
               <!-- <p class="mb-0 text-right">Total groups</p> -->
@@ -169,7 +169,7 @@
             </div>
           </div>
           <p class="mt-3 mb-0 text-left text-md-center text-xl-left" style="color:white; font-size:18px;">
-            <!-- <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> -->
+            <i class="mdi mdi-message-text-outline mr-1" aria-hidden="true"></i>
              SMS sent last month </p>
         </div>
       </div>
@@ -654,7 +654,7 @@
 @endpush
 
 @section('js')
-<!-- script to show email accounts -->
+{{-- script to show email accounts  --}}
 <script>
   $(document).ready(function(){
       var token = $('input[name="_token"]').val();
@@ -681,7 +681,7 @@
   });
 </script>
 
-<!-- script to show email templates -->
+{{-- script to show email templates --}}
 <script>
   $(document).ready(function(){
       var token = $('input[name="_token"]').val();

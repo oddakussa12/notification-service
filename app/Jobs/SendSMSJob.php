@@ -81,25 +81,30 @@ class SendSMSJob implements ShouldQueue
 
                             $message_to_be_sent = str_replace("$search_by", $replace_value, $message_to_be_sent);
                         }   
+
                         // $url1 = "https://kitkat.lmis.gov.et/cgi-bin/sendsms?username=lmissmsgatewayuser01&password=!QAZxsw2&coding=2&charset=utf-8&to={$hasura_user['phoneNumber']}&text={$this->SMS['message']}";
                         $url1 = "https://kitkat.lmis.gov.et/cgi-bin/sendsms?username=lmissmsgatewayuser01&password=!QAZxsw2&coding=2&charset=utf-8&to={$hasura_user['phoneNumber']}&text={$message_to_be_sent}";
 
-                        $url1 = preg_replace("/ /", "%20", $url1); 
-                        $response = $client->get($url1, [
-                    
-                        ]);
                         // update sms count
                         $sms_count = NotificationCount::whereDate('created_at', Carbon::today())->first();
                         if($sms_count == null){
+                            Log::info("theer is no notification count created today");
                             // create new
                             $newSMS = new NotificationCount();
                             $newSMS->sms_count =  1;
                             $newSMS->save();
                         }else{
+                            Log::info("theer is no notification count created today");
                             // update count value
                             $sms_count->sms_count = $sms_count->sms_count +1;
                             $sms_count->save();
                         }
+                        
+                        $url1 = preg_replace("/ /", "%20", $url1); 
+                        $response = $client->get($url1, [
+                    
+                        ]);
+                        
                         // echo $url1;
                         echo $response->getBody();
                         
