@@ -15,7 +15,7 @@
         <a target="_blank" href="{{ url('horizon/dashboard') }}" class="nav-link">
           <i class="mdi mdi-elevation-rise"></i>Horizon</a>
       </li>
-      <li class="nav-item d-none d-md-flex">
+      <li class="nav-item d-none d-md-flex" id="admin_send_notification">
         <a href="#" class="nav-link">
           <i class="mdi mdi-bullhorn"></i>Send notification</a>
       </li>

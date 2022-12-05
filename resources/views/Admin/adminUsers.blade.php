@@ -14,7 +14,7 @@
               <button type="button" class="btn btn-inverse-primary btn-fw" id="addEmailTemplate">Add admin</button>
               </div>
         </div>
-        <!-- <div class="table-responsive table-condensed"> -->
+        <div class="table-responsive table-condensed">
           <table class="table table-hover">
             <thead>
               <tr>
@@ -40,7 +40,7 @@
                 @endforeach
             </tbody>
           </table>
-        <!-- </div> -->
+        </div>
       </div>
     </div>
 </div>

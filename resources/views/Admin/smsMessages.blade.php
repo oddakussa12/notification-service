@@ -16,7 +16,7 @@
               <button type="button" class="btn btn-inverse-primary btn-fw" id="addsmsmessage">Add New</button>
               </div>
         </div>
-        <!-- <div class="table-responsive table-condensed"> -->
+        <div class="table-responsive table-condensed">
           <table class="table table-hover">
             <thead>
               <tr class="table-primary">
@@ -74,7 +74,7 @@
 
             </tbody>
           </table>
-        <!-- </div> -->
+        </div>
       </div>
     </div>
 </div>

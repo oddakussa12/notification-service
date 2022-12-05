@@ -38,6 +38,7 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
     Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
     Route::get('/adminUsers', 'UserController@index')->name('adminUsers');
+    Route::get('/send-notification', 'Admin\NotificationController@index')->name('send-notification');
 
     // Admin users CRUD
     Route::post('/admin-user-create', 'EmailAccountController@store')->name('adminUsers.store');

@@ -45,17 +45,17 @@ class NotificationController extends Controller
             }
         }
 
-        // if($request->push){
-        //     $validator = Validator::make($request->all(), [
-        //         "users" => "required"
-        //     ]);
+        if($request->push){
+            $validator = Validator::make($request->all(), [
+                "users" => "required"
+            ]);
 
-        //     if ($validator->passes()) {
-        //         SendPushNotificationJob::dispatch($request);
-        //     } else {
-        //         return response()->json(['errors' => $validator->errors()]);
-        //     }
-        // }
+            if ($validator->passes()) {
+                SendPushNotificationJob::dispatch($request);
+            } else {
+                return response()->json(['errors' => $validator->errors()]);
+            }
+        }
 
         return response()->json(['message' => "Notififcation has been sent", 'status_code' => 200]);
     }

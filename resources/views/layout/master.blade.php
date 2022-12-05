@@ -244,5 +244,33 @@
       });
   });
 </script>
+
+{{-- admin send notification  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function adminSendNoti(){
+          $.ajax({
+            url:'{{route('send-notification')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#admin_send_notification').on('click',function(){
+          adminSendNoti();
+      });
+  });
+</script>
+
 </body>
 </html>
