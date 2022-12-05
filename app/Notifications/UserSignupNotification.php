@@ -49,11 +49,7 @@ class UserSignupNotification extends Notification implements ShouldQueue
     
     public function toMail($notifiable)
     {
-        Log::info("to mail");
-        Log::info($this->template);
         Log::info($this->notificationData);
-        Log::info($this->buttons);
-        Log::info($this->subject);
 
         try{
             return (new MailMessage)
@@ -66,7 +62,6 @@ class UserSignupNotification extends Notification implements ShouldQueue
             ));
         }catch(Exception $e){
             Log::error($e);
-            Log::info("This is the error");
         }
 
         

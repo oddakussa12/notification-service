@@ -40,6 +40,7 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/adminUsers', 'UserController@index')->name('adminUsers');
     Route::get('/send-notification', 'Admin\NotificationController@index')->name('send-notification');
 
+    Route::post('/admin-user-send-noti', 'Admin\NotificationController@sendNotification')->name('admin-user-send-noti.store');
     // Admin users CRUD
     Route::post('/admin-user-create', 'EmailAccountController@store')->name('adminUsers.store');
     Route::POST('/admin-user-update', 'EmailAccountController@update')->name('adminUsers.update');
