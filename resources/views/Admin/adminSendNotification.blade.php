@@ -13,6 +13,7 @@
     <div class="col-sm-12">
         <span id="admin_send_noti_form_result"></span>
         <form id="admin_send_noti_form" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
@@ -21,17 +22,28 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <small for="account_name">Email subject</small>
-                                    <input type = "text" name="subject" class="form-control"
+                                    <input type = "text" name="email_subject" class="form-control"
                                      style="margin-top:5px;border-radius:5px;padding:5px; height:40px;"placeholder="Email subject..."/>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px;"
-                                        name="template_id">
+                                        name="email_template_id">
                                         <option selected disabled>Select email template</option>
                                         @foreach($emailTemplates as $template)
                                             <option value="{{$template->templateId}}">{{$template->templateId}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px;"
+                                        name="email_account">
+                                        <option selected disabled>Select email account</option>
+                                        @foreach($emailAccounts as $emailAccount)
+                                            <option value="{{$emailAccount->ACCOUNT_NAME}}">{{$emailAccount->ACCOUNT_NAME}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -46,7 +58,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <select class="form-control" style="height:40px; padding:5px;border-radius:5px;margin-top:5px;"
-                                        name="template_id">
+                                        name="message_id">
                                         <option selected disabled>Select SMS template</option>
                                         @foreach($messages as $message)
                                             <option value="{{$message->id}}">{{$message->title}}</option>
@@ -57,29 +69,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 grid-margin stretch-card text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" id="adminSendNotiBtn" class="btn-lg btn btn-primary btn-fw" 
+                            style="width:200px;font-size:24px;" value="Send">
+                                SEND
+                                <i class="mdi mdi mdi-send"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="row text-center">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <button type="submit" id="adminSendNotiBtn" class="btn-lg btn btn-primary btn-fw" 
-                style="width:200px;font-size:24px;" value="Send">
-                    SEND
-                    <i class="mdi mdi mdi-send"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- script to create new email account -->
+<!-- script to send notification by admin user-->
 <script>
     $(document).ready(function(){
         $('#admin_send_noti_form').on('submit', function(event){
+            console.log("You are here");
           event.preventDefault();
           if($('#adminSendNotiBtn').val() == 'Send'){
               $.ajax({
@@ -106,24 +117,12 @@
                         // render error or success message in html variable to span element with id value form_result
                         $('#admin_send_noti_form_result').html(html);
                     }
-                    if(data.success){
-                        setTimeout(function() { odda(); }, 500);
-                        function odda(){
-                            $.ajax({
-                                url:'{{route('send-notification')}}',
-                                cache: false,
-                                type:'GET',
-                                beforeSend: function()
-                                {  
-                                    $("#loading-overlay").show();
-                                },
-                                success:function(data){
-                                    $("#odda").html(data);
-                                    $("#loading-overlay").hide();
-                                }
-                            });
-                        }
-                    }
+                   
+                    html = '<div class = "alert alert-success alert-block">'
+                        + "Notification has been sent."+ '<button type="button" class="close" data-dismiss="alert">x</button</div>';
+
+                    $('#admin_send_noti_form_result').html(html);
+                    $('#adminSendNotiBtn').html('Send'); 
                 },
               })
             }

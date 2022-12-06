@@ -38,6 +38,7 @@ trait FetchUserDataTrait {
                 phoneNumber
                 email
                 name
+                language
             }
         }
         GQL;
