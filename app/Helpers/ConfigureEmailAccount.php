@@ -9,10 +9,7 @@ class ConfigureEmailAccount
 {
 
     public static function setMailConfig($account_name){
-        Log::info("Configuring email account");
         $emailAccount = EmailAccount::where('ACCOUNT_NAME',$account_name)->first();
-        Log::info("email account");
-        Log::info($emailAccount);
         $mailConfig = [
             'transport' => 'smtp',
             'host' => $emailAccount->MAIL_HOST,

@@ -3,16 +3,14 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use App\Jobs\SendEmailAdminJob;
-use App\Jobs\SendSMSJobAdmin;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
 
     protected $commands = [
-        Commands\SendNotification::class,
         Commands\SendSMS::class,
+        Commands\SendEmail::class,
     ];
 
    

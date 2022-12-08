@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Jobs\SendSMSJobAdmin;
 use App\Jobs\SendSmsScheduleJob;
 
 class SendSMS extends Command
@@ -15,8 +14,7 @@ class SendSMS extends Command
 
     public function handle()
     {
-        // return Command::SUCCESS;
-        $this->info('SMS message id is:' . $this->argument('message_id'));
+        // $this->info('SMS message id is:' . $this->argument('message_id'));
         SendSmsScheduleJob::dispatch($this->argument('message_id'));
         return 0;
     }

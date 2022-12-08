@@ -23,7 +23,7 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\NotificationCount;
 
-class SendEmailAdminJob implements ShouldQueue
+class SendEmailScheduleJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, FetchUserDataTrait;
 
@@ -31,11 +31,11 @@ class SendEmailAdminJob implements ShouldQueue
     private $template_id;
     private $email_account;
    
-    public function __construct(Request $request)
+    public function __construct($email_subject, $email_template_id, $email_account)
     {
-        $this->subject = $request->email_subject;
-        $this->template_id = $request->email_template_id;
-        $this->email_account = $request->email_account;
+        $this->subject = $email_subject;
+        $this->template_id = $email_template_id;
+        $this->email_account = $email_account;
     }
 
     public function handle()
@@ -48,7 +48,7 @@ class SendEmailAdminJob implements ShouldQueue
         try{
             foreach($user_data['data']['user'] as $hasura_user) {
                 if($hasura_user['email'] == null){
-                    Log::error("User email is missing for user id {$hasura_user['id']} from service {$this->service_name}");
+                    Log::error("User email is missing for user id {$hasura_user['id']}");
                     continue;
                 }
                 $user = new User();
@@ -60,8 +60,6 @@ class SendEmailAdminJob implements ShouldQueue
                     $this->subject
                 ));
 
-                // Log::info("noti sent");
-                // update email count
                 $email_count = NotificationCount::whereDate('created_at', Carbon::today())->first();
                 if($email_count == null){
                     // create new
