@@ -28,10 +28,6 @@ class AdminEmailNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable)
     {
-        // return (new MailMessage)
-        //             ->line('The introduction to the notification.')
-        //             ->action('Notification Action', url('/'))
-        //             ->line('Thank you for using our application!');
         try{
             return (new MailMessage)
             ->subject($this->subject)

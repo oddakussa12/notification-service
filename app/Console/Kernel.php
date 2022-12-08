@@ -3,36 +3,35 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\SendEmailAdminJob;
+use App\Jobs\SendSMSJobAdmin;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
+    // private $time;
+
+    // public function __construct($time)
+    // {
+    //     $this->time = $time;
+    // }
+
     protected $commands = [
-        //
+        Commands\SendNotification::class,
     ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
+   
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // $schedule->command('send:notification')
+        //         ->everyMinute();
+        $schedule->job(new SendSMSJobAdmin)->everyMinute();
+
+        // $schedule->call(function () {
+        //     //
+        // })->weekly()->mondays()->at('13:00');
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');

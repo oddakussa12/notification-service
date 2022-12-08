@@ -27,8 +27,6 @@ class NotificationController extends Controller
                 "email_account" => "required",
                 "email_template_id" => "required"
             ]);
-
-
              if ($validator->passes()) {
                 SendEmailAdminJob::dispatch($request);
              } else {

@@ -2,7 +2,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h6 class="display-4 text-primary">Send notifications</h6>
+                <h6 class="display-4 text-primary">Broadcast notifications</h6>
             
             </div>
         </div>
@@ -21,29 +21,34 @@
                             <h4 class="card-title text-primary">Email notification</h4>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <small for="account_name">Email subject</small>
+                                    <small for="account_name" style="font-size: 16px;">Email subject</small>
                                     <input type = "text" name="email_subject" class="form-control"
-                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px;"placeholder="Email subject..."/>
+                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px; font-size:16px;"
+                                     placeholder="Email subject..."/>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top:30px;">
                                 <div class="col-sm-12">
-                                    <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px;"
+                                    <small for="account_name" style="font-size: 16px;">Email template</small>
+                                    <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px; font-size:16px;"
                                         name="email_template_id">
                                         <option selected disabled>Select email template</option>
                                         @foreach($emailTemplates as $template)
-                                            <option value="{{$template->templateId}}">{{$template->templateId}}</option>
+                                            <option value="{{$template->templateId}}" style="font-size: 16px;">
+                                                {{$template->templateId}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top:30px;">
                                 <div class="col-sm-12">
-                                    <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px;"
+                                    <small for="account_name" style="font-size: 16px;">Email account</small>
+                                    <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;height:40px; font-size:16px;"
                                         name="email_account">
                                         <option selected disabled>Select email account</option>
                                         @foreach($emailAccounts as $emailAccount)
-                                            <option value="{{$emailAccount->ACCOUNT_NAME}}">{{$emailAccount->ACCOUNT_NAME}}</option>
+                                            <option value="{{$emailAccount->ACCOUNT_NAME}}"  style="font-size: 16px;">
+                                                {{$emailAccount->MAIL_USERNAME}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -57,11 +62,12 @@
                             <h4 class="card-title text-primary">SMS notification</h4>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <select class="form-control" style="height:40px; padding:5px;border-radius:5px;margin-top:5px;"
+                                    <small for="account_name" style="font-size: 16px;">SMS template</small>
+                                    <select class="form-control" style="height:40px; padding:5px;border-radius:5px;margin-top:5px;font-size:16px;"
                                         name="message_id">
                                         <option selected disabled>Select SMS template</option>
                                         @foreach($messages as $message)
-                                            <option value="{{$message->id}}">{{$message->title}}</option>
+                                            <option value="{{$message->id}}" style="font-size: 16px;">{{$message->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
