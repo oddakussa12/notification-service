@@ -9,15 +9,10 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    // private $time;
-
-    // public function __construct($time)
-    // {
-    //     $this->time = $time;
-    // }
 
     protected $commands = [
         Commands\SendNotification::class,
+        Commands\SendSMS::class,
     ];
 
    
@@ -25,7 +20,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('send:notification')
         //         ->everyMinute();
-        $schedule->job(new SendSMSJobAdmin)->everyMinute();
+        // $schedule->command('send:sms');
+        // ->everyMinute();
+        // $schedule->job(new SendSMSJobAdmin)->everyMinute();
 
         // $schedule->call(function () {
         //     //

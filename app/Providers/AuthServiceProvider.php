@@ -27,4 +27,13 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
+
+    // protected function gate()
+    // {
+    //     Gate::define('viewDatabaseSchedule', function ($user) {
+    //         return in_array($user->email, [
+    //             'odda@lmis.gov.et',
+    //         ]);
+    //     });
+    // }
 }
