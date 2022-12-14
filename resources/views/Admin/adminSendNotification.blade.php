@@ -75,6 +75,50 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">InApp notification</h4>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <small style="font-size: 16px;">Notification subject</small>
+                                    <input type = "text" name="inapp_subject" class="form-control"
+                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px; font-size:16px;"
+                                     placeholder="Notification subject..."/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <small style="font-size: 16px;">Notification body</small>
+                                    <input type = "text" name="inapp_body" class="form-control"
+                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px; font-size:16px;"
+                                     placeholder="Notification body..."/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">Push notification</h4>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <small for="account_name" style="font-size: 16px;">SMS template</small>
+                                    <select class="form-control" style="height:40px; padding:5px;border-radius:5px;margin-top:5px;font-size:16px;"
+                                        name="message_id">
+                                        <option selected disabled>Select SMS template</option>
+                                        @foreach($messages as $message)
+                                            <option value="{{$message->id}}" style="font-size: 16px;">{{$message->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-12 grid-margin stretch-card text-center">
                     <div class="card">
                         <div class="card-body">
