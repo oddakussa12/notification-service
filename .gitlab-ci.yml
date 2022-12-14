@@ -44,5 +44,5 @@ build-job-develop:
     - docker-compose -f docker-compose.yml build --no-cache
     - docker-compose down     
     - docker-compose -f docker-compose.yml up -d  
-    - docker build -t registry.gitlab.com/project-lmis-et/backend-dev/notification-service -f notification-service.containerfile .
-    - docker push registry.gitlab.com/project-lmis-et/backend-dev/notification-service
+    # - docker build -t registry.gitlab.com/project-lmis-et/backend-dev/notification-service -f notification-service.containerfile .
+    # - docker push registry.gitlab.com/project-lmis-et/backend-dev/notification-service
