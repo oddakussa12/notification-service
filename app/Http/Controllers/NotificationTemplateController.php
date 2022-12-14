@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NotificationTemplate;
+use App\Models\Emaillanguage;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -40,6 +41,14 @@ class NotificationTemplateController extends Controller
         $email_template->email_account_id = $request->email_account_id;
 
         $email_template->save();
+
+        $language = new Emaillanguage();
+
+        $language->notification_template_id = $email_template->id;
+        $language->code = "EN";
+        $language->body = $request->data;
+        $language->save();
+
 
         if ($email_template->exists) {
             return response()->json(['success' => 'Email template created successfuly'], 200);

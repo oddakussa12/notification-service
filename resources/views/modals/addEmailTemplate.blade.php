@@ -24,7 +24,7 @@
                   <div class="form-group row">
                       <div class="col-sm-6">
                             <small>Is active?</small>
-                            <select class="form-control" style="padding:5px;border-radius:5px;margin-top:5px;"
+                            <select class="form-control" style="padding:5px;border-radius:5px;"
                                 name="is_active">
                                 <option selected value="1">Yes</option>
                                 <option value="0">No</option>
@@ -43,8 +43,8 @@
                   </div>
                   <div class="form-group row">
                       <div class="col-sm-12">
-                        <small>Template Data</small>
-                        <textarea class="form-control z-depth-1" name="data" style="padding:10px;font-size:14px;border-radius:4px;" rows="20" placeholder="Email template description here ..."></textarea>
+                        <small>Email body in English</small>
+                        <textarea class="form-control z-depth-1" name="data" style="padding:10px;font-size:14px;border-radius:4px;" rows="20" placeholder="Email body in english"></textarea>
                       </div>
                   </div>
               </div>

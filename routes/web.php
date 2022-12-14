@@ -68,6 +68,11 @@ Route::post('login', 'Auth\LoginController@login');
     Route::POST('/sms-message-language-update', 'LanguageController@update')->name('SMSmessageLanguage.update');
     Route::delete('/sms-message-language-delete', 'LanguageController@destroy')->name('SMSmessageLanguage.delete');
 
+    //Email language CRUD
+    Route::POST('/email-language-create', 'EmaillanguageController@store')->name('emailLanguageCreate.store');
+    Route::POST('/email-language-update', 'EmaillanguageController@update')->name('emailLanguage.update');
+    Route::delete('/email-language-delete', 'EmaillanguageController@destroy')->name('emailLanguage.delete');
+
 
 
     

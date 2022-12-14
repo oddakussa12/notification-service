@@ -25,4 +25,8 @@ class NotificationTemplate extends Model
         return $this->belongsTo('App\Models\EmailAccount');
     }
 
+    public function emaillanguages(){
+        return $this->hasMany(Emaillanguage::class);
+    }
+
 }
