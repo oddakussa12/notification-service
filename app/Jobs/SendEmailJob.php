@@ -69,12 +69,20 @@ class SendEmailJob implements ShouldQueue
                 $user->email = $hasura_user['email'];
                 $user->id = $hasura_user['id'];
 
-                // Log::info("Thisis the user");
-                // Log::info($user);
+                // get user preference language
+                $userLanguage = $hasura_user['language'];
+
+                $emailLanguage = $template->emaillanguages()->where('code', $userLanguage)->first();
+
+                if($emailLanguage == null){
+                    // Log::info("This language is not defined in users prefered language");
+                    $emailLanguage = $template->emaillanguages()->where('code', 'EN')->first();
+                }
+
                 
                 Notification::sendNow($user, new UserSignupNotification(
                     $this->email['data'],
-                    $template->data,
+                    $emailLanguage->body,
                     $this->InAPP,
                     $this->email['subject'],
                     $this->email['buttons'],
