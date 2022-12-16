@@ -37,6 +37,7 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
     Route::get('/inAppNotifications', 'InappNotificationController@index')->name('inAppNotifications');
+    Route::get('/pushNotifications', 'PushNotificationController@index')->name('pushNotifications');
     Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
     Route::get('/adminUsers', 'UserController@index')->name('adminUsers');
     Route::get('/send-notification', 'Admin\NotificationController@index')->name('send-notification');
@@ -68,6 +69,10 @@ Route::post('login', 'Auth\LoginController@login');
     Route::POST('/inapp-notification-update', 'InappNotificationController@update')->name('inapp-notification.update');
     Route::delete('/inapp-notification-delete', 'InappNotificationController@destroy')->name('inapp-notification.delete');
 
+    Route::post('/push-notification-create', 'PushNotificationController@store')->name('push-notification.store');
+    Route::POST('/push-notification-update', 'PushNotificationController@update')->name('push-notification.update');
+    Route::delete('/push-notification-delete', 'PushNotificationController@destroy')->name('push-notification.delete');
+
     // SMS message language CRUD
     Route::post('/sms-message-language-create', 'LanguageController@store')->name('SMSmessageLanguage.store');
     Route::POST('/sms-message-language-update', 'LanguageController@update')->name('SMSmessageLanguage.update');
@@ -77,6 +82,10 @@ Route::post('login', 'Auth\LoginController@login');
     Route::post('/inapp-noti-language-create', 'InappLanguageController@store')->name('inAppLanguage.store');
     Route::POST('/inapp-noti-language-update', 'InappLanguageController@update')->name('inAppLanguage.update');
     Route::delete('/inapp-noti-language-delete', 'InappLanguageController@destroy')->name('inAppLanguage.delete');
+
+    Route::post('/push-noti-language-create', 'PushLanguageController@store')->name('pushLanguage.store');
+    Route::POST('/push-noti-language-update', 'PushLanguageController@update')->name('pushLanguage.update');
+    Route::delete('/push-noti-language-delete', 'PushLanguageController@destroy')->name('pushLanguage.delete');
 
     //Email language CRUD
     Route::POST('/email-language-create', 'EmaillanguageController@store')->name('emailLanguageCreate.store');

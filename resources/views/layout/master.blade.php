@@ -272,6 +272,33 @@
   });
 </script>
 
+{{-- Push notifications  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function pushNotifications(){
+          $.ajax({
+            url:'{{route('pushNotifications')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#push_notifications').on('click',function(){
+          pushNotifications();
+      });
+  });
+</script>
+
 {{-- admin send notification  --}}
 <script>
   $(document).ready(function(){

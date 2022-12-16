@@ -71,10 +71,10 @@
         <span class="menu-title">In-App Notifications</span>
       </a>
     </li>
-    <li id="sms_messages" class="nav-item {{ active_class(['/']) }}">
+    <li id="push_notifications" class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link">
-        <i class="menu-icon mdi mdi-camera-timer"></i>
-        <span class="menu-title">Schedules</span>
+        <i class="menu-icon mdi mdi-cellphone-android"></i>
+        <span class="menu-title">Push Notifications</span>
       </a>
     </li>
 
