@@ -65,6 +65,12 @@
         <span class="menu-title">SMS Messages</span>
       </a>
     </li>
+    <li id="inapp_notifications" class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-bell-ring"></i>
+        <span class="menu-title">In-App Notifications</span>
+      </a>
+    </li>
     <li id="sms_messages" class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link">
         <i class="menu-icon mdi mdi-camera-timer"></i>

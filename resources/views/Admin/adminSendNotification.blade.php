@@ -83,18 +83,14 @@
                             <h4 class="card-title text-primary">InApp notification</h4>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <small style="font-size: 16px;">Notification subject</small>
-                                    <input type = "text" name="inapp_subject" class="form-control"
-                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px; font-size:16px;"
-                                     placeholder="Notification subject..."/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <small style="font-size: 16px;">Notification body</small>
-                                    <input type = "text" name="inapp_body" class="form-control"
-                                     style="margin-top:5px;border-radius:5px;padding:5px; height:40px; font-size:16px;"
-                                     placeholder="Notification body..."/>
+                                    <small for="account_name" style="font-size: 16px;">InApp Notification</small>
+                                    <select class="form-control" style="height:40px; padding:5px;border-radius:5px;margin-top:5px;font-size:16px;"
+                                        name="inapp_noti_id">
+                                        <option selected disabled>Select notification...</option>
+                                        @foreach($inapp_notifications as $message)
+                                            <option value="{{$message->id}}" style="font-size: 16px;">{{$message->title}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

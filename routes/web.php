@@ -36,6 +36,7 @@ Route::post('login', 'Auth\LoginController@login');
 
     Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
+    Route::get('/inAppNotifications', 'InappNotificationController@index')->name('inAppNotifications');
     Route::get('/emailTemplates', 'NotificationTemplateController@index')->name('emailTemplates');
     Route::get('/adminUsers', 'UserController@index')->name('adminUsers');
     Route::get('/send-notification', 'Admin\NotificationController@index')->name('send-notification');
@@ -63,10 +64,19 @@ Route::post('login', 'Auth\LoginController@login');
     Route::POST('/sms-message-update', 'SmsmessageController@update')->name('SMSmessage.update');
     Route::delete('/sms-message-delete', 'SmsmessageController@destroy')->name('SMSmessage.delete');
 
+    Route::post('/inapp-notification-create', 'InappNotificationController@store')->name('inapp-notification.store');
+    Route::POST('/inapp-notification-update', 'InappNotificationController@update')->name('inapp-notification.update');
+    Route::delete('/inapp-notification-delete', 'InappNotificationController@destroy')->name('inapp-notification.delete');
+
     // SMS message language CRUD
     Route::post('/sms-message-language-create', 'LanguageController@store')->name('SMSmessageLanguage.store');
     Route::POST('/sms-message-language-update', 'LanguageController@update')->name('SMSmessageLanguage.update');
     Route::delete('/sms-message-language-delete', 'LanguageController@destroy')->name('SMSmessageLanguage.delete');
+
+    // In app notification language CRUD
+    Route::post('/inapp-noti-language-create', 'InappLanguageController@store')->name('inAppLanguage.store');
+    Route::POST('/inapp-noti-language-update', 'InappLanguageController@update')->name('inAppLanguage.update');
+    Route::delete('/inapp-noti-language-delete', 'InappLanguageController@destroy')->name('inAppLanguage.delete');
 
     //Email language CRUD
     Route::POST('/email-language-create', 'EmaillanguageController@store')->name('emailLanguageCreate.store');

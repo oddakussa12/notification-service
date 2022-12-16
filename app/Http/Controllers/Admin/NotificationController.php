@@ -8,9 +8,11 @@ use Validator;
 use App\Models\NotificationTemplate;
 use App\Models\Smsmessage;
 use App\Models\EmailAccount;
+use App\Models\InappNotification;
 
 use App\Jobs\SendEmailAdminJob;
 use App\Jobs\SendSMSJobAdmin;
+use App\Jobs\SendInappAdminJob;
 
 class NotificationController extends Controller
 {
@@ -18,7 +20,8 @@ class NotificationController extends Controller
         $messages = Smsmessage::orderBy('created_at', 'desc')->get();
         $emailTemplates = NotificationTemplate::orderBy('created_at', 'desc')->get();
         $emailAccounts = EmailAccount::orderBy('created_at', 'desc')->get();
-        return view('Admin/adminSendNotification',compact('emailTemplates','messages', 'emailAccounts'));
+        $inapp_notifications = InappNotification::orderBy('created_at', 'desc')->get();
+        return view('Admin/adminSendNotification',compact('emailTemplates','messages', 'emailAccounts','inapp_notifications'));
     }
     public function sendNotification(Request $request){
         if($request->email_account){
@@ -39,8 +42,8 @@ class NotificationController extends Controller
         if($request->push){
 
         }
-        if($request->InApp){
-
+        if($request->inapp_noti_id){
+            SendInappAdminJob::dispatch($request->inapp_noti_id);
         }
 
         return response()->json(['message' => "Notififcation has been sent", 'status_code' => 200]);

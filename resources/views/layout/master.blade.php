@@ -245,6 +245,33 @@
   });
 </script>
 
+{{-- in app notifications  --}}
+<script>
+  $(document).ready(function(){
+      var token = $('input[name="_token"]').val();
+      function inAppNotifications(){
+          $.ajax({
+            url:'{{route('inAppNotifications')}}',
+              cache:false,
+              method:'GET',
+              beforeSend: function()
+              {  
+                  $("#loading-overlay").show();
+              },
+              success:function(data){
+                  $('#odda').empty();
+                  $('#odda').append(data);
+                  $("#loading-overlay").hide();
+              }
+          });
+      }
+
+      $('#inapp_notifications').on('click',function(){
+          inAppNotifications();
+      });
+  });
+</script>
+
 {{-- admin send notification  --}}
 <script>
   $(document).ready(function(){

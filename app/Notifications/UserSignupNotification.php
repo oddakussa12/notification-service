@@ -70,7 +70,6 @@ class UserSignupNotification extends Notification implements ShouldQueue
    
     public function toArray($notifiable)
     {
-        Log::info("to array");
         return [
             'subject' => $this->inApp['subject'],
             'body'    => $this->inApp['body'],
