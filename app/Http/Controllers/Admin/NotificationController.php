@@ -9,10 +9,12 @@ use App\Models\NotificationTemplate;
 use App\Models\Smsmessage;
 use App\Models\EmailAccount;
 use App\Models\InappNotification;
+use App\Models\PushNotification;
 
 use App\Jobs\SendEmailAdminJob;
 use App\Jobs\SendSMSJobAdmin;
 use App\Jobs\SendInappAdminJob;
+use App\Jobs\SendPushAdminJob;
 
 class NotificationController extends Controller
 {
@@ -21,7 +23,9 @@ class NotificationController extends Controller
         $emailTemplates = NotificationTemplate::orderBy('created_at', 'desc')->get();
         $emailAccounts = EmailAccount::orderBy('created_at', 'desc')->get();
         $inapp_notifications = InappNotification::orderBy('created_at', 'desc')->get();
-        return view('Admin/adminSendNotification',compact('emailTemplates','messages', 'emailAccounts','inapp_notifications'));
+        $push_notifications = PushNotification::orderBy('created_at', 'desc')->get();
+        return view('Admin/adminSendNotification',compact('emailTemplates','messages',
+         'emailAccounts','inapp_notifications', 'push_notifications'));
     }
     public function sendNotification(Request $request){
         if($request->email_account){
@@ -39,8 +43,8 @@ class NotificationController extends Controller
         if($request->message_id){
             SendSMSJobAdmin::dispatch($request);
         }
-        if($request->push){
-
+        if($request->push_notification_id){
+            SendPushAdminJob::dispatch($request->push_notification_id);
         }
         if($request->inapp_noti_id){
             SendInappAdminJob::dispatch($request->inapp_noti_id);
