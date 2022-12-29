@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\SocketsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\JobNotificationController;
 use App\Http\Controllers\HomeController;
 
 
@@ -31,7 +32,7 @@ Route::post('/markAllAsRead', [NotificationController::class, "markAllNotificati
 Route::get('/userNotification/{user_id}', [NotificationController::class, "userNotification"]);
 
 
-
+Route::post('/sendJobPreferenceNotification', [JobNotificationController::class, "sendJobPreferenceNotification"]);
 
 
 
