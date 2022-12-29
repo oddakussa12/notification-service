@@ -25,15 +25,6 @@ Route::post('login', 'Auth\LoginController@login');
     Route::get('/home', 'HomeController@index')->name('home');
     
 
-    Route::post('/viewUnapprovedQuestion', 'Admin\QuestionController@singleUnapprovedQuestion')->name('viewUnapprovedQuestion');
-
-    
-    
-    // application side menu links
-    Route::get('/unapprovedQuestions', 'Admin\SidemenuController@unapprovedQuestions')->name('unapprovedQuestions');
-    Route::get('/approvedQuestions', 'Admin\SidemenuController@approvedQuestions')->name('approvedQuestions');
-    Route::get('/rejectedQuestions', 'Admin\SidemenuController@rejectedQuestions')->name('rejectedQuestions');
-
     Route::get('/emailAccounts', 'EmailAccountController@index')->name('emailAccounts');
     Route::get('/smsMessages', 'SmsmessageController@index')->name('smsMessages');
     Route::get('/inAppNotifications', 'InappNotificationController@index')->name('inAppNotifications');
@@ -91,62 +82,6 @@ Route::post('login', 'Auth\LoginController@login');
     Route::POST('/email-language-create', 'EmaillanguageController@store')->name('emailLanguageCreate.store');
     Route::POST('/email-language-update', 'EmaillanguageController@update')->name('emailLanguage.update');
     Route::delete('/email-language-delete', 'EmaillanguageController@destroy')->name('emailLanguage.delete');
-
-
-
-    
-
-
-
-
-
-
-    
-
-    Route::get('/categorytag', 'Admin\SidemenuController@categoryTag')->name('categorytag');
-    Route::get('/blogs', 'Admin\SidemenuController@blogs')->name('blogs');
-
-    Route::put('/approve_question','Admin\QuestionController@approveQuestion')->name('question.approve');
-    Route::put('/decline_question','Admin\QuestionController@declineQuestion')->name('question.decline');
-    
-    // datatable routes
-    Route::get('/api/unapprovedquestions','Admin\QuestionController@unapprovedQuestions')->name('api.unapprovedquestions');
-    Route::get('/api/approvedQuestions','Admin\QuestionController@approvedQuestions')->name('api.approvedQuestions');
-    Route::get('/api/rejectedQuestions','Admin\QuestionController@rejectedQuestions')->name('api.rejectedQuestions');
-
-    
-    Route::get('/api/blogs','Admin\BlogController@blogs')->name('api.blogs');
-    
-    // blog CRUD Routes
-    Route::post('/blog', 'Admin\BlogController@store')->name('blog.store');
-    Route::put('/blog/{id}','Admin\BlogController@update');
-    Route::delete('/blog/{id}','Admin\BlogController@destroy');
-    
-    // Question store by admin
-    Route::post('/question', 'Admin\QuestionController@store')->name('question.store');
-    
-    // forum category CRUD
-    Route::post('/category','Admin\CategoryController@store')->name('forumcategory.store');
-    Route::put('/category/{id}','Admin\CategoryController@update');
-    Route::delete('/category/{id}','Admin\CategoryController@destroy');
-    
-    // blog category CRUD
-    Route::post('/blogCategory','Admin\BlogcategoryController@store')->name('blogcategory.store');
-    Route::put('/blogCategory/{id}','Admin\BlogcategoryController@update');
-    Route::delete('/blogCategory/{id}','Admin\BlogcategoryController@destroy');
-    
-    // tag CRUD
-    Route::post('/tag','Admin\TagController@store')->name('tag.store');
-    Route::put('/tag','Admin\TagController@update')->name('tag.edit');
-    Route::delete('/tag','Admin\TagController@destroy')->name('tag.delete');
-    
-    // Reporting words CRUD
-    Route::post('/reportword','Admin\ReportwordController@store')->name('reportword.store');
-    Route::put('/reportword/{id}','Admin\ReportwordController@update');
-    Route::delete('/reportword/{id}','Admin\ReportwordController@destroy');
-    
-    
-    
 
 });
 
@@ -290,6 +225,7 @@ Route::get('/clear-cache', function() {
 Route::any('/{page?}',function(){
     return View::make('pages.error-pages.error-404');
 })->where('page','.*');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
