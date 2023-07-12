@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Jobs\JobRelated\SendJobCreatedSMSJob;
+use App\Jobs\JobRelated\SendJobCreatedEmailJob;
 
 use Illuminate\Support\Facades\Log;
 
@@ -43,8 +44,11 @@ class JobNotificationController extends Controller
           $users_id = $user['created_by'];
         }
 
-        SendJobCreatedSMSJob::dispatch($users_id, $request->tags);
+        // SendJobCreatedSMSJob::dispatch($users_id, $request->tags);
+        SendJobCreatedEmailJob::dispatch($users_id, $request->tags);
 
-        return $response->json();
+        return response()->json([
+          'message' => "ok"
+        ]);
     }
 }

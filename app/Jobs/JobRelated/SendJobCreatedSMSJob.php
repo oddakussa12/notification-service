@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\JobRelated;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -48,7 +48,7 @@ class SendJobCreatedSMSJob implements ShouldQueue
                     // get user preference language
                     $userLanguage = $hasura_user['language'];
 
-                    $message = Smsmessage::find(2);
+                    $message = Smsmessage::find(1);
 
                     if($message){
                         $languageMessage = $message->languages()->where('code', $userLanguage)->first();
